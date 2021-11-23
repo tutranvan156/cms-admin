@@ -1,0 +1,35 @@
+.dashboard .panel-heading,
+.dashboard .panel-body,
+.dashboard .panel-footer {
+  padding: 8px;
+}
+.dashboard .panel-default .border {
+  border: solid #DDDDDD;
+}
+.dashboard .panel-primary .border {
+  border: solid #428BCA;
+}
+.dashboard .panel-success .border {
+  border: solid #D6E9C6;
+}
+.dashboard .panel-warning .border {
+  border: solid #FAEBCC;
+}
+.dashboard .panel-danger .border {
+  border: solid #EBCCD1;
+}
+.dashboard .border.top {
+  border-width: 1px 0px 0px 0px;
+}
+.dashboard .border.right {
+  border-width: 0px 1px 0px 0px;
+}
+.dashboard .border.bottom {
+  border-width: 0px 0px 1px 0px;
+}
+.dashboard .border.left {
+  border-width: 0px 0px 0px 1px;
+}
+.dashboard .time {
+  color: #777777;
+}

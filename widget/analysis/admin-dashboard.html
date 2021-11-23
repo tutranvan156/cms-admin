@@ -1,0 +1,382 @@
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#theme("/cmsadmin/css/admin-dashboard/animate")
+#theme("/cmsadmin/css/admin-dashboard/bootstrap-extension")
+#theme("/cmsadmin/css/admin-dashboard/default")
+#theme("/cmsadmin/css/admin-dashboard/jquery.toast")
+#theme("/cmsadmin/css/admin-dashboard/morris")
+#theme("/cmsadmin/css/admin-dashboard/sidebar-nav.min")
+#theme("/cmsadmin/css/admin-dashboard/style")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/jquery/plugins/chart.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-chart-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-line-chart.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-quick-compose-box-ext.min.js")
+#script("/js/cmsadmin/inet/lib/analysis/cms-dashboard.min.js")
+#dataservice("cmscategorylist")
+#dataservice("cmsfirmmemberlist")
+#set($cateList = $cmscategorylist)
+#set($memberList = $cmsfirmmemberlist)
+<style>
+    #page-wrapper{
+        margin-left:0 !important;
+        padding:5px 0;
+        padding-top: 10px;
+    }
+    .container-fluid{
+        padding-left: 10px !important;
+        padding-right: 10px;
+    }
+    .comment-center{
+        margin: 0 0;
+    }
+    .tree i{
+        margin-right: 5px;
+    }
+    .badge.badge-success, .badge-success,.badge.badge-important{
+        background: none!important;
+        color:#acacac;
+    }
+    .badge.badge-success i.published,.badge.badge-important i.published{
+        color:#398439;
+    }
+    .badge.badge-success i.unpublished,.badge.badge-important i.unpublished{
+        color:#d15b47;
+    }
+    .bg-theme-dark{
+        background: white !important;
+    }
+    .weather i,.text-white,.weather h1{
+        color:#01c0c8;
+    }
+    .two-part li i,.two-part li span{
+        font-size: 30px;
+    }
+    .two-part li{
+        width:20% !important;
+    }
+    .white-box{
+        padding:10px;
+    }
+    /*.white-box .box-title{*/
+        /*font-weight: bold;*/
+        /*color:#08c;*/
+    /*}*/
+    .comment-view{
+        margin-left: 25px;
+    }
+    .alert-success{
+        margin-bottom: 0;
+    }
+
+    .box-body {
+        border-radius: 0 0 2px 2px;
+    }
+    .products-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .product-list-in-box>.item {
+        box-shadow: none;
+        border-radius: 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .products-list>.item {
+        padding: 10px 0;
+        background: #fff;
+    }
+    .products-list .product-img {
+        float: left;
+    }
+    .products-list .product-img img {
+        width: 125px;
+        padding-top: 6px;
+        margin-right: 10px;
+    }
+    .products-list .product-info {
+        margin-bottom: 10px;
+        text-align: justify;
+    }
+    .products-list .product-title {
+        font-weight: 600;
+    }
+    .products-list .product-description {
+        display: block;
+        color: #999;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .comment-center .user-img img {
+        border:1px solid #acacac;
+    }
+    .label-warning, .modal-warning .modal-body {
+        background-color: #ffd600!important;
+        color: #000!important;
+    }
+    .label-success, .label.label-success{
+        background: #ffd600 !important;
+        color: #333;
+        line-height: 14px;
+    }
+</style>
+<div id="dashboard-wg">
+    <div id="wrapper">
+        <div id="page-wrapper" style="margin-left: 0px !important; padding-top: 10px !important;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <label for="cbb-categories" class="sr-only"></label>
+                        <select id="cbb-categories" class="form-control">
+                            <option value="">--- Tất cả ---</option>
+                            #if(!!$cateList && $cateList.items.size() > 0)
+                                #foreach($cate in $cateList.items)
+                                    #if($cate.name != $cate.group)
+                            <option value="$cate.uuid">$cate.name</option>
+                                    #end
+                                #end
+                            #end
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <label for="cbb-members" class="sr-only"></label>
+                        <select id="cbb-members" class="form-control">
+                            <option value="">--- Tất cả ---</option>
+                            #if(!!$memberList && $memberList.items.size() > 0)
+                                #foreach($member in $memberList.items)
+                            <option value="$member.member">$member.fullname</option>
+                                #end
+                            #end
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div id="datepicker" class="input-daterange input-group">
+                            <span class="input-group-addon" id="txt-from-addon" style="border-left-width:1px">Thống kê từ</span>
+                            <input id="txt-time-from" type="text" class="input-sm form-control no-margin-i"
+                                   name="start" placeholder="Ngày bắt đầu" aria-describedby="txt-from-addon"
+                                   style="margin:0!important">
+                            <span class="input-group-addon" id="txt-to-addon">đến</span>
+                            <input id="txt-time-to" type="text" class="input-sm form-control no-margin-i"
+                                   name="end" placeholder="Ngày kết thúc" aria-describedby="txt-to-addon"
+                                   style="margin:0!important">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 dashboard-book" style="display: none">
+                        <div class="white-box">
+                            <h3 class="box-title">Thống kê Bài viết</h3>
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-sm-6 col-xs-12 dashboard-all-post" style="display: none">
+                                        <a href="javascript:;" id="link-all-post">
+                                            <div class="white-box">
+                                                <h3 class="box-title">Tổng cộng</h3>
+                                                <ul class="list-inline two-part">
+                                                    <li><i style="color:#08c;" class="fa fa-globe" aria-hidden="true"></i></li>
+                                                    <li class="text-right"><span class="counter number-post"></span></li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-xs-12 dashboard-published" style="display: none">
+                                        <a href="javascript:;" id="link-pulished" >
+                                            <div class="white-box">
+                                                <h3 class="box-title" >Đã xuất bản</h3>
+                                                <ul class="list-inline two-part">
+                                                    <li><i class="fa fa-paper-plane-o " style="color:#5cb85c" aria-hidden="true"></i></li>
+                                                    <li class="text-right"><span class="counter num-page-pulished"></span></li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-xs-12 dashboard-unpublished" style="display: none">
+                                        <a href="javascript:;" id="link-unpulished">
+                                            <div class="white-box" >
+                                                <h3 class="box-title">Vừa tạo</h3>
+                                                <ul class="list-inline two-part">
+                                                    <li><i style="color:#d9534f" class="fa fa-lock" aria-hidden="true"></i></li>
+                                                    <li class="text-right"><span class="counter num-page-unpulished"></span></li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-xs-12 dashboard-page" style="display: none">
+                                        <a href="javascript:;" id="link-num-page">
+                                            <div class="white-box">
+                                                <h3 class="box-title">Trang nội dung</h3>
+                                                <ul class="list-inline two-part">
+                                                    <li><i style="color:#f0ad4e" class="fa fa-file-o" aria-hidden="true"></i></li>
+                                                    <li class="text-right"><span class="counter num-page"></span></li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-md-6 col-lg-4 dashboard-question" style="display: none">-->
+                        <!--<div class="white-box">-->
+                            <!--<h3 class="box-title">Thống kê câu hỏi</h3>-->
+                            <!--<div >-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-lg-6 col-sm-6 col-xs-12 dashboard-all-question hide">-->
+                                        <!--<div class="white-box">-->
+                                            <!--<h3 class="box-title">Tổng cộng</h3>-->
+                                            <!--<ul class="list-inline two-part">-->
+                                                <!--<li><i style="color:#08c;" class="fa fa-globe" aria-hidden="true"></i></li>-->
+                                                <!--<li class="text-right"><span class="counter number-question"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-lg-6 col-sm-6 col-xs-12 dashboard-question-published" style="display: none">-->
+                                        <!--<div class="white-box">-->
+                                            <!--<h3 class="box-title">Đã trả lời</h3>-->
+                                            <!--<ul class="list-inline two-part">-->
+                                                <!--<li><i class="fa fa-reply" style="color:#5cb85c" aria-hidden="true"></i></li>-->
+                                                <!--<li class="text-right"><span class="counter number-question-published"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-lg-6 col-sm-6 col-xs-12 dashboard-question-created" style="display: none">-->
+                                        <!--<div class="white-box">-->
+                                            <!--<h3 class="box-title">Vừa tạo</h3>-->
+                                            <!--<ul class="list-inline two-part">-->
+                                                <!--<li><i style="color:#5bc0de" class="fa fa-plus-square-o" aria-hidden="true"></i></li>-->
+                                                <!--<li class="text-right"><span class="counter number-question-created"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-4 dashboard-exchange" style="display: none">-->
+                        <!--<div class="white-box">-->
+                            <!--<h3 class="box-title">Thông kê giao lưu</h3>-->
+                            <!--<div >-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-lg-6 col-sm-6 col-xs-12">-->
+                                        <!--<div class="white-box">-->
+                                            <!--<h3 class="box-title">Tổng cộng</h3>-->
+                                            <!--<ul class="list-inline two-part">-->
+                                                <!--<li><i style="color:#08c;" class="fa fa-globe" aria-hidden="true"></i></li>-->
+                                                <!--<li class="text-right comment-view"><span class="counter number-exchange"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-8 dashboard-comment " style="display: none">-->
+                        <!--<div class="white-box">-->
+                            <!--<h3 class="box-title">Thông kê bình luận</h3>-->
+                            <!--<div >-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-lg-4 col-sm-4 col-xs-4">-->
+                                        <!--<div class="white-box">-->
+                                            <!--<h3 class="box-title">Tổng cộng</h3>-->
+                                            <!--<ul class="list-inline two-part">-->
+                                                <!--<li><i class="fa fa-comments-o" style="color:#01c0c8" aria-hidden="true"></i></li>-->
+                                                <!--<li class="text-right comment-view"><span class="counter num-comment"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-8 col-lg-8 col-sm-8">-->
+                                        <!--<div class="white-box">-->
+                                            <!--<h3 class="box-title">Những ý kiến gần đây</h3>-->
+                                            <!--<div class="comment-center " style="display: none;">-->
+                                                <!--<div class="comment-body">-->
+                                                    <!--<div class="user-img"> <img alt="$cm.author" src='$ctx.page("/system/userprofile/photo", "thumbnail=40", "usercode=$cm.email")' class="img-circle"></div>-->
+                                                    <!--<div class="mail-contnet">-->
+                                                        <!--<h5>Pavan kumar</h5>-->
+                                                        <!--<span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat.</span>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="no-comment" style="display:none">-->
+                                                <!--<div class="alert alert-success alert-dismissible" role="alert">Không có bình luận nào</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 dashboard-group" style="display: none">
+                        <div class="white-box">
+                            <h3 class="box-title">Thống kê nhóm
+
+                            </h3>
+                            <div class="tree">
+                                <!--$ctx.resource("/images/cmsadmin/literature-xxl.png")-->
+                            </div>
+                        </div>
+                        <script type="text/template" id="tree-category-item">
+                            <ul>
+                                <li>
+                                    <a href="javascript:;" data-action="view-queue-parent" data-ref="{cateId}">
+                                        <span>
+                                            <i class="fa fa-bars" aria-hidden="true"></i> Chủ đề
+                                            <span class="boder-none" style="font-weight: bold"> {cate}</span> có
+                                            <span class="boder-none" style="font-weight: bold">{total}</span> bài viết
+                                        </span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:;" data-action="view-queue-pulished" data-child="{cateId}">
+                                                <span class="badge badge-success">
+                                                    <i class="fa fa-paper-plane published" aria-hidden="true"></i>
+                                                    <span class="boder-none"
+                                                          style="color:#398439;font-weight: bold">{published}</span> bài viết <span
+                                                        style="color:#398439;font-weight: bold">đã xuất bản</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" data-action="view-queue-created" data-child="{cateId}">
+                                                <span class="badge badge-important">
+                                                    <i class="fa fa-lock unpublished" aria-hidden="true"></i>
+                                                    <span class="boder-none"
+                                                          style="color: #d15b47;font-weight: bold;">{created}</span> bài viết <span
+                                                        style="color: #d15b47; font-weight: bold;">chưa xuất bản</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </script>
+                    </div>
+                    <div class="col-md-6 col-lg-6 dashboard-write" style="display: none">
+                        <div class="white-box">
+                            <h3 class="box-title no-margin">Bài viết xem nhiều</h3>
+                            <div class="box-body">
+                                <ul class="products-list product-list-in-box" >
+                                </ul>
+                            </div>
+                        </div>
+                        <script type="text/template" id="list-best-write">
+                            <li class="item">
+                                <div class="product-img">
+                                    <img src="{image}" alt="{subject}">
+                                </div>
+                                <div class="product-info">
+                                    <a href="javascript:;" class="product-title">{subject}<span class="label label-success pull-right">{count}</span></a>
+                                    <span class="product-description">{brief}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

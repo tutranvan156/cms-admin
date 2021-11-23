@@ -1,0 +1,50 @@
+#script("/js/cmsadmin/inet/lib/api/poll-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-poll-list.min.js")
+<script type="text/javascript">
+    iNet.ns('iNet.resources.cmsadmin.poll');
+    if (iNet.resources.cmsadmin.poll)
+      iNet.apply(iNet.resources.cmsadmin.poll, {
+        title: '$text.getText("cmsadmin.poll")',
+        question: '$text.getText("cmsadmin.poll.question")',
+        answer: '$text.getText("cmsadmin.poll.answer")',
+        creator: '$text.getText("cmsadmin.poll.creator")',
+        del_title: '$text.getText("cmsadmin.poll.del_title")',
+        del_confirm: '$text.getText("cmsadmin.poll.del_confirm")',
+        del_success: '$text.getText("cmsadmin.poll.del_success")',
+        del_error: '$text.getText("cmsadmin.poll.del_error")',
+        create_success: '$text.getText("cmsadmin.poll.create_success")',
+        create_error: '$text.getText("cmsadmin.poll.create_error")',
+        update_success: '$text.getText("cmsadmin.poll.update_success")',
+        update_error: '$text.getText("cmsadmin.poll.update_error")'
+      });
+</script>
+<div id="poll-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display:none">
+                <div id="list-basic-search">
+                    <div id="list-quick-search">
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-poll"></div>
+            </div>
+        </div>
+    </div>
+</div>

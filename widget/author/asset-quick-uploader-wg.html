@@ -1,0 +1,28 @@
+#script("/js/cmsadmin/inet/lib/author/cms-asset-quick-uploader.min.js")
+
+<div id="quick-upload-wg" style="display: none;">
+    <input id="quick-upload-uploader" type="file" style="display: none;" multiple="false" accept="image/*">
+    <div id="quick-upload-folder-modal" class="modal fade" style="display: none">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4><i class="icon-folder-close-alt"></i> $text.getText("cmsadmin.media.folder")</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row" style="height: 30px; line-height: 30px;">
+                <div class="col-sm-4 col-md-4">$text.getText("cmsadmin.media.folder_select"):</div>
+                <div class="col-sm-8 col-md-8">
+                    <select id="quick-upload-folder-modal-folder-list" class="col-sm-12 col-md-12 form-control">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="quick-upload-folder-modal-btn-ok" type="button" class="btn btn-primary btn-small"><i
+                    class="icon-ok"></i> $text.getText("app.button.ok")
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i>
+                $text.getText("app.button.cancel")
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+#script("/js/cmsadmin/inet/lib/author/cms-item-selector.min.js")
+#dataservice("cmscategorylist")
+
+<div id="list-post-selector-wg" style="display: none;">
+    <div id="list-post-selector-modal" class="modal container fade" style="display: none">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4><i class="icon-folder-close-alt"></i> $text.getText("cmsadmin.post.reference_modal")</h4>
+        </div>
+        <div class="modal-body" style="padding: 10px;">
+            <div class="container-fluid">
+                <div class="hide" style="display: none;">
+                    <div id="list-post-selector-basic-search">
+                        <div id="list-post-selector-quick-search">
+                            #if($cmscategorylist.items.size() > 0)
+                            <div class="col-sm-6 col-md-6 span6 nopadding" style="max-height: 30px;">
+                                <select id="list-post-selector-search-cate" class="grid-search-cate form-control" style="height: 30px;">
+                                    <option value="">-- $text.getText("cmsadmin.all") --</option>
+                                    #foreach($item in $cmscategorylist.items)
+                                        #if($item.name!=$item.group)
+                                            <option value="$item.uuid">$item.name</option>
+                                        #end
+                                    #end
+                                </select>
+                            </div>
+                            #end
+                            <div class="col-xs-3 col-md-3 span3 no-padding">
+                                <span class="input-group search" style="margin-left:0px;">
+                                    <span class="input-group-btn">
+                                        <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                        <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="list-post-selector-grid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer no-margin-top">
+            <button id="list-post-selector-btn-ok" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i> $text.getText("app.button.ok")</button>
+            <button type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("app.button.cancel")</button>
+        </div>
+    </div>
+</div>

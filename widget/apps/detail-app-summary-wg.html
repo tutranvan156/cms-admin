@@ -1,0 +1,174 @@
+#theme("/common/css/jquery/select2")
+#theme("/cmsadmin/css/bootstrap-tagsinput")
+#theme("/cmsadmin/css/application-summary")
+#script("/js/cmsadmin/bootstrap/plugins/bootstrap-tagsinput.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-selector.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-tab-item-list.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-app-ref-list.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-app-summary-detail.min.js")
+<div id="detail-app-summary-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="detail-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="detail-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="detail-btn-save" class="btn btn-primary btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-horizontal">
+                        <div class="alert alert-info form-group" style="padding: 5px 10px; margin-bottom: 5px;">
+                            <strong>$text.getText("cmsadmin.apps.detail_info")</strong>
+                            <div class="pull-right">
+                                <span class="count-download green">
+                                    <i class="fa fa-download"></i> 0
+                                </span>
+                                &nbsp;&bullet;&nbsp;
+                                <span class="count-rating orange">
+                                    <i class="fa fa-star"></i> 0
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                            <label for="app-name" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.name"):</label>
+                            <div class="col-md-6 col-sm-6 no-padding-right">
+                                <input id="app-name" type="text" class="form-control col-md-12 col-sm-12" placeholder='$text.getText("cmsadmin.apps.name")' />
+                            </div>
+                            <label for="app-type" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.type"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <select id="app-type" class="form-control col-md-12 col-sm-12">
+                                    <option value="THEME">$text.getText("cmsadmin.apps.theme")</option>
+                                    <option value="PLUGIN">$text.getText("cmsadmin.apps.plugin")</option>
+                                    <option value="APPLICATION">$text.getText("cmsadmin.apps.app")</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                            <label for="app-cate" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.cate"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <input id="app-cate" type="text" class="form-control col-md-12 col-sm-12" placeholder='$text.getText("cmsadmin.apps.cate")' />
+                            </div>
+                            <label for="app-publisher" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.publisher"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <input id="app-publisher" type="text" class="form-control col-md-12 col-sm-12" placeholder='$text.getText("cmsadmin.apps.publisher")' />
+                            </div>
+                            <label for="app-status" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.status"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <select id="app-status" class="form-control col-md-12 col-sm-12">
+                                    <option value="REVIEW">$text.getText("cmsadmin.apps.status.review")</option>
+                                    <option value="PUBLISHED">$text.getText("cmsadmin.apps.status.published")</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                            <label for="app-price" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.price"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <input id="app-price" type="text" class="form-control col-md-12 col-sm-12" placeholder='$text.getText("cmsadmin.apps.price")' />
+                            </div>
+                            <label for="app-version" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.version"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <input id="app-version" type="text" class="form-control col-md-12 col-sm-12" placeholder='$text.getText("cmsadmin.apps.version")' />
+                            </div>
+                            <label for="app-published-date" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.published_date"):</label>
+                            <div class="col-md-2 col-sm-2 no-padding-right">
+                                <input id="app-published-date" type="text" class="form-control col-md-12 col-sm-12 disabled" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                            <label for="app-author" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.authors"):</label>
+                            <div class="col-md-10 col-sm-10 no-padding-right">
+                                <input id="app-author" class="form-control col-md-12 col-sm-12"  type="text" name="tags" placeholder='$text.getText("cmsadmin.apps.authors")' />
+                                <!--<textarea id="app-author" class="form-control col-md-12 col-sm-12" rows="2"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                            <label for="app-brief" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.brief"):</label>
+                            <div class="col-md-10 col-sm-10 no-padding-right">
+                                <textarea id="app-brief" class="form-control col-md-12 col-sm-12" rows="2" placeholder='$text.getText("cmsadmin.apps.brief")'></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                            <label for="app-name" class="col-md-2 col-sm-2 ilabel">$text.getText("cmsadmin.apps.package"):</label>
+                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                <label id="app-package-file-container" class="ace-file-input">
+                                    <input type="file" id="input-package-file-upload">
+                                    <span class="ace-file-container" data-type="button" data-title='$text.getText("cmsadmin.apps.select_package")'>
+                                        <span class="ace-file-name" data-type="label" data-title='$text.getText("cmsadmin.apps.no_select_package")'>
+                                            <i data-type="icon" class="ace-icon fa fa-upload"></i>
+                                        </span>
+                                    </span>
+                                    <a class="remove" href="javascript:;" data-action="remove"><i class="ace-icon fa fa-times"></i></a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="alert alert-info form-group" style="padding: 5px 10px; margin-bottom: 5px;">
+                            <strong>$text.getText("cmsadmin.apps.images")</strong>
+                        </div>
+                        <div class="form-group box-images" style="margin-bottom: 5px;">
+                            <div id="app-images-list" class="col-md-12 col-sm-12 no-padding-left no-padding-right">
+                                <div id="btn-upload-images" class="btn-add-item btn-add-lg" data-action="upload">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <input type="file" accept="image/*" multiple="multiple" id="input-image-file-upload" class="hide" style="display: none;" />
+                        </div>
+                        <div class="alert alert-info form-group" style="padding: 5px 10px; margin-bottom: 5px;">
+                            <strong>$text.getText("cmsadmin.apps.summary")</strong>
+                        </div>
+                        <div class="form-group box-summary" style="margin-bottom: 5px;">
+                            <div class="col-md-12 col-sm-12 no-padding">
+                                <div class="hide" style="display: none;">
+                                    <div id="list-element-basic-search">
+                                        <div id="list-element-quick-search">
+                                            <div class="col-xs-3 col-md-3 span3 nopadding">
+                                                <button id="add-new-items-info" class="btn btn-success btn-sm">
+                                                    <i class="fa fa-plus"></i> $text.getText("cmsadmin.apps.create_tab_summary")
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-element-list"></div>
+                            </div>
+                        </div>
+                        <div class="alert alert-info form-group" style="padding: 5px 10px; margin-bottom: 5px;">
+                            <strong>$text.getText("cmsadmin.apps.references")</strong>
+                        </div>
+                        <div class="form-group box-summary no-margin-bottom">
+                            <div class="col-md-12 col-sm-12 no-padding">
+                                <div class="hide" style="display: none;">
+                                    <div id="list-ref-app-basic-search">
+                                        <div id="list-ref-app-quick-search">
+                                            <div class="col-xs-3 col-md-3 span3 nopadding">
+                                                <button id="btn-un-check-all" class="btn btn-danger btn-sm" style="display: none;">
+                                                    <i class="fa fa-times"></i> $text.getText("cmsadmin.btn.uncheck_all")
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3 span3 no-padding">
+                                                <span class="input-group search" style="margin-left:0px;">
+                                                    <span class="input-group-btn">
+                                                        <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                                        <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                                            <i class="icon-search"></i>
+                                                        </button>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="list-ref-app"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

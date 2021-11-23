@@ -1,0 +1,35 @@
+#script("/js/common/jquery/plugins/jquery.autoNumeric.min.js")
+#script("/js/cmsadmin/inet/lib/admin/input-file-column.min.js")
+#script("/js/cmsadmin/inet/lib/admin/member-unit-list.min.js")
+<script type="text/javascript">
+  iNet.ns('iNet.resources.message.member');
+  iNet.apply(iNet.resources.message.member, {
+    title: '$text.getText("Chức danh")',
+    fullname: '$text.getText("Họ và tên")',
+    phone: '$text.getText("Số điện thoại")',
+    industry: '$text.getText("Lĩnh vực")',
+    email: '$text.getText("Thư điện tử")',
+    displayIndex: '$text.getText("Vị trí")',
+    del_title: '$text.getText("Xóa thành viên")',
+    del_confirm: '$text.getText("Bạn chắc chắn muốn xóa thành viên này?")',
+    del_success: '$text.getText("Đã xóa thành viên thành công")',
+    del_error: '$text.getText("Quá trình xóa thành viên xảy ra lỗi")',
+    errors: {
+
+    }
+  });
+</script>
+<div id="member-list-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-member-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="list-member-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="member-unit-list"></div>
+        <form id="form-attach" style="display:none"></form>
+    </div>
+</div>

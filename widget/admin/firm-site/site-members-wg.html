@@ -1,0 +1,23 @@
+#script("/js/cmsadmin/inet/lib/admin/firm-member-list.min.js")
+<style type="text/css">
+    .datagrid label.label {
+        margin-right: 3px;
+    }
+</style>
+<div id="site-members-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="btn-site-members-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="btn-site-members-add" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="member-list"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+#script("/js/cmsadmin/inet/lib/admin/list-media-group.min.js")
+<style>
+    .view-category {
+        cursor: pointer;
+    }
+</style>
+<div id="wg-list-group-media" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-media-group-btn-back" class="btn btn-primary btn-sm">
+            <i class="icon-arrow-left"></i>
+            $text.getText("app.button.back")
+        </button>
+        <button id="list-media-group-btn-save" class="btn btn-success btn-sm" disabled="true">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+<!--            <div id="list-card-media-group" class="list-card">-->
+<!--                <table class="table table-bordered">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th style="width:34px;">#</th>-->
+<!--                            <th>Tên tập tin</th>-->
+<!--                            <th style="width: 125px;"></th>-->
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody id="tbody-category">-->
+
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+            <div  style="display:none">
+                <div id="list-basic-group-search">
+                    <div id="list-quick-search">
+                        <div>
+                            <div class="col-xs-4 col-md-4 span4">
+                                <span class="input-group search" style="margin-left:0">
+                                    <span class="input-group-btn">
+                                        <input type="text" class="grid-search-input form-control"
+                                               placeholder='$text.getText("common.field.placeholder_search")'>
+                                        <button type="button" class="btn btn-sm btn-primary grid-search-btn"
+                                                data-action-search="search">
+                                            <i class="fa fa-search"></i> Tìm kiếm
+                                        </button>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-group-media"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="list-media-group-tpl">
+    <tr>
+        <th scope="row">
+            <label class="inline">
+                <input type="checkbox" name="check-category" class="ace">
+                <span class="lbl"></span>
+            </label>
+        </th>
+        <td>{name}</td>
+        <td>
+            <span class="label label-primary view-category" data-name="{name}">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                Xem tập tin
+            </span>
+        </td>
+    </tr>
+</script>

@@ -1,0 +1,26 @@
+#script("/js/cmsadmin/inet/lib/admin/cms-template-list.min.js")
+<div id="template-list-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-template-toolbar-btn-create" class="btn btn-primary btn-sm">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div style="display: none;">
+                <div id="list-template-basic-search">
+                    <div class="col-md-6 col-sm-6 no-padding-left">
+                        <select id="list-template-type-select" class="col-sm-12 col-md-12 form-control" style="margin-bottom: 0 !important; height: 30px !important;">
+                            <option value='' selected="selected">$text.getText("cmsadmin.template.type_all")</option>
+                            <option value='PAGE'>$text.getText("cmsadmin.template.type_post")</option>
+                            <option value='PARAGRAPH'>$text.getText("cmsadmin.template.type_paragraph")</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-template-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>

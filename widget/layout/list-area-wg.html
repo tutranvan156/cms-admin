@@ -1,0 +1,255 @@
+#script("/js/cmsadmin/inet/lib/admin/list-area-wg.min.js")
+<style>
+    /*.wg-content {*/
+    /*    background-color: #f6f7fb !important;*/
+    /*}*/
+
+    .none-event {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+
+    .card {
+        border-radius: 5px;
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15);
+        border: none;
+        /*margin-bottom: 30px;*/
+        transition: all 0.3s ease-in-out;
+        margin-bottom: .75rem;
+        height: 100%;
+    }
+
+    .card-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0, 0, 0, .03);
+        border-bottom: 1px solid rgba(0, 0, 0, .125);
+    }
+
+    .card-header:first-child {
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
+
+    .card .card-header {
+        background-color: transparent;
+        border-bottom: none;
+        padding: 10px;
+    }
+
+    .media-left {
+        padding-right: 10px;
+    }
+
+    .company-name p {
+        font-weight: 600;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .card .card-header span {
+        display: block;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .job-badge {
+        position: absolute;
+        top: 10px;
+        right: -15px;
+    }
+
+    .label {
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        line-height: 1;
+        margin-bottom: 0;
+        text-transform: capitalize;
+        border-radius: 4px;
+        font-size: 75%;
+        display: inline-block;
+        padding: 4px 7px;
+        margin-right: 5px;
+        font-weight: 400;
+        color: #fff !important;
+    }
+
+    .job-badge .label {
+        width: auto;
+        text-align: center;
+        padding: 7px;
+        border-radius: 0;
+        z-index: 10;
+        height: auto;
+    }
+
+    .job-badge:after {
+        content: "";
+        border: 7px solid transparent;
+        border-top-color: #0071f3;
+        position: absolute;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        top: -7px;
+        right: 8px;
+        z-index: 1;
+    }
+
+    .card .card-block p {
+        line-height: 1.4;
+    }
+
+    .job-meta-data {
+        text-transform: capitalize;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .job-meta-data i {
+        margin-right: 5px;
+        color: #4099ff;
+    }
+
+    .card .card-block {
+        padding: 25px;
+    }
+
+    .media {
+        display: flex !important;
+    }
+
+    .list-card {
+        margin-top: 15px !important;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 25px -5px #9e9c9e !important;
+    }
+
+    .img-70 {
+        width: 70px;
+        height: 70px;
+        border: 1px solid #e6e6e6;
+        object-fit: cover;
+        padding: 5px;
+    }
+
+    .name-page {
+        font-weight: bold;
+    }
+
+    .list-card {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .item-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-list-page {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .list-page-group .list-group-item:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .item-page {
+        border: 0 !important;
+        background-color: #f5f5f5;
+        border-color: #f5f5f5;
+    }
+
+    .item-page.active {
+        background-color: #ddd !important;
+        border-color: #ddd !important;
+        color: #333 !important;
+    }
+    .content-list-area{
+        display: flex;
+    }
+</style>
+
+<div id="wg-list-area">
+    <div class="wg-toolbar navbar-fixed-top">
+<!--        <button id="list-toolbar-btn-area-load" class="btn btn-success btn-sm">-->
+<!--            <i class="fa fa-refresh" aria-hidden="true"></i>-->
+<!--            $text.getText("app.button.load")-->
+<!--        </button>-->
+<!--        <div class="text-left" style="margin-top: 5px; float: right;">-->
+<!--            <span style="position: absolute;top: 13px;right: 70px;">Hiển thị trang web</span>-->
+<!--            <input id="list-toolbar-btn-website-mode" class="ace ace-switch ace-switch-4 switch-4" type="checkbox">-->
+<!--            <span class="lbl"></span>-->
+<!--        </div>-->
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row content-list-area">
+                <div class="col-sm-3">
+                    <div class="list-group list-page-group" style="background: #f5f5f5;height: 100%;">
+                        <a href="javascript:;" class="list-group-item title-list-page">
+                            <i class="fa fa-bars" aria-hidden="true"></i>Danh sách trang
+                        </a>
+                        <div id="list-page" style="overflow-y: auto">
+                            <a href="javascript:;" data-uuid="" data-page="" class="item-page list-group-item">
+                                <i class="fa fa-trello" aria-hidden="true"></i> Cấu hình chung
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="design-areaview" class="col-sm-9">
+                    <input class="form-control" id="search-area" type="text" placeholder="Search..">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Vùng giao diện</th>
+                                <th scope="col" class="text-center">Tên plugin</th>
+                                <th scope="col" width="110px">Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-card-area">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="design-webview" class="col-sm-9" style="display: none;">
+                    <iframe id="iframe-design" src="#" style="width: 100%; height: 100%; border: none;"></iframe>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tpl-area">
+    <tr data-area="{name}">
+       <td class="item-name-area">{name}</td>
+       <td>{pluginName}</td>
+        <td>
+            <button type="button" data-area="{name}" data-plugin="{pluginName}"
+                    class="btn btn-primary {none} btn-load-plugin waves-effect waves-light btn-sm">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Chọn plugin
+            </button>
+        </td>
+    </tr>
+</script>

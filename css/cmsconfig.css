@@ -1,0 +1,41 @@
+.cms-config.cms-toolbox {
+    font-size: 13px;
+    background: #438eb9;
+    color: #ffffff;
+    padding: 6px 0px 12px 0px;
+    border-radius: 2px;
+    display: list-item;
+}
+
+.cms-config.cms-area {
+    float: left;
+    font-weight: bolder;
+    padding-left: 5px;
+    padding-top: 3px;
+}
+
+.cms-config.cms-action {
+    float: right;
+    padding-right: 5px;
+}
+
+.cms-config.cms-action.show-hide-area {
+    display: inline-flex;
+}
+
+.cms-config.cms-action.choose-plugin,
+.cms-config.cms-action.config-plugin
+{
+    border: 1px solid #000;
+    padding: 5px;
+    border-radius: 15px;
+    background: #fff;
+    color: #776d6d;
+    display: inline-flex;
+}
+
+.cms-config.cms-action.choose-plugin:hover,
+.cms-config.cms-action.config-plugin:hover{
+    background: #000000;
+    color: #ffffff;
+}

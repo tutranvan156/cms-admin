@@ -1,0 +1,61 @@
+#script("/js/cmsadmin/inet/lib/api/address-api.min.js")
+#script("/js/cmsadmin/inet/lib/api/state-budget-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/estimated-list.min.js")
+<script type="text/javascript">
+  iNet.ns('iNet.resources.message.estimated');
+  if (iNet.resources.message.estimated)
+    iNet.apply(iNet.resources.message.estimated, {
+      year: 'Năm',
+      unit: 'Đơn vị',
+      creator: '',
+      total_revenue: 'Tổng thu',
+      total_expenditure: 'Tổng chi',
+      del_title: 'Xóa dự toán',
+      del_confirm: 'Bạn có đồng ý xóa dự toán này?',
+      del_success: '$text.getText("Xóa thành công")',
+      del_error: '$text.getText("Quá trình xóa xảy ra lỗi")',
+      save: '$text.getText("Lưu dự toán")',
+      save_success: '$text.getText("Lưu dữ liệu thành công")',
+      save_error: '$text.getText("Quá trình lưu dữ liệu xảy ra lỗi")'
+    });
+</script>
+<div id="estimated-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display:none">
+                <div id="list-basic-search">
+                    <div id="list-quick-search">
+                        <div class="col-xs-3 col-md-3 span3 no-padding">
+                            <select id="cbb-search-year" class="form-control">
+                                <option>---Năm thống kê---</option>
+                                #set($startYear = 2016)
+                                #set($currentYear = $ctx.year())
+                                #foreach($i in [$startYear..$currentYear])
+                                <option value="$i">$i</option>
+                                #end
+                            </select>
+                        </div>
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="estimated-list"></div>
+            </div>
+        </div>
+    </div>
+</div>

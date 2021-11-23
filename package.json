@@ -1,0 +1,31 @@
+{
+  "name": "cms-admin",
+  "version": "4.0.5",
+  "description": "CMS Admin Module",
+  "author": "iNet Solutions <support@inetcloud.vn>",
+  "license": "iNet Solutions",
+  "homepage": "http://inetcloud.vn",
+  "dependencies": {
+    "@types/jquery": "^3.3.10",
+    "@types/typescript-deferred": "^0.1.28",
+    "clean-css": "~3.4.12",
+    "dateformat": "~2.0.0",
+    "fs-extra": "~0.30.0",
+    "gulp": "~3.9.1",
+    "gulp-replace": "^0.6.1",
+    "gulp-zip": "~3.2.0",
+    "uglify-js": "~2.6.2"
+  },
+  "keywords": [
+    "CMS Admin",
+    "Quản trị nội dung",
+    "iCloud Platform"
+  ],
+  "repository": {
+    "type": "subversion",
+    "url": "https://svn.inetcloud.vn/svn/Products/Source/portal/root/view/modules/app-store/cms-admin"
+  },
+  "directories": {
+    "doc": "README.md"
+  }
+}

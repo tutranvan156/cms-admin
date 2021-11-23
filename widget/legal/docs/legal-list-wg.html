@@ -1,0 +1,87 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/inet/lib/api/legal-doc-api.min.js")
+#script("/js/cmsadmin/inet/lib/document/draft-docs-list.min.js")
+#script("/js/cmsadmin/inet/lib/document/docs-list.min.js")
+<div id="legaldoc-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-add-wg" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i>
+            $text.getText("app.button.create")
+        </button>
+        <button id="list-btn-publish-edoc" class="btn btn-success btn-sm disabled" disabled>
+            <i class="fa fa-globe"></i>
+            $text.getText("cmsadmin.admin.document.published")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-docs-basic-search">
+                <div class="row-fluid">
+                    <!--<div class="col-md-4 col-sm-4 nopadding">-->
+                    <!--<div class="input-daterange input-group">-->
+                    <!--<input type="text" class="input-sm form-control" id="startDate" name="start"-->
+                    <!--placeholder="Ngày bắt đầu">-->
+                    <!--<span class="input-group-addon">-->
+                    <!--<i class="fa fa-long-arrow-right"></i>-->
+                    <!--</span>-->
+                    <!--<input type="text" class="input-sm form-control" id="endDate" name="end"-->
+                    <!--placeholder="Ngày kết thúc">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-3 col-md-3 span2 no-padding">-->
+                        <!--<select id="cbb-type-publisher" class="form-control no-margin-bottom" style="height:30px">-->
+                            <!--<option value="PROMULGATE" selected="true">-->
+                                <!--Văn bản chỉ đạo-->
+                            <!--</option>-->
+                            <!--<option value="DRAFT">-->
+                                <!--Văn bản điều hành-->
+                            <!--</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-2 col-md-2 span2 no-padding">-->
+                    <!--<select id="cbb-dict-publisher" class="form-control no-margin-bottom" style="height:30px">-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-2 col-md-2 span2 no-padding">-->
+                    <!--<select id="cbb-dict-type" class="form-control no-margin-bottom" style="height:30px">-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-2 col-md-2 span2 no-padding">-->
+                    <!--<select id="cbb-dict-industry" class="form-control no-margin-bottom" style="height:30px">-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <div class="col-xs-4 col-md-4 span2 no-padding">
+                            <span class="input-group search" style="margin-left:0;">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control"
+                                           placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn"
+                                            data-action-search="search" style="z-index:9999999">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                    </div>
+                    <div class="col-xs-4 col-md-4 span3 no-padding">
+                        <select id="cbb-sort-doc" class="form-control no-margin-bottom" style="height:30px; margin-left: 45px;">
+                            <option value="">Mặc định</option>
+                            <option value="promulgationDate">Tăng theo ngày văn bản</option>
+                            <option value="-promulgationDate">Giảm theo ngày văn bản</option>
+                            <option value="receiveDate">Tăng theo ngày tạo</option>
+                            <option value="-receiveDate">Giảm theo ngày tạo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="legal-doc-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

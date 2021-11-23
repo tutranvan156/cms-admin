@@ -1,0 +1,62 @@
+#script("/js/cmsadmin/inet/lib/model/cms-fqa.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-fqa-list.min.js")
+#script("/js/cmsadmin/inet/lib/review/cms-feedback-list.min.js")
+#dataservice("cmsfqacatelist")
+#variable("group", "GROUP_FEEDBACK")
+#xscript()
+    var dataCate = [];
+    #foreach($item in $cmsfqacatelist.items)
+        dataCate.push({'value': '$item.uuid', 'name': '$item.name', 'group': '$item.group'});
+    #end
+#end
+<div id="fqa-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-add" class="btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display: none;">
+                <div id="list-basic-search">
+                    <div id="list-quick-search">
+                        <div class="col-md-3 col-sm-3 nopadding" style="width: auto;">
+                            <div class="btn-group" role="group">
+                                <button id="btn-view-all-post" type="button" class="btn btn-default btn-sm active">
+                                    $text.getText("cmsadmin.all")
+                                </button>
+                                <button id="btn-view-created" type="button" class="btn btn-default btn-sm" style="color: #69aa46 !important;">
+                                    $text.getText("cmsadmin.fqa.created")
+                                </button>
+                                <button id="btn-view-posted" type="button" class="btn btn-default btn-sm" style="color: #478fca !important;">
+                                    $text.getText("cmsadmin.fqa.published")
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3 span3 no-padding">
+                            <select id="cbb-fqa-category" class="form-control no-margin-bottom" style="height:30px">
+                                #foreach($item in $cmsfqacatelist.items)
+                                <option value="$item.uuid">$item.name</option>
+                                #end
+                            </select>
+                        </div>
+                        <div class="col-xs-3 col-md-3 span3 no-padding">
+                            <span class="input-group search" style="margin-left:0;">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="grid-fqa"></div>
+            </div>
+        </div>
+    </div>
+</div>

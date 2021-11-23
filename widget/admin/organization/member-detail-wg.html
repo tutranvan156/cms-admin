@@ -1,0 +1,114 @@
+#script("/js/cmsadmin/inet/lib/api/unit-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/member-unit-detail.min.js")
+<style>
+    .avatar-right {
+        margin-top: 25px;
+    }
+
+    .avatar-box {
+    }
+
+    .avatar-box a.avatar-action {
+        position: relative;
+    }
+
+    .avatar-box .avatar-btn-wrapper {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+    }
+
+    .avatar-box .avatar-btn-remove {
+        border-radius: 50% !important;
+        padding: 6px 7px;
+        height: auto;
+        min-height: auto;
+    }
+</style>
+<div id="member-detail-wg" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="member-detail-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="member-detail-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="member-detail-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div>
+            <form id="form-info-member">
+
+                <input type="hidden" name="organization"/>
+                <input type="hidden" name="uuid"/>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="name-member" class="lbl">Họ và tên (<span class="required"></span>)</label>
+                        <input type="text" name="fullname" class="form-control" id="name-member"
+                               placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="title-member" class="lbl">Chức danh </label>
+                        <textarea rows="2" name="title" class="form-control" id="title-member"
+                                  placeholder="Nhập chức danh"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry-member" class="lbl">Lĩnh vực </label>
+                        <textarea rows="5" name="industry" class="form-control" id="industry-member"
+                                  placeholder="Nhập lĩnh vực"></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 row">
+                            <label class="col-sm-12 control-label lbl">Vị trí</label>
+                            <div class="col-sm-12">
+                                <input type="number" name="displayIndex" class="form-control" id="number-member"
+                                       placeholder="Nhập số điện thoại">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row">
+                            <label class="col-sm-12 control-label lbl">Điện thoại</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="phone" class="form-control" id="phone-member"
+                                       placeholder="Nhập số điện thoại">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mail-member" class="lbl">Thư điện tử</label>
+                        <input type="email" name="email" class="form-control" id="mail-member"
+                               placeholder="Nhập thư điện tử">
+                    </div>
+
+                </div>
+                <div class="col-md-3 avatar-right">
+                    <div id="avatar-box" class="avatar-box panel panel-default">
+                        <div class="panel-heading">
+                            <span class="title">Ảnh đại diện</span>
+                            <div class="panel-toolbar pull-right"></div>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <a href="javascript:;" data-action="select" class="avatar-action thumbnail">
+                                    <img id="avatar-box-image"
+                                         src="">
+                                    <span class="avatar-btn-wrapper">
+                                      <button type="button" id="avatar-box-remove-btn" class="avatar-btn-remove btn btn-danger"><i
+                                              class="fa fa-times"></i></button>
+                                  </span>
+                                </a>
+                            </div>
+                            <div class="text-center">
+                                <button id="avatar-box-upload-btn" type="button" class="btn btn-default btn-sm"><i
+                                        class="icon-upload-alt"></i>Tải lên
+                                </button>
+                            </div>
+                        </div>
+                        <input type="file" name="avatar" id="upload-avatar-member" class="hidden"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+#dataservice("cmscategorylist")
+#script("/js/cmsadmin/inet/lib/model/cms-item.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-list-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/review/cms-item-published-list.min.js")
+#xscript()
+    var dataCate = [];
+    #foreach($item in $cmscategorylist.items)
+    dataCate.push({'value': '$item.uuid', 'name': '$item.name', 'group': '$item.group'});
+    #end
+#end
+
+<div id="wg-list-post" style="overflow: auto!important;">
+    <div class="wg-toolbar navbar-fixed-top" style="min-height: 41px;">
+        <select id="select-language-published" name="select-language-published" style="margin: 0 !important;position: absolute;right: 5px;">
+            <option value="vi">Tiếng Việt</option>
+            <koption value="en">English</koption>
+        </select>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display: none;">
+                <div id="list-published-basic-search">
+                    <div>
+                        <div class="col-md-3 col-sm-3 nopadding" style="width: auto;">
+                            <div class="btn-group" role="group">
+                                <button id="list-published-all-btn" type="button" class="btn btn-default btn-sm active">
+                                    $text.getText("cmsadmin.all")
+                                </button>
+                                <button id="list-published-hot-btn" type="button" class="btn btn-default btn-sm" style="color: #69aa46 !important;">
+                                    $text.getText("cmsadmin.published.hot")
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3 span6 nopadding" style="max-height: 30px;">
+                            <select id="list-published-category-select" class="grid-search-cate form-control" style="height: 30px;">
+                                <option value="">-- $text.getText("cmsadmin.all") --</option>
+                                #foreach($item in $cmscategorylist.items)
+                                    #if($item.name!=$item.group)
+                                        <option value="$item.uuid">$item.name</option>
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                        <div class="col-xs-3 col-md-3 span3 no-padding">
+                            <span class="input-group search" style="margin-left:0px;">
+                                <span class="input-group-btn">
+                                    <input type="text" id="wg-list-published-keyword-txt" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search" id="wg-list-published-search-btn">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="grid-post"></div>
+            </div>
+        </div>
+    </div>
+</div>

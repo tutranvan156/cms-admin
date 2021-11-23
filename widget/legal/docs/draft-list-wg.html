@@ -1,0 +1,109 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/inet/lib/api/legal-doc-api.min.js")
+#script("/js/cmsadmin/inet/lib/document/draft-docs-list.min.js")
+
+<style>
+    .modal-enable {
+        width: 75%;
+        left: 0;
+        top: 50%;
+        transform: translate(50%, -50%);
+        background: none;
+        border: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+
+    }
+
+    .dropdown-menu {
+        z-index: 9999;
+    }
+</style>
+<div id="legaldoc-list-wg">
+    <div id="modal-form" class="modal modal-enable" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <h4 class="blue bigger">$text.getText("cmsadmin.admin.document.title_modal")</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="date-timepicker1">$text.getText("cmsadmin.admin.document.date_end")</label>
+                                <div class="input-group date">
+                                    <input type="text" style="margin-bottom:0px !important;" class="form-control"
+                                           id="date-timepicker1" placeholder="Ngày kết thúc">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"
+                                                                       aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm" id="close-modal" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        $text.getText("app.button.cancel")
+                    </button>
+
+                    <button class="btn btn-sm btn-primary save" id="save-modal">
+                        <i class="ace-icon fa fa-check"></i>
+                        $text.getText("app.button.save")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-add" class="btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-docs-basic-search">
+                <div class="row-fluid">
+                    <!--<div class="col-xs-2 col-md-2 span2 no-padding">-->
+                        <!--<select id="cbb-dict-publisher" class="form-control no-margin-bottom" style="height:30px">-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-2 col-md-2 span2 no-padding">-->
+                        <!--<select id="cbb-dict-industry" class="form-control no-margin-bottom" style="height:30px">-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <div class="col-xs-4 col-md-4 span4 no-padding">
+                            <span class="input-group search" style="margin-left:0;">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control"
+                                           placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn"
+                                            data-action-search="search" style="z-index:9999999">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                    </div>
+                    <div class="col-xs-4 col-md-4 span3 no-padding">
+                        <select id="cbb-sort-doc" class="form-control no-margin-bottom" style="height:30px;margin-left: 45px;">
+                            <option value="">Mặc định</option>
+                            <option value="promulgationDate">Tăng theo ngày văn bản</option>
+                            <option value="-promulgationDate">Giảm theo ngày văn bản</option>
+                            <option value="receiveDate">Tăng theo ngày tạo</option>
+                            <option value="-receiveDate">Giảm theo ngày tạo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="legal-doc-list"></div>
+            </div>
+        </div>
+    </div>
+</div>

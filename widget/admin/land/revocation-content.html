@@ -1,0 +1,117 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/admin/revocation-content.min.js")
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: 600;
+    }
+
+    #form-list input {
+        height: 35px !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+</style>
+<div id="doc-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="revocation-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="revocation-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="revocation-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" id="revocation-form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Nội dung</label>
+                    <div class="col-sm-10">
+                        <textarea type="text" rows="10" class="form-control"
+                                  id="revocation-content" placeholder="Nhập ghi chú">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Thời hạn</label>
+                    <div class="col-sm-10">
+                        <textarea type="text" rows="4" name="expiredDateStr" style="margin-bottom:0!important;"
+                                  class="form-control" id="date-end" placeholder="Nhập thời hạn"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Hình thức(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="formalityId" id="type-formality" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Ghi chú</label>
+                    <div class="col-sm-10">
+                        <textarea type="text" rows="4" name="note" style="margin-bottom:0!important;"
+                                  class="form-control" id="revocation-note" placeholder="Nhập ghi chú"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tập tin đính kèm(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <label class="ace-file-input">
+                            <input type="file" multiple id="id-input-file-2">
+                            <span class="ace-file-container" data-title="Choose">
+                                <span class="ace-file-name" data-title="No File ...">
+                                    <i class=" ace-icon fa fa-upload"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+                <div id="file-attachments" class="form-group list-upload">
+                </div>
+
+                <script type="text/html" id="list-formality">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-file-script">
+                    <div class="col-sm-10 col-sm-offset-2 child-file">
+                        <label class="ace-file-input ace-file-multiple">
+                            <span class="ace-file-container hide-placeholder selected">
+                                <span class="ace-file-name" data-title="{name}">
+                                    <i class=" ace-icon fa fa-file"></i>
+                                </span>
+                                <div style="position: absolute;right: 0;top: 0;height: 100%;">
+                                    <button type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}" class="btn btn-success btn-download" style=" height: 100%;">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}" class="btn btn-danger btn-remove" style=" height: 100%;">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <!--<button type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}"-->
+                                        <!--class="btn btn-success btn-download"-->
+                                        <!--style="position: absolute;right: 0;top: 0;height: 100%;border-radius: 0 !important;"><i-->
+                                        <!--class="fa fa-download" aria-hidden="true"></i></button>-->
+                            </span>
+                            <!--<a class="remove" href="#" data-name="{name}" data-uuid="{uuid}" data-grid="{gridfsUUID}">-->
+                            <!--<i class="ace-icon fa fa-times"></i>-->
+                            <!--</a>-->
+                        </label>
+                    </div>
+                </script>
+            </form>
+        </div>
+    </div>
+</div>

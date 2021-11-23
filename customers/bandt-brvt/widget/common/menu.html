@@ -1,0 +1,250 @@
+<!-- MENU FOR BAN DAN TOC - BRVT -->
+<a id="imenu-toggler" href="javascript:;"><span></span></a>
+#set($countRole = 0)
+#hasRole("$admin_legaldoc")
+    #set($countRole = 1)
+    #set($isLegalDoc = true)
+#end
+#hasRole("$cms_discussion_review")
+    #set($countRole = 1)
+    #set($isDissReview = true)
+#end
+#hasRole("$cms_fqa_review")
+    #set($countRole = 1)
+    #set($isFqaReview = true)
+#end
+#hasRole("$cms_comment_review")
+    #set($countRole = 1)
+    #set($isCmtReview = true)
+#end
+#hasRole("$cms_writer")
+    #set($countRole = 1)
+    #set($isWriter = true)
+#end
+#hasRole("$cms_review")
+    #set($countRole = 1)
+    #set($isReview = true)
+#end
+#hasRole("$sub_admin")
+    #set($countRole = 1)
+    #set($isAdmin = true)
+#end
+#hasRole("$firm_admin")
+    #set($countRole = 1)
+    #set($isFirmAdmin = true)
+#end
+#hasRole("$manager_online_exchange")
+    #set($countRole = 1)
+    #set($isManagerExchange = true)
+#end
+#hasRole("$admin_online_exchange")
+    #set($countRole = 1)
+    #set($isAdminOnlineExchange = true)
+#end
+#set($contextPathStr = $ctx.path())
+#set($firmPrefix = "/" + $ctx.getFirmPrefix())
+#set($isAuthor = ($firmPrefix != $contextPathStr))
+#theme("/cmsadmin/css/jquery/simplebar")
+#script("/js/cmsadmin/jquery/plugins/simplebar.min.js")
+<script type="text/javascript">
+  $(function () {
+    new SimpleBar(document.getElementById('sidebar'));
+  });
+</script>
+<style type="text/css">
+    .sidebar-custom {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .submenu {
+        max-height: inherit !important;
+    }
+</style>
+<div id="sidebar" class="sidebar-custom fixed">
+    <ul class="nav nav-list">
+        #if ($isAdmin)
+        <li id="dashboard">
+            <a href="javascript:;" data-scope="home" data-url='$ctx.page("cmsadmin/page/analysis/dashboard")'>
+                <i class="icon- fa fa-dashboard"></i>
+                <span>$text.getText("cmsadmin.dashboard")</span>
+            </a>
+        </li>
+        #end
+        #if ($isAdmin || $isWriter || $isReview || $isCmtReview || $isDissReview || $isFqaReview)
+        <li id="cms-list">
+            <a href="javascript:;" data-scope="home">
+                <i class="icon- fa fa-rss"></i>
+                <span>$text.getText("cmsadmin.menu.cms")</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                #if ($isAdmin)
+                <li id="cms-category">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/category')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.category")</span>
+                    </a>
+                </li>
+                <li id="cms-template">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/template')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.template.title")</span>
+                    </a>
+                </li>
+                <li id="cms-review-permission">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/review-permission')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.review.premission_title")</span>
+                    </a>
+                </li>
+                #end
+                #if ($isAdmin || $isWriter)
+                <li id="cms-post">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/author/item')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.menu.post")</span>
+                    </a>
+                </li>
+                #end
+                #if ($isAdmin || $isReview)
+                <li id="cms-review">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/review/review')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.review.title")</span>
+                    </a>
+                </li>
+                <li id="cms-published">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/review/published')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.published")</span>
+                    </a>
+                </li>
+                #end
+                #if ($isAdmin || $isWriter)
+                <li id="cms-media">
+                    <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/author/asset')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.media")</span>
+                    </a>
+                </li>
+                #end
+            </ul>
+        </li>
+        #end
+        #if ($isAdmin || $isLegalDoc)
+        <li>
+            <a href="javascript:;">
+                <i class="icon-book"></i>
+                <span>$text.getText("cmsadmin.admin.menu.document_title")</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li id="cms-doc-received" onclick="javascript:;">
+                    <a href='javascript:;' data-url="$ctx.page('cmsadmin/page/legal/organ')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.admin.menu.document.organ")</span>
+                    </a>
+                </li>
+                <li id="cms-doc-published" onclick="javascript:;">
+                    <a href='javascript:;' data-url="$ctx.page('cmsadmin/page/legal/industry')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.admin.menu.document.industry_document")</span>
+                    </a>
+                </li>
+                <li id="cms-doc-approval" onclick="javascript:;">
+                    <a href='javascript:;' data-url="$ctx.page('cmsadmin/page/legal/type')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.admin.menu.document.type_document")</span>
+                    </a>
+                </li>
+                <li id="cms-legal-doc" onclick="javascript:;">
+                    <a href='javascript:;' data-url="$ctx.page('cmsadmin/page/legal/docs')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.admin.menu.document.list")</span>
+                    </a>
+                </li>
+                <li id="cms-draft-doc" onclick="javascript:;">
+                    <a href='javascript:;' data-url="$ctx.page('cmsadmin/page/legal/draft')">
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.admin.menu.document.draft")</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        #end
+        #if ($isAdmin)
+        <li id="cms-organization">
+            <a href="javascript:;" data-scope="home" data-url='$ctx.page("cmsadmin/page/admin/organization")'>
+                <i class="icon- fa fa-sitemap"></i>
+                <span>$text.getText("Cơ cấu tổ chức")</span>
+            </a>
+        </li>
+        <li id="menu-item">
+            <a href="javascript:;" data-scope="home" data-url='$ctx.page("cmsadmin/page/admin/menu-item")'>
+                <i class="icon- fa fa-file-o"></i>
+                <span>$text.getText("cmsadmin.menuitem")</span>
+            </a>
+        </li>
+        <li id="site-menu">
+            <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/site-menu')">
+                <i class="icon- fa fa-bars"></i>
+                <span>$text.getText("sphere.menu.site.menu")</span>
+            </a>
+        </li>
+        <li id="site-link">
+            <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/sitelink')">
+                <i class="icon- fa fa-external-link" aria-hidden="true"></i>
+                <span>$text.getText("cmsadmin.link")</span>
+            </a>
+        </li>
+        <li id="site-poll">
+            <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/poll')">
+                <i class="icon- fa fa-briefcase" aria-hidden="true"></i>
+                <span>$text.getText("cmsadmin.poll")</span>
+            </a>
+        </li>
+        #end
+        #if ($isAdmin || $isFqaReview)
+        <li id="cms-fqa">
+            <a href="javascript:;" data-scope="home">
+                <i class="icon- fa fa-question-circle"></i>
+                <span>$text.getText("cmsadmin.fqa")</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li id="cms-fqa-category">
+                    <a href="javascript:;" data-url='$ctx.page("cmsadmin/page/author/fqa-category")'>
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.faq.category")</span>
+                    </a>
+                </li>
+                <li id="cms-fqa-list">
+                    <a href="javascript:;" data-url='$ctx.page("cmsadmin/page/author/fqa")'>
+                        <i class="icon- fa fa-caret-right"></i>
+                        <span>$text.getText("cmsadmin.faq.list")</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li id="contact">
+            <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/review/contact')">
+                <i class="icon- fa fa-file-text-o" aria-hidden="true"></i>
+                <span>$text.getText("cmsadmin.contact.title")</span>
+            </a>
+        </li>
+        #end
+        #if($isAdmin)
+        <li id="site-setting">
+            <a href="javascript:;" data-url="$ctx.page('cmsadmin/page/admin/setting')">
+                <i class="icon- fa fa-cog" aria-hidden="true"></i>
+                <span>$text.getText("cmsadmin.themes.install")</span>
+            </a>
+        </li>
+        #end
+    </ul>
+    #if ($countRole != 0)
+    <div id="sidebar-collapse">
+        <i class="icon-double-angle-left"></i>
+    </div>
+    #end
+</div>

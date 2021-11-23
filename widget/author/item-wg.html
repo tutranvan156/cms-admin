@@ -1,0 +1,300 @@
+#theme("/cmsadmin/css/colorbox")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#theme("/cmsadmin/css/bootstrap-tagsinput")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/bootstrap-tagsinput.min.js")
+#script("/js/cmsadmin/jquery/plugins/jquery.popup.min.js")
+#script("/js/cmsadmin/jquery/plugins/jquery.colorbox.min.js")
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+#script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-content-editor.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-published-queue-box.min.js")
+#dataservice("cmscategorylist")
+#set($cateList = $cmscategorylist)
+
+<style>
+    .bootstrap-tagsinput {
+        width: 100% !important;
+        padding-right: 100px !important;
+    }
+
+    .bootstrap-tagsinput input {
+        min-width: 5rem !important;
+        width: auto !important;
+    }
+
+    .panel .panel-heading .title {
+        font-weight: 600;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+</style>
+<div id="wg-compose-post" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="toolbar-btn-back" class="btn btn-primary btn-sm">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="toolbar-btn-create" class="btn btn-primary btn-sm">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="toolbar-btn-save" class="btn btn-primary btn-sm">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+        <!--        <button id="toolbar-btn-save-and-send" class="btn btn-primary btn-sm" style="display: none;">-->
+        <!--            <i class="icon-save"></i> $text.getText("cmsadmin.post.save_and_send")-->
+        <!--        </button>-->
+        <!--        <button id="toolbar-btn-save-and-publish" class="btn btn-primary btn-sm" style="display: none;">-->
+        <!--            <i class="icon-save"></i> $text.getText("cmsadmin.post.save_and_publish")-->
+        <!--        </button>-->
+        <button id="toolbar-btn-removed" class="btn btn-danger btn-sm">
+            <i class="fa fa-minus-circle" aria-hidden="true"></i> $text.getText("cmsadmin.published.unpublish")
+        </button>
+        <button id="toolbar-btn-removed-reject" class="btn btn-danger btn-sm">
+            <i class="fa fa-reply-all" aria-hidden="true"></i> Ngưng và trả bài
+        </button>
+        <button id="toolbar-btn-rejected" class="btn btn-warning btn-sm" style="display: none;">
+            <i class="icon-reply"></i> $text.getText("cmsadmin.post.reject")
+        </button>
+        <button id="toolbar-btn-publish" class="btn btn-success btn-sm" style="display: none;">
+            <i class="icon-share"></i> $text.getText("cmsadmin.post.publish")
+        </button>
+        <div id="toolbar-btn-send" data-resize="auto" class="btn-group hide">
+            <button data-toggle="dropdown" class="btn btn-success btn-sm dropdown-toggle">
+                $text.getText("cmsadmin.post.send")
+                <span class="icon-caret-down icon-on-right"> </span>
+            </button>
+            <ul id="toolbar-btn-send-menu-list" class="dropdown-menu dropdown-info pull-right"></ul>
+        </div>
+        <div id="toolbar-btn-share" data-resize="auto" class="btn-group hide" style="margin-left: 0">
+            <button data-toggle="dropdown" class="btn btn-success btn-sm dropdown-toggle">
+                $text.getText("Chia sẻ lên mạng xã hội")
+                <span class="icon-caret-down icon-on-right"> </span>
+            </button>
+            <ul id="toolbar-btn-share-menu-list" class="dropdown-menu dropdown-info pull-right">
+            </ul>
+        </div>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9 col-sm-9">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <input type="text" id="post-txt-subject" class="col-sm-12 col-md-12 form-control"
+                                   placeholder='$text.getText("cmsadmin.post.subject")'>
+                        </div>
+                        <div class="row">
+                            <textarea name="post-txt-brief" id="post-txt-brief" class="col-sm-12 col-md-12" rows="2"
+                                      placeholder='$text.getText("cmsadmin.post.brief")'
+                                      style="padding: 5px; border-radius: 4px !important;"> </textarea>
+                        </div>
+                        <div class="row" style="position: relative;">
+                            <input id="list-tags" name="tags" multiple data-role="tagsinput" class="form-control"
+                                   placeholder="Nhập tags" style="padding-right: 105px;"/>
+                            <select id="language" name="language"
+                                    style="margin: 0 !important;position: absolute;right: 5px;top: calc(50% - 20px);">
+                                <option selected value="vi">Tiếng Việt</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <textarea id="post-txt-content" name="post-txt-content" rows="20"
+                                      class="col-sm-12 col-md-12"> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 no-padding-right card"
+                     style="overflow-y: auto; height: calc(100vh - 45px);">
+                    <div class="card-body">
+                        <div id="template-box" class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="title">$text.getText("cmsadmin.template.post")</span>
+                                <div class="panel-toolbar pull-right"></div>
+                            </div>
+                            <div class="panel-body" style="padding: 5px;">
+                                <select id="list-template-select" class="col-sm-12 col-md-12">
+                                    <option value="" selected="selected">$text.getText("cmsadmin.template.blank")
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="category-box" cms-postclass="panel panel-default category-box">
+                            <style>
+                                .category-box .panel-heading {
+                                    position: relative;
+                                }
+
+                                .category-box .panel-heading .panel-toolbar {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    padding-top: 5px;
+                                    padding-bottom: 5px;
+                                }
+                            </style>
+                            <div class="panel-heading row">
+                                <span class="title">$text.getText("cmsadmin.category")</span>
+                                <div class="panel-toolbar col-sm-9 pull-right">
+                                    <input id="txt-cate-box-input-search" class="col-sm-12 form-control" type="text"
+                                           placeholder="Tìm thể loại..."
+                                           style="margin-bottom:0!important">
+                                </div>
+                            </div>
+                            <div class="panel-body" style="padding: 5px;">
+                                <div id="list-cate-body" style="max-height: 300px; overflow-y: auto;">
+                                </div>
+                                <!--<div class="">-->
+                                <!--<button id="btn-show-add-new-category" class="btn btn-link"><i class="fa fa-plus"></i> $text.getText("cmsadmin.category.create_title")</button>-->
+                                <!--</div>-->
+                                <!--<div id="add-new-category-box" style="display: none;">-->
+                                <!--<div><input type="text" id="txt-category-input-name" class="col-md-12 col-sm-12" placeholder='$text.getText("cmsadmin.category.name")' /></div>-->
+                                <!--<div>-->
+                                <!--<select id="cbb-group-input-name" class="col-md-12 col-sm-12">-->
+                                <!--<option value="">&#45;&#45; $text.getText("cmsadmin.group") &#45;&#45;</option>-->
+                                <!--#foreach($item in $cateList.items)-->
+                                <!--#if($item.group==$item.name)-->
+                                <!--<option value="$item.group" #if($foreach.index == 0)selected#end>$item.name</option>-->
+                                <!--#end-->
+                                <!--#end-->
+                                <!--</select>-->
+                                <!--</div>-->
+                                <!--<div>-->
+                                <!--<button id="btn-save-category" class="btn btn-primary btn-xs">$text.getText("cmsadmin.category.create_title")</button>-->
+                                <!--<button id="btn-hide-this-box" class="btn btn-default btn-xs">$text.getText("app.button.cancel")</button>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div id="avatar-box" class="avatar-box panel panel-default">
+                            <style type="text/css">
+                                .avatar-box {
+                                }
+
+                                .avatar-box a.avatar-action {
+                                    position: relative;
+                                }
+
+                                .avatar-box .avatar-btn-wrapper {
+                                    position: absolute;
+                                    top: -10px;
+                                    right: -10px;
+                                }
+
+                                .avatar-box .avatar-btn-remove {
+                                    border-radius: 50% !important;
+                                    padding: 6px 7px;
+                                    height: auto;
+                                    min-height: auto;
+                                }
+                            </style>
+                            <div class="panel-heading">
+                                <span class="title">$text.getText("cmsadmin.post.picture_alias")</span>
+                                <div class="panel-toolbar pull-right"></div>
+                            </div>
+                            <div class="panel-body">
+                                <div>
+                                    <a href="javascript:;" data-action="select" class="avatar-action thumbnail">
+                                        <img id="avatar-box-image"
+                                             src='$ctx.resource("/images/cmsadmin/common/no-thumb.png")'/>
+                                        <span class="avatar-btn-wrapper">
+                                      <button id="avatar-box-remove-btn" class="avatar-btn-remove btn btn-danger"><i
+                                              class="fa fa-times"></i></button>
+                                  </span>
+                                    </a>
+                                </div>
+                                <button id="avatar-box-select-btn" type="button" class="btn btn-default btn-sm"><i
+                                        class="icon-search"></i>$text.getText("cmsadmin.media.select_from_library")
+                                </button>
+                                <button id="avatar-box-upload-btn" type="button" class="btn btn-default btn-sm"><i
+                                        class="icon-upload-alt"></i>$text.getText("cmsadmin.media.upload_from_computer")
+                                </button>
+                            </div>
+                        </div>
+                        <div id="published-box" class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="title">Ngày đăng bài</span>
+                                <div class="panel-toolbar pull-right"></div>
+                            </div>
+                            <div class="panel-body" style="padding:5px">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="txt-published-date"
+                                           aria-describedby="publish-date-icon" style="margin-bottom:0!important">
+                                    <span class="input-group-addon" id="publish-date-icon">
+                                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                              </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="reference-box" class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="title">$text.getText("cmsadmin.post.reference")</span>
+                                <div class="panel-toolbar pull-right"></div>
+                            </div>
+                            <div class="panel-body" style="padding: 5px;">
+                                <div id="list-reference-body" style="max-height: 150px; overflow-y: auto;">
+                                </div>
+                                <div>
+                                    <button id="list-reference-add" class="btn btn-link"><i class="fa fa-plus"></i>
+                                        $text.getText("cmsadmin.post.reference_add")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade in container" id="cms-item-share-dialog" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+        <div class="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="cms-item-share-dialog-title">Chia sẻ</h4>
+                </div>
+                <div class="modal-body" style="margin-bottom: 11%">
+                    <div class="form-group" id="cms-social-share-title-div">
+                        <label class="col-sm-2 no-padding-right lbl-bold" for="cms-social-share-title">TIêu đề(<span class="required"/>)</label>
+                        <div class="col-sm-10">
+                            <input class="col-sm-12" type="text" id="cms-social-share-title" name="cms-social-share-title">
+                        </div>
+                    </div>
+                    <div class="form-group" id="cms-social-share-message-div">
+                        <label class="col-sm-2 no-padding-right lbl-bold"
+                               for="cms-social-share-message">Nội dung
+                            (<span class="required"/>)</label>
+                        <div class="col-sm-10">
+                            <textarea id="cms-social-share-message" name="cms-social-share-message" rows="4" cols="50" style="width: 915px; height: 100px"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group" id="cms-social-share-article-link-div">
+                        <label class="col-sm-2 no-padding-right lbl-bold"
+                               for="cms-social-share-article-link"> Link bài viết
+                            (<span class="required"/>)</label>
+                        <div class="col-sm-10">
+                            <input class="col-sm-12" type="text" id="cms-social-share-article-link" name="cms-social-share-article-link">
+                        </div>
+                    </div>
+                    <div class="form-group" id="cms-social-share-cover-image-url-div">
+                        <label class="col-sm-2 no-padding-right lbl-bold"
+                               for="cms-social-share-article-link"> Hình đại diện
+                            (<span class="required"/>)</label>
+                        <div class="col-sm-10">
+                            <img src="" class="img-fluid" id="cms-social-cover-image-url" alt="Responsive image" style="max-width: 400px">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="cms-social-share-btn" type="button" class="btn btn-primary btn-small"><i class="icon-share"></i> Chia sẻ </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+#theme("/common/css/listview")
+#theme("/cmsadmin/css/listview-custom")
+#script("/js/common/jquery/plugins/jquery.searchable.min.js")
+#script("/js/common/jquery/plugins/jquery.slimscroll.min.js")
+#script("/js/common/inet/lib/listview.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-super-context-list.min.js")
+<!--<div id="menu-context-list-wg">-->
+    <!--<div class="wg-toolbar navbar-fixed-top">-->
+        <!--<button id="menu-list-toolbar-btn-create" class="btn btn-primary btn-sm">-->
+            <!--<i class="fa fa-plus"></i> $text.getText("app.button.create")-->
+        <!--</button>-->
+    <!--</div>-->
+    <!--<div class="wg-content">-->
+        <!--<div class="container-fluid">-->
+            <!--<div class="row">-->
+                <!--<div id="list-items"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div id="context-list-wg" class="listWidget">
+    <div class="listToolbar"></div>
+    <div id="context-basic-search" style="display:none">
+        <div class="bsearch">
+            <span class="input-icon input-icon-right item" style="position: relative; width: 95%;">
+                <input id="txt-basic-search-keyword" type="text" placeholder='$text.getText("common.field.placeholder_search")' style="width:100%;">
+                <i class="ace-icon fa fa-search" title="Search" style="cursor:pointer" data-action-search="search"></i>
+            </span>
+        </div>
+    </div>
+    <div id="list-context"></div>
+</div>

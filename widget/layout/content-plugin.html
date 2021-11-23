@@ -1,0 +1,98 @@
+#script("/js/cmsadmin/inet/lib/admin/content-plugin.min.js")
+##script("/js/cmsadmin/inet/lib/admin/content-image-plugin.min.js")
+#script("/js/cmsadmin/inet/lib/admin/content-menu-plugin.min.js")
+#script("/js/cmsadmin/inet/lib/admin/content-category-plugin.min.js")
+<style>
+    .content-box {
+        margin-bottom: 20px;
+    }
+
+    .border-dashed {
+        border: 2px dashed #D19D59;
+    }
+
+    .text-content {
+        color: #97A1A8;
+    }
+
+    .border-dashed {
+        padding: 25px;
+    }
+
+    .box-none .icon-content {
+        font-size: 70px;
+    }
+
+    .box-none h3 {
+        margin-bottom: 20px;
+    }
+
+    .box {
+        height: auto !important;
+    }
+
+    .title-group {
+        margin-bottom: 5px;
+    }
+
+    .list-group-box {
+        background: #ececec;
+        padding: 10px;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .parent-box {
+        margin-bottom: 25px;
+    }
+
+    .list-default li {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+</style>
+<div id="wg-content-plugin" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <!--<select class="form-control">-->
+        <!--<option>Tất cả trang</option>-->
+        <!--</select>-->
+        <button id="content-plugin-btn-back" class="btn btn-primary btn-sm">
+            <i class="icon-arrow-left"></i>
+            $text.getText("app.button.back")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div style="display:none">
+                <div id="list-basic-content-search">
+                    <div id="list-content-search">
+                        <div>
+                            <div class="col-xs-4 col-md-4 span4">
+                                <span class="input-group search" style="margin-left:0">
+                                    <span class="input-group-btn">
+                                        <input type="text" class="grid-search-input form-control"
+                                               placeholder='$text.getText("common.field.placeholder_search")'>
+                                        <button type="button" class="btn btn-sm grid-search-btn"
+                                                data-action-search="search">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-content-plugin"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

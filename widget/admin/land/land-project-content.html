@@ -1,0 +1,46 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/admin/land-project-content.min.js")
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+</style>
+<div id="wg-land-project-content" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="land-project-btn-back" class="btn btn-primary btn-sm">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="land-project-content-btn-create" class="btn btn-primary btn-sm">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="land-project-btn-save" class="btn btn-success btn-sm">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <label class="control-label">Tiêu đề(<span
+                                    class="required"></span>)</label>
+                            <input type="text" id="post-txt-title" class="col-sm-12 col-md-12 form-control"
+                                   placeholder="Nhập tiêu đề">
+                        </div>
+                        <div class="row">
+                            <label class="control-label">Nội dung(<span
+                                    class="required"></span>)</label>
+                            <textarea id="post-txt-content" name="post-txt-content" rows="20"
+                                      class="col-sm-12 col-md-12"> </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

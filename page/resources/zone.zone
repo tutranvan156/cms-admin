@@ -1,0 +1,143 @@
+#zone({"inherit": "true"})
+    #scriptBundle("cms_themes")
+        iNet.ns('iNet.resources.cmsadmin.errors');
+        if (iNet.resources.cmsadmin.errors) {
+            iNet.apply(iNet.resources.cmsadmin.errors, {
+                THEME_NOT_FOUND: '$text.getText("cmsadmin.design.theme.not_found")',
+                THEME_EXISTED: '$text.getText("cmsadmin.design.theme.existed")',
+                THEME_IN_USED: '$text.getText("cmsadmin.design.theme.in_use")',
+                PLUGIN_NOT_FOUND: '$text.getText("cmsadmin.design.plugin.not_found")',
+                PLUGIN_EXISTED: '$text.getText("cmsadmin.design.plugin.existed")',
+                PLUGIN_IN_USED: '$text.getText("cmsadmin.design.plugin.in_use")',
+                ASSET_CATEGORY_MISSED: '$text.getText("cmsadmin.media.ASSET_CATEGORY_MISSED")',
+                ASSET_CATEGORY_NOT_FOUND: '$text.getText("cmsadmin.media.ASSET_CATEGORY_NOT_FOUND")',
+                ASSET_MISSED: '$text.getText("cmsadmin.media.ASSET_MISSED")',
+                ASSET_NOT_FOUND: '$text.getText("cmsadmin.media.ASSET_NOT_FOUND")',
+                ASSET_ID_MISSED: '$text.getText("cmsadmin.media.ASSET_MISSED")',
+                PHOTO_CODE_MISSED: '$text.getText("cmsadmin.media.PHOTO_CODE_MISSED")',
+                PHOTO_NOT_FOUND: '$text.getText("cmsadmin.media.PHOTO_NOT_FOUND")',
+                SECURITY_DENIED: '$text.getText("cmsadmin.review.SECURITY_DENIED")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.design.plugin_map');
+        if (iNet.resources.cmsadmin.design.plugin_map) {
+            iNet.apply(iNet.resources.cmsadmin.design.plugin_map, {
+                map_title: '$text.getText("cmsadmin.design.plugin_map.map_title")',
+                map_success: '$text.getText("cmsadmin.design.plugin_map.map_success")',
+                map_unsuccess: '$text.getText("cmsadmin.design.plugin_map.map_unsuccess")',
+                map_site_success: '$text.getText("cmsadmin.design.plugin_map.map_site_success")',
+                map_site_unsuccess: '$text.getText("cmsadmin.design.plugin_map.map_site_unsuccess")',
+                tip: '$text.getText("cmsadmin.design.plugin_map.tip")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.site');
+        if (iNet.resources.cmsadmin.site) {
+            iNet.apply(iNet.resources.cmsadmin.site, {
+                site_name: '$text.getText("cmsadmin.design.site.site_name")',
+                site_name_empty: '$text.getText("cmsadmin.design.site.site_name_empty")',
+                theme_used: '$text.getText("cmsadmin.design.site.theme_used")',
+                published: '$text.getText("cmsadmin.design.site.published")',
+                unpublished: '$text.getText("cmsadmin.design.site.not_published")',
+                action_unpublished: '$text.getText("cmsadmin.design.site.action_unpublished")',
+                make_home: '$text.getText("cmsadmin.design.site.make_home")',
+                go_home: '$text.getText("cmsadmin.design.site.gohome")',
+                del_title: '$text.getText("cmsadmin.design.site.del_site")',
+                del_content: '$text.getText("cmsadmin.design.site.del_content")',
+                del_success: '$text.getText("cmsadmin.design.site.del_success")',
+                del_error: '$text.getText("cmsadmin.design.site.del_error")',
+                create_title: '$text.getText("cmsadmin.design.site.create_site")',
+                create_success: '$text.getText("cmsadmin.design.site.create_success")',
+                create_error: '$text.getText("cmsadmin.design.site.create_error")',
+                update_title: '$text.getText("cmsadmin.design.site.update_site")',
+                update_success: '$text.getText("cmsadmin.design.site.update_success")',
+                update_error: '$text.getText("cmsadmin.design.site.update_error")',
+                create_tip: '$text.getText("cmsadmin.design.site.tip_create")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.themes');
+        if (iNet.resources.cmsadmin.themes) {
+            iNet.apply(iNet.resources.cmsadmin.themes, {
+                active: '$text.getText("cmsadmin.themes.active")',
+                inactive: '$text.getText("cmsadmin.themes.inactive")',
+                trial: '$text.getText("cmsadmin.themes.trial")',
+                install: '$text.getText("cmsadmin.themes.install")',
+                customize: '$text.getText("cmsadmin.themes.customize")',
+                remove: '$text.getText("cmsadmin.themes.remove")',
+                create_site: '$text.getText("cmsadmin.themes.create_site")',
+                installed: '$text.getText("cmsadmin.themes.installed")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.themes.themeList');
+        if (iNet.resources.cmsadmin.themes.themeList) {
+            iNet.apply(iNet.resources.cmsadmin.themes.themeList, {
+                title: '$text.getText("cmsadmin.design.theme")',
+                uploadTheme: '$text.getText("cmsadmin.design.theme.uploadTheme")',
+                category: '$text.getText("cmsadmin.design.category")',
+                choose: '$text.getText("cmsadmin.design.theme.choose")',
+                noFile: '$text.getText("cmsadmin.design.theme.noFile")',
+                remove: '$text.getText("cmsadmin.themes.remove")',
+                install: '$text.getText("cmsadmin.themes.install")',
+                installed: '$text.getText("cmsadmin.themes.installed")',
+                storeTheme: '$text.getText("cmsadmin.design.theme.storeTheme")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.themes.pluginList');
+        if (iNet.resources.cmsadmin.themes.pluginList) {
+            iNet.apply(iNet.resources.cmsadmin.themes.pluginList, {
+                title: '$text.getText("cmsadmin.design.plugin")',
+                uploadTheme: '$text.getText("cmsadmin.design.plugin.uploadTheme")',
+                area: '$text.getText("cmsadmin.design.area")',
+                choose: '$text.getText("cmsadmin.design.plugin.choose")',
+                noFile: '$text.getText("cmsadmin.design.plugin.noFile")',
+                remove: '$text.getText("cmsadmin.themes.remove")',
+                activated: '$text.getText("cmsadmin.themes.active")',
+                inactivated: '$text.getText("cmsadmin.themes.inactive")',
+                installed: '$text.getText("cmsadmin.themes.installed")',
+                install: '$text.getText("cmsadmin.themes.install")',
+                storeTheme: '$text.getText("cmsadmin.design.plugin.storeTheme")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.design.page');
+        if (iNet.resources.cmsadmin.design.page) {
+            iNet.apply(iNet.resources.cmsadmin.design.page, {
+                title_logo: '$text.getText("cmsadmin.design.page.title_logo")',
+                title: '$text.getText("cmsadmin.design.page.title")',
+                logo: '$text.getText("cmsadmin.design.page.logo")',
+                bg_color: '$text.getText("cmsadmin.design.page.bg_color")',
+                background: '$text.getText("cmsadmin.design.page.background")',
+                color: '$text.getText("cmsadmin.design.page.color")',
+                text_color: '$text.getText("cmsadmin.design.page.text_color")',
+                font: '$text.getText("cmsadmin.design.page.font")',
+                font_body: '$text.getText("cmsadmin.design.page.font_body")',
+                home: '$text.getText("cmsadmin.design.page.home")',
+                preview: '$text.getText("cmsadmin.design.page.preview")'
+            });
+        }
+        iNet.ns('iNet.resources.cmsadmin.apps');
+        if (iNet.resources.cmsadmin.apps) {
+            iNet.apply(iNet.resources.cmsadmin.apps, {
+                name: '$text.getText("cmsadmin.apps.name")',
+                create_title: '$text.getText("cmsadmin.apps.create_title")',
+                create_success: '$text.getText("cmsadmin.apps.create_success")',
+                create_error: '$text.getText("cmsadmin.apps.create_error")',
+                tip_create: '$text.getText("cmsadmin.apps.tip_create")',
+                update_title: '$text.getText("cmsadmin.apps.update_title")',
+                update_success: '$text.getText("cmsadmin.apps.update_success")',
+                update_error: '$text.getText("cmsadmin.apps.update_error")',
+                del_title: '$text.getText("cmsadmin.apps.del_title")',
+                del_success: '$text.getText("cmsadmin.apps.del_success")',
+                del_error: '$text.getText("cmsadmin.apps.del_error")',
+                created: '$text.getText("cmsadmin.common.created")',
+                creator: '$text.getText("cmsadmin.common.creator")',
+                status: '$text.getText("cmsadmin.apps.current_status")',
+                changed: '$text.getText("cmsadmin.apps.changed_status")',
+                libs: '$text.getText("cmsadmin.apps.libs")',
+                gui: '$text.getText("cmsadmin.apps.gui")',
+                deploy: '$text.getText("cmsadmin.apps.deploy")',
+                typeZip: '$text.getText("cmsadmin.apps.typeZip")',
+                typeJar: '$text.getText("cmsadmin.apps.typeJar")'
+            });
+        }
+
+    #end
+#end

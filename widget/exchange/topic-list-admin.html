@@ -1,0 +1,19 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/exchange/topic-list-admin.min.js")
+<div id="wg-list-topic-admin" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back-admin" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="list-topic-admin-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="grid-topic-admin"></div>
+            </div>
+        </div>
+    </div>
+</div>

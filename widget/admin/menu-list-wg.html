@@ -1,0 +1,40 @@
+#script("/js/cmsadmin/inet/lib/admin/cms-super-menu-list.min.js")
+<div id="menu-list-wg" class="messageView">
+    <div class="viewToolbar">
+        <button id="btn-menu-create" class="btn btn-primary btn-sm" style="display:none">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="btn-menu-copy" class="btn btn-default btn-sm" style="display:none">
+            <i class="fa fa-clone"></i> Sao chép menu
+        </button>
+    </div>
+    <div class="b-content thm-message-view-background-color">
+        <div class="template-detail-content">
+            <div class="messageSelected b-message-view-desc">
+                <div><i class="fa fa-bold" style="font-size:100px"></i></div>
+                <div>Không có <b>Context</b> nào được chọn</div>
+            </div>
+            <div class="messageItem" style="overflow: hidden;">
+                <div class="messageItemContent" style="position:relative;overflow: auto;">
+                    <div class="content-wrapper">
+                        <div>
+                            <div class="messageLoading loading g-ui-min-height-300" style="display:none">
+                                <span class="i18n text"><i class="fa fa-refresh fa-spin"></i> $text.getText("common.ajaxLoading.loading")</span>
+                            </div>
+                        </div>
+                        <div class="messageItemBody">
+                            <div class="message-view-header">$text.getText("cmsadmin.menuitem.list")</div>
+                            <div style="margin-top:10px">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div id="list-items"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

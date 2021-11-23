@@ -1,0 +1,184 @@
+#script("/js/cmsadmin/inet/lib/document/draft-doc-content.min.js")
+#script("/js/cmsadmin/inet/lib/document/legal-doc-content.min.js")
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: 600;
+    }
+
+    #form-list input {
+        height: 35px !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="doc-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="content-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="content-btn-save-legal" class="btn btn-success btn-sm">
+            <i class="fa fa-share-square-o" aria-hidden="true"></i>
+            $text.getText("cmsadmin.admin.document.promulgation")
+        </button>
+        <button id="content-btn-publish-edoc" class="btn btn-success btn-sm" style="display:none">
+            <i class="fa fa-globe"></i>
+            $text.getText("cmsadmin.admin.document.published")
+        </button>
+        <button id="content-btn-unpublish-edoc" class="btn btn-warning btn-sm" style="display:none">
+            <i class="fa fa-times"></i>
+            $text.getText("cmsadmin.admin.document.unpublished")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" id="legal-form">
+                <input type="hidden" id="txt-edoc-id" name="uuid">
+                <input type="hidden" id="txt-draft-ref" name="draftRef">
+                <input type="hidden" name="authorUnitCode" />
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Số kí hiệu(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="sign-number-edoc" name="signNumber" class="form-control"
+                               placeholder="Nhập số kí hiệu">
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Loại văn bản(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="documentName" id="type-edoc" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Lĩnh vực văn bản(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="field" id="industry-edoc" class="form-control">
+                        </select>
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Cơ quan ban hành
+                        <!--                        (<span class="required"></span>)-->
+                    </label>
+                    <div class="col-sm-4">
+                        <select name="publisherCode" id="organ-edoc" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Ngày ban hành(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input type="text" style="margin-bottom:0px !important;" class="form-control" id="promul-edoc-date" placeholder="Ngày ban hành">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Ngày hiệu lực</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input type="text" style="margin-bottom:0px !important;" class="form-control" id="effec-edoc-date" placeholder="Ngày hiệu lực">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Ngày hết hiệu lực</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input type="text" style="margin-bottom:0px !important;" class="form-control" id="expire-edoc-date" placeholder="Ngày hết hiệu lực">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Văn bản</label>
+                    <div class="col-sm-4">
+                        <select name="documentType" id="documentType" class="form-control">
+                            <option value="1">Quy phạm pháp luật</option>
+                            <option value="2">Chỉ đạo điều hành</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tên người ký(<span class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="signer-edoc" name="signer" class="form-control"
+                               placeholder="Nhập tên người kí">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Trích yếu(<span class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="subject-edoc" name="subject" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Nội dung văn bản(<span class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="content-edoc" name="content" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tập tin đính kèm(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <label class="ace-file-input">
+                            <input type="file" multiple id="id-input-file-edoc">
+                            <span class="ace-file-container edoc-files" data-title="Choose">
+                                <span class="ace-file-name" data-title="No File ...">
+                                    <i class=" ace-icon fa fa-upload"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+                <div id="file-edoc-attachments" class="form-group list-upload">
+                </div>
+
+                <script type="text/html" id="list-industry-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-organ-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-type-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-file-script">
+                    <div class="col-sm-10 col-sm-offset-2 attachment">
+                        <div class="ace-file-wrapper">
+                            <div class="ace-file" data-local="{local}">
+                                <label class="ace-file-input ace-file-multiple">
+                                    <span class="ace-file-container hide-placeholder selected">
+                                        <span class="ace-file-name" data-title="{name}">
+                                            <i class=" ace-icon fa fa-file"></i>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="ace-file-action">
+                                <button type="button" data-uuid="{uuid}" data-contentId="{contentUid}" data-grid="{gridfsUUID}" class="btn btn-success btn-download">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}" class="btn btn-danger btn-remove">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/exchange/topic-content.min.js")
+<div id="menu-item-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="content-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="content-btn-save" class="btn btn-primary btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-horizontal">
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-12 col-sm-12 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.exchange.namesubject") <span class="required"></span></div>
+                                    <input type="text" id="txt-title-name" class="col-sm-12 col-md-12 form-control" placeholder='$text.getText("cmsadmin.menuitem.name")' style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-7 col-sm-6 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.exchange.donvi")<span class="required"></span></div>
+                                    <input type="text" id="txt-firm-joned" class="col-sm-12 col-md-12 form-control" placeholder='$text.getText("cmsadmin.axchange.tendonvi")' style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 no-padding-right">
+                                <div class="input-group text-center">
+                                    <label><input type="checkbox" value="" id="checkbox-submit" style="margin-right:10px;" name="check-submit">$text.getText("cmsadmin.exchange.submit")</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-6 col-sm-6 no-padding-left">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.exchange.timestart") <span class="required"></span></div>
+                                    <span class="span2">
+                                        <div class="row-fluid input-icon input-icon-right date">
+                                            <input type="text" id="time-start" class="span12 date-picker form-control" style="margin-bottom:0 !important;border-radius: 0px !important;"/>
+                                            <i class="icon-calendar" style="position: absolute;top: 8px;right: 5px;z-index: 10;"></i>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.exchange.timeend") <span class="required"></span></div>
+                                    <span class="span2">
+                                        <div class="row-fluid input-icon input-icon-right date">
+                                            <input type="text"  id="time-end" class="span12 date-picker form-control" style="margin-bottom:0 !important;border-radius: 0px !important;"/>
+                                            <i class="icon-calendar" style="position: absolute;top: 8px;right: 5px;z-index: 10;"></i>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="txt-title-brief" name="txt-menu-brief" rows="2" class="col-sm-12 col-md-12"  placeholder='$text.getText("csmadmin.setting.rss.description")' style="padding:5px;border-radius:4px !important"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="txt-menu-content" name="txt-menu-content" rows="20" class="col-sm-12 col-md-12"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

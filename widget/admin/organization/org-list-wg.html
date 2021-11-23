@@ -1,0 +1,52 @@
+#script("/js/cmsadmin/inet/lib/api/unit-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/unit-list.min.js")
+<script type="text/javascript">
+  iNet.ns('iNet.resources.message.unit');
+  iNet.apply(iNet.resources.message.unit, {
+    title: '$text.getText("Cơ cấu tổ chức")',
+    name: '$text.getText("Tên đơn vị")',
+    phone: '$text.getText("Số điện thoại")',
+    email: '$text.getText("Thư điện tử")',
+    parent: '$text.getText("Đơn vị cấp trên")',
+    select_parent: '$text.getText("Chọn đơn vị cấp trên")',
+    address: '$text.getText("Địa chỉ")',
+    view_member: '$text.getText("Danh sách thành viên")',
+    view_child: '$text.getText("Đơn vị con")',
+    del_title: '$text.getText("Xóa đơn vị")',
+    del_confirm: '$text.getText("Bạn chắc chắn muốn xóa đơn vị này?<br /><b>Chú ý: Các thành viên trong đơn vị này sẽ bị xóa đi!</b>")',
+    del_success: '$text.getText("Đã xóa đơn vị thành công")',
+    del_error: '$text.getText("Quá trình xóa đơn vị xảy ra lỗi")',
+    errors: {
+
+    }
+  });
+</script>
+<div id="org-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="list-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="hide" style="display:none">
+            <div id="list-basic-search">
+                <div id="list-quick-search">
+                    <div class="col-xs-5 col-md-5 span5 no-padding">
+                        <span class="input-group search" style="margin-left:0">
+                            <span class="input-group-btn">
+                                <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="unit-list"></div>
+    </div>
+</div>

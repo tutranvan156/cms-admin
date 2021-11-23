@@ -1,0 +1,73 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/admin/complain-content.min.js")
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: bold;
+    }
+
+    .ml-0 {
+        margin-left: 0 !important;
+    }
+
+    .mr-0 {
+        margin-right: 0 !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="complain-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="complain-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="complain-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="complain-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" id="form-complain">
+                <input type="text" name="uuid" style="display: none !important;">
+                <!--<div class="form-group col-sm-6 mr-0">-->
+                    <!--<label class="control-label">Người tạo(<span-->
+                            <!--class="required"></span>)</label>-->
+                    <!--<input type="text" id="owner-complain" name="owner" class="form-control"-->
+                           <!--placeholder="Nhập tên người tạo">-->
+
+                <!--</div>-->
+                <div class="form-group col-sm-6">
+                    <label class="control-label">Phân loại(<span
+                            class="required"></span>)</label>
+                    <select name="category" id="category-complain" class="form-control">
+
+                    </select>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="control-label">Tiêu đề(<span
+                            class="required"></span>)</label>
+                    <input type="text" id="subject-complain" name="subject" class="form-control"
+                           placeholder="Nhập tiêu đề">
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="control-label">Tóm tắt nội dung</label>
+                    <textarea class="form-control" id="content-complain" name="question" rows="2"></textarea>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="control-label">Nội dung chi tiết(<span class="required"></span>)</label>
+                    <textarea id="detail-complain" name="answer" rows="20" class="col-sm-10 col-md-10"></textarea>
+                </div>
+            </form>
+            <script type="text/html" id="list-category">
+                <option value="{uuid}">{name}</option>
+            </script>
+        </div>
+    </div>
+</div>

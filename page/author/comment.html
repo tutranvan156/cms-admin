@@ -1,0 +1,9 @@
+#html({"lang":"vi", "dir":"ltr", "secure":"$cms_comment_review", "inherit": "true"})
+    ##cmsNav("cmsadmin.comment", true)
+    #keywords({"title" : 'iSphere - $text.getText("cmsadmin.comment")'})
+    #meta({"title":'iSphere - $text.getText("cmsadmin.comment")',"viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+    #widget("/cmsadmin/widget/common/common")
+    #widget("/cmsadmin/widget/author/comment-list-wg")
+    #widget("/cmsadmin/widget/author/comment-content-wg")
+    #script("/js/cmsadmin/inet/lib/author/cms-comment-main.min.js")
+#end

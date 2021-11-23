@@ -1,0 +1,27 @@
+#script("/js/cmsadmin/bootstrap/plugins/bootstrap-typeahead.min.js")
+#script("/js/cmsadmin/inet/lib/exchange/list-answer.min.js")
+<div id="wg-list-answer-main">
+    <div class="wg-content" style="padding: 2px 5px 0px 5px !important;">
+        <div class="container-fluid">
+            <div class="hide" style="display:none">
+                <div id="list-basic-search-answer-all">
+                    <div id="list-quick-search">
+                        <div class="col-xs-4 col-md-5 span5 no-padding" style="max-height: 30px;">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="grid-list-answer-main"></div>
+            </div>
+        </div>
+    </div>
+</div>

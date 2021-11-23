@@ -1,0 +1,74 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/exchange/list-question-main-content.min.js")
+<div id="menu-question-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="detail-question-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="detail-question-btn-remove" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash"></i> $text.getText("cmsadmin.themes.remove")
+        </button>
+        <button id="detail-question-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+        <button id="detail-question-btn-send" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-sm">
+            <i class="fa fa-paper-plane"></i> $text.getText("cmsadmin.exchange.send")
+        </button>
+        <button id="detail-question-btn-publish" class="btn btn-warning btn-sm">
+            <i class="fa fa-external-link-square"></i> $text.getText("cmsadmin.post.publish")
+        </button>
+    </div>
+    <div class="wg-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-horizontal">
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-12 col-sm-12 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.exchange.question.fullname") <span class="required"></span></div>
+                                    <input type="text" id="txt-question-fullname" class="col-sm-12 col-md-12 form-control"  style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-7 col-sm-6 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.fqa.address") <span class="required"></span></div>
+                                    <input type="text" id="txt-question-address" class="col-sm-12 col-md-12 form-control"  style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.fqa.email")</div>
+                                    <input type="text" id="txt-question-email" class="col-sm-12 col-md-12 form-control" style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-7 col-sm-6 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.fqa.phone") <span class="required"></span></div>
+                                    <input type="text" id="txt-question-phone" class="col-sm-12 col-md-12 form-control"  style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.exchagne.age")</div>
+                                    <input type="number" min="1" max="200" id="txt-question-age" class="col-sm-12 col-md-12 form-control"  style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="txt-question-note" name="txt-menu-brief" rows="2" class="col-sm-12 col-md-12"  placeholder='$text.getText("cmsadmin.exchange.note")' style="padding:5px;border-radius:4px !important"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="txt-question-content" name="txt-menu-content" rows="20" class="col-sm-12 col-md-12"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

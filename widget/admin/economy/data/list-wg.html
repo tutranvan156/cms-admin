@@ -1,0 +1,45 @@
+#script("/js/cmsadmin/inet/lib/admin/socioeconomic-data-list.min.js")
+<script type="text/javascript">
+  iNet.ns('iNet.resources.cmsadmin.socioeconomic');
+  iNet.apply(iNet.resources.cmsadmin.socioeconomic, {
+    title: '$text.getText("Tiêu đề")',
+    validate_title: '$text.getText("Bạn chưa nhập tiêu đề")',
+    category: '$text.getText("Chuyên mục")',
+    cate_name: '$text.getText("Tên chuyên mục")',
+    validate_category: '$text.getText("Bạn hãy chọn một chuyên mục")',
+    createdDate: '$text.getText("Ngày tạo")',
+    title_delete: 'Xóa',
+    question_delete: 'Bạn chắc chắn muốn xóa dữ liệu đã chọn?',
+    delete_error: 'Quá trình xóa dữ liệu xảy ra lỗi',
+    delete_success: 'Xóa dữ liệu thành công',
+    errors: {
+
+    }
+  });
+</script>
+<div id="socioeconomic-report-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="list-basic-search" style="display:none">
+            <div id="list-quick-search" class="row-fluid">
+                <div class="col-xs-5 col-md-5 span5 no-padding">
+                    <span class="input-group search" style="margin-left:0;">
+                        <span class="input-group-btn">
+                            <input type="text" class="grid-search-input form-control"
+                                   placeholder='$text.getText("common.field.placeholder_search")'>
+                            <button type="button" class="btn btn-default grid-search-btn"
+                                    data-action-search="search">
+                                <i class="icon-search"></i>
+                            </button>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="content-list"></div>
+    </div>
+</div>

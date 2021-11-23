@@ -1,0 +1,117 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/inet/lib/admin/execution-detail.min.js")
+<style>
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="execution-detail-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="detail-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="detail-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="detail-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" id="form-content">
+                <input type="hidden" name="type" value="EXECUTION" />
+                <div class="form-group">
+                    <label for="txt-name" class="col-sm-2 ilabel">Tiêu đề (<span class="required"></span>)</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="txt-name" name="title" class="form-control">
+                    </div>
+                    <label for="cbb-year" class="col-sm-2 ilabel">Năm thống kê (<span class="required"></span>)</label>
+                    <div class="col-sm-2">
+                        #set($startYear = 2016)
+                        #set($currentYear = $ctx.year())
+                        <select id="cbb-year" name="year" class="form-control">
+                            #foreach($i in [$startYear..$currentYear])
+                            <option value="$i">$i</option>
+                            #end
+                        </select>
+                    </div>
+                    <label for="cbb-period" class="col-sm-2 ilabel">Khoảng thời gian (<span class="required"></span>)</label>
+                    <div class="col-sm-2">
+                        <select id="cbb-period" name="period" class="form-control">
+                            <option value="6">6 tháng</option>
+                            <option value="12">1 năm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cbb-district" class="col-sm-2 ilabel">Huyện/TP (<span class="required"></span>)</label>
+                    <div class="col-sm-6">
+                        <select id="cbb-district" name="districtCode" class="form-control col-md-12"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txt-balance-revenue" class="col-sm-2 ilabel">Thu cân đối ngân sách</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-balance-revenue" data-name="_balanceRevenue" class="form-control" min="0" value="0" readonly>
+                    </div>
+                    <label for="txt-local-revenue" class="col-sm-2 ilabel">Thu nội địa</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-local-revenue" data-name="_localRevenue" class="form-control" min="0" value="0">
+                    </div>
+                    <label for="txt-aid-revenue" class="col-sm-2 ilabel">Thu viện trợ</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-aid-revenue" data-name="_aidRevenue" class="form-control" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txt-previous-year-revenue" class="col-sm-2 ilabel">Chuyển nguồn năm trước</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-previous-year-revenue" data-name="_previousYearRevenue" class="form-control" min="0" value="0">
+                    </div>
+                    <label for="txt-superior-revenue" class="col-sm-2 ilabel">Thu BSNS cấp trên</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-superior-revenue" data-name="_superiorRevenue" class="form-control" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txt-total-revenue" class="col-sm-2 ilabel">Tổng thu ngân sách</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-total-revenue" data-name="_totalRevenue" class="form-control" min="0" value="0" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txt-balance-cost" class="col-sm-2 ilabel">Chi cân đối ngân sách</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-balance-cost" data-name="_balanceCost" class="form-control" min="0" value="0" readonly>
+                    </div>
+                    <label for="txt-invest-cost" class="col-sm-2 ilabel">Đầu tư và phát triển</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-invest-cost" data-name="_investCost" class="form-control" min="0" value="0">
+                    </div>
+                    <label for="txt-daily-cost" class="col-sm-2 ilabel">Chi thường xuyên</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-daily-cost" data-name="_dailyCost" class="form-control" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txt-redundancy-cost" class="col-sm-2 ilabel">Chi dự phòng</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-redundancy-cost" data-name="_redundancyCost" class="form-control" min="0" value="0">
+                    </div>
+                    <label for="txt-superior-cost" class="col-sm-2 ilabel">Chi BSNS cấp trên</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-superior-cost" data-name="_superiorCost" class="form-control" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txt-total-cost" class="col-sm-2 ilabel">Tổng chi ngân sách</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-total-cost" data-name="_totalCost" class="form-control" min="0" value="0" readonly>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+#theme("/common/css/grid.min")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+#script("/js/cmsadmin/inet/lib/financial/financial-organ-list-widget.min.js")
+#script("/js/cmsadmin/inet/lib/api/financial-rp-api.min.js")
+<div id="financial-organ-list-widget">
+  <div class="wg-toolbar navbar-fixed-top">
+    <button id="financial-organ-list-btn-add" class="btn btn-primary btn-small">
+      <i class="icon-plus"></i> Tạo mới
+    </button>
+  </div>
+  <div class="wg-content">
+    <div class="hide" style="display:none">
+      <div id="financial-organ-list-basic-search">
+        <div id="list-organ-quick-search">
+          <div class="col-xs-4 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input id="financial-organ-list-quick-search-txt-keyword" type="text"
+                                           class="grid-search-input form-control"
+                                           placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn"
+                                            data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin: 0">
+      <div id="financial-organ-grid"></div>
+    </div>
+  </div>
+</div>

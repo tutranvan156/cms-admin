@@ -1,0 +1,97 @@
+#script("/js/cmsadmin/ace/ace.min.js")
+#script("/js/cmsadmin/ace/skin-chrome.min.js")
+#script("/js/cmsadmin/ace/mode-html.min.js")
+#script("/js/cmsadmin/ace/mode-js.min.js")
+#script("/js/cmsadmin/ace/mode-css.min.js")
+#script("/js/cmsadmin/ace/beautiful-js.min.js")
+#script("/js/cmsadmin/ace/beautiful-html.min.js")
+#script("/js/cmsadmin/ace/beautiful-css.min.js")
+#script("/js/cmsadmin/ace/mode-html.min.js")
+#script("/js/cmsadmin/ace/ext.min.js")
+#script("/js/cmsadmin/inet/lib/admin/ace-editor.min.js")
+#script("/js/cmsadmin/inet/lib/admin/menu-item-design.min.js")
+<style>
+    .editor {
+        width: 100%;
+        height: calc(100vh - 250px);
+    }
+
+    .toolbar-editor {
+        padding: 5px 0;
+        background: #eaeaea;
+    }
+
+    .type-editor {
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: bold;
+        background: #dadada;
+        border-right: 1px solid #ccc;
+    }
+</style>
+<div id="menu-item-design-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="design-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i>
+            $text.getText("app.button.back")
+        </button>
+        <button id="design-btn-save-ace" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i>
+            $text.getText("app.button.save")
+        </button>
+        <div class="btn-group" id="btn-group-editor">
+            <button type="button" id="show-preview" data-type="data-preview" class="btn btn-primary">$text.getText("Xem trước")</button>
+            <button type="button" data-type="html" class="btn btn-primary active">$text.getText("Html")</button>
+            <button type="button" data-type="css" class="btn btn-primary">$text.getText("Css")</button>
+            <button type="button" data-type="javascript" class="btn btn-primary">$text.getText("Javascript")</button>
+        </div>
+        <button type="button" class="btn btn-default" id="btn-format-code">
+            <i class="fa fa-code" aria-hidden="true"></i>
+            $text.getText("Format Code")
+        </button>
+        <button type="button" class="btn btn-default" id="btn-add-image">
+            <i class="fa fa-picture-o" aria-hidden="true"></i>
+            $text.getText("Hình ảnh")
+        </button>
+        <button type="button" class="btn btn-default" id="btn-add-file">
+            <i class="fa fa-paperclip" aria-hidden="true"></i>$text.getText("Tập tin")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="">
+            <div class="row no-margin-left no-margin-right">
+                <div id="preview-content" data-preview class="col-sm-12 no-padding-left no-padding-right"
+                     style="display: none">
+
+                </div>
+                <div javascript class="col-sm-12 no-padding-left no-padding-right" style="display: none">
+                    <h5 class="type-editor">
+                        $text.getText("javascript")
+                    </h5>
+                    <div id="editor-js" class="editor">
+
+                    </div>
+                </div>
+                <div css class="col-sm-12 no-padding-left no-padding-right" style="display: none">
+                    <h5 class="type-editor">
+                        $text.getText("CSS")
+                    </h5>
+                    <div id="editor-css" class="editor">
+
+                    </div>
+                </div>
+                <div html class="col-sm-12 no-padding-left no-padding-right">
+                    <h5 class="type-editor">
+                        $text.getText("Html")
+                    </h5>
+
+                    <div id="editor-html" class="editor">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

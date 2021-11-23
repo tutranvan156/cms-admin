@@ -1,0 +1,64 @@
+#script("/js/cmsadmin/inet/lib/admin/modal-category.min.js")
+<style>
+    #category-select {
+        height: auto !important;
+    }
+
+    .name-group {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .list-category {
+        padding-left: 5px;
+    }
+    .modal-category-custom{
+        width: 100% !important;
+        margin: 0 !important;
+
+    }
+</style>
+<div id="category-select">
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-category" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog modal-category-custom" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="gridSystemModalLabel"><i class="fa fa-bars" aria-hidden="true"></i> Danh sách nhóm và thể loại bài viết</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="category-group">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-ok-category">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Đồng ý
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        Đóng
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/html" id="group-tpl">
+    <div class="name-group" id="group-{index}">
+        {name}
+    </div>
+    <div class="list-category">
+    </div>
+</script>
+<script type="text/html" id="category-tpl">
+    <div class="checkbox">
+        <label>
+            <input name="{uuid}" data-name="{name}" type="checkbox" class="inp" value="{uuid}">
+            <span class="lbl">{name}</span>
+        </label>
+    </div>
+</script>

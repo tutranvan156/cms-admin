@@ -1,0 +1,135 @@
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/jquery/plugins/jquery.maskedinput.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/jquery/plugins/chart.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-chart-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-line-chart.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-pie-chart.min.js")
+#script("/js/cmsadmin/inet/lib/analysis/cms-item-statistic.min.js")
+##script("/js/cmsadmin/inet/lib/analysis/cms-browser-statistic.min.js")
+##script("/js/cmsadmin/inet/lib/analysis/cms-country-statistic.min.js")
+##script("/js/cmsadmin/inet/lib/analysis/cms-platform-statistic.min.js")
+<div id="statistic-wg">
+    <div class="wg-content" style="padding-top: 5px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="panel-statistic-item" class="panel panel-default">
+                    <div class="panel-heading" style="padding-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <h5><strong>$text.getText("cmsadmin.statistic.dash")</strong> <span id="item-name"></span></h5>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$text.getText("cmsadmin.statistic.statistic_from")</span>
+                                    <input id="statistic-from" type="text" class="form-control" style="margin-bottom: 0px !important;">
+                                    <span class="input-group-addon">$text.getText("cmsadmin.statistic._to")</span>
+                                    <input id="statistic-to" type="text" class="form-control" style="margin-bottom: 0px !important;">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 no-padding-left">
+                                $text.getText("cmsadmin.statistic.statistic_by")
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm active" data-action="change-type" data-type="day">$text.getText("cmsadmin.statistic.by_day")</button>
+                                    <button type="button" class="btn btn-sm" data-action="change-type" data-type="week">$text.getText("cmsadmin.statistic.by_week")</button>
+                                    <button type="button" class="btn btn-sm" data-action="change-type" data-type="month">$text.getText("cmsadmin.statistic.by_month")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content no-border">
+                            <div class="tab-pane fade active in" role="tabpanel">
+                                <canvas id="statistic-item" height="80" style="width: 100%;"></canvas>
+                            </div>
+                        </div>
+                        <!--<div class="container-fluid">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-4 col-sm-4" style="border: dashed #C0C0C0; border-width: 0px 1px 0px 0px;">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-12 col-sm-12 text-center">Hôm nay</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-12 col-sm-12 text-center">-->
+                                            <!--<a href="javascript:;" style="text-decoration: none;">-->
+                                                <!--<span style="display: block; font-size: 20px;">0</span>View-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4 col-sm-4" style="border: dashed #C0C0C0; border-width: 0px 1px 0px 0px;">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-12 col-sm-12 text-center">Best ever</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-12 col-sm-12 text-center">-->
+                                            <!--<a href="javascript:;" style="text-decoration: none;">-->
+                                                <!--<span style="display: block; font-size: 20px;">1</span>View-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4 col-sm-4">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-12 col-sm-12 text-center">All time</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-6 col-sm-6 text-center">-->
+                                            <!--<a href="javascript:;" style="text-decoration: none;">-->
+                                                <!--<span style="display: block; font-size: 20px;">1</span>View-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-md-6 col-sm-6 text-center">-->
+                                            <!--<a href="javascript:;" style="text-decoration: none;">-->
+                                                <!--<span style="display: block; font-size: 20px;">1</span>Phản hồi-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left">
+                    <div id="panel-statistic-browser" class="panel panel-default">
+                        <div class="panel-heading"><strong>$text.getText("cmsadmin.statistic.browser")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <canvas id="statistic-browser" width="315" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding">
+                    <div id="panel-statistic-country" class="panel panel-default">
+                        <div class="panel-heading"><i class="icon-arrow-left" style="display: none;"></i> <strong>$text.getText("cmsadmin.statistic.country")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <canvas id="statistic-country" width="315" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding-right">
+                    <div id="panel-statistic-platform" class="panel panel-default">
+                        <div class="panel-heading"><strong>$text.getText("cmsadmin.statistic.platform")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <canvas id="statistic-platform" width="315" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

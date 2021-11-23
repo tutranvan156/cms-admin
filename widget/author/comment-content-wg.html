@@ -1,0 +1,44 @@
+#script("/js/cmsadmin/inet/lib/cms-comment-content.min.js")
+<div id="comment-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i>
+            $text.getText("app.button.back")
+        </button>
+        <button id="content-btn-approved" class="btn btn-success btn-sm">
+            <i class="fa fa-check"></i>
+            $text.getText("cmsadmin.comment.approved_title")
+        </button>
+        <button id="content-btn-reject" class="btn btn-warning btn-sm hide">
+            <i class="fa fa-reply"></i>
+            $text.getText("cmsadmin.comment.reject_title")
+        </button>
+        <button id="content-btn-del" class="btn btn-danger btn-sm">
+            <i class="fa fa-remove"></i>
+            $text.getText("app.button.del")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="panel-comment" class="panel panel-default">
+                    <div class="panel-heading">
+                        <p id="comment-post" class="bolder"></p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <strong id="comment-author"></strong>
+                                <p id="comment-subject" class="bolder"></p>
+                                <div class="text">
+                                    <i class="ace-icon fa fa-quote-left"></i>
+                                    <span id="comment-message"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+/* - Page Edit - */
+[areascope] {
+  box-shadow: 0 0 10px #0055FF !important;
+}
+[areascope].hover {
+  box-shadow: 0 0 10px #41FF00 !important;
+}

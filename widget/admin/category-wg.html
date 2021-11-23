@@ -1,0 +1,102 @@
+#script("/js/cmsadmin/bootstrap/plugins/bootstrap-typeahead.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-category.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-category-main.min.js")
+#dataservice("cmscategorylist")
+
+#xscript()
+    var dataGroup = [];
+    var dataCate = [];
+    #foreach($item in $cmscategorylist.items)
+        #if ($item.name == $item.group)
+            dataGroup.push({'uuid':'$item.uuid', 'group':'$item.group', 'name':'$item.name'});
+        #else
+            dataCate.push({'uuid':'$item.uuid', 'group':'$item.group', 'name':'$item.name'});
+        #end
+    #end
+#end
+<div id="wg-category">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <h3 class="row header smaller lighter blue">
+                    <span class="col-xs-6">$text.getText("cmsadmin.group")</span>
+                    <span class="col-xs-6">
+                        <span class="pull-right inline">
+                            <span class="btn-toolbar inline middle no-margin">
+                                <button id="category-btn-create-group" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-plus"></i> $text.getText("cmsadmin.group.create_title")
+                                </button>
+                            </span>
+                        </span>
+                    </span>
+                </h3>
+                <div class="dd">
+                    <ol id="group-list" class="dd-list">
+                    #foreach($item in $cmscategorylist.items)
+                        #if ($item.name == $item.group)
+                        <li class="dd-item item-blue2" data-id="$item.uuid" data-action="select">
+                            <div class="dd-handle">
+                                <span>$item.name</span>
+                                <div class="pull-right action-buttons">
+                                    <a class="blue hide" href="javascript:;" data-action="edit">
+                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                    </a>
+                                    <a class="red" href="javascript:;" data-action="delete">
+                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        #end
+                    #end
+                    </ol>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <h3 class="row header smaller lighter blue">
+                    <div class="col-xs-12">
+                        <span>$text.getText("cmsadmin.category")</span>
+                        <span id="category-group-lbl"></span>
+                        <span class="pull-right inline">
+                            <span class="btn-toolbar inline middle no-margin">
+                                <button id="category-btn-create-cate" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-plus"></i> $text.getText("cmsadmin.category.create_title")
+                                </button>
+                            </span>
+                        </span>
+                    </div>
+                </h3>
+                <div class="dd">
+                    <ol id="cate-list" class="dd-list"></ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="category-create-modal" class="modal fade" style="display: none;" data-focus-on="input:first">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4><i class="icon-list-alt"></i> <span id="category-create-title"></span></h4>
+        </div>
+        <div class="modal-body" style="padding: 10px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3 col-md-3" style="padding-top: 5px;"><label id="category-create-name-lbl"></label></div>
+                    <div class="col-sm-9 col-md-9"><input id="category-create-name-txt" class="form-control col-sm-12 col-md-12" onfocus="this.select();"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer no-margin-top">
+            <button id="category-create-ok-btn" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i> $text.getText("app.button.ok")</button>
+            <button type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("app.button.cancel")</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    iNet.ConfigHeader = {
+        dataGroup : dataGroup,
+        dataCate : dataCate
+    };
+</script>

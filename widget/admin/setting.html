@@ -1,0 +1,352 @@
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/bootstrap/plugins/bootstrap-timepicker.min.js")
+#theme("/common/css/jquery/select2")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/cmsadmin/inet/lib/api/firm-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/list-rss-url.min.js")
+#script("/js/cmsadmin/inet/lib/admin/prefix-portal-shared.min.js")
+#script("/js/cmsadmin/inet/lib/admin/portal-group-list.min.js")
+#script("/js/cmsadmin/inet/lib/admin/speech-synthesis.min.js")
+#script("/js/cmsadmin/inet/lib/admin/suportal-config-list.min.js")
+#script("/js/cmsadmin/inet/lib/admin/setting-cms-service.min.js")
+
+<style>
+    .setting {
+        margin-top: 10px;
+    }
+    .setting .header,
+    .setting .title {
+        color: #08c;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .setting .header {
+        text-transform: uppercase;
+        margin-top: 0;
+        border-color: #bce8f1;
+    }
+    .setting .title {
+        padding-left: 7px;
+    }
+    .radio-inline {
+        color:#778899 !important;
+        font-weight: 700;
+    }
+</style>
+<div class="wg-toolbar navbar-fixed-top">
+    <button id="toolbar-btn-save" class="btn btn-primary btn-sm">
+        <i class="icon-save"></i> $text.getText("cmsadmin.design.plugin_map.map_title")
+    </button>
+</div>
+<div class="wg-content container setting" id="page-setting">
+    <!--<div class="row dash-border check-format">-->
+        <!--<p>$text.getText("csmadmin.setting.site")</p>-->
+        <!--<div class="row">-->
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label >$text.getText("csmadmin.setting.site.title")</label>-->
+                <!--<input type="email" id="title-site" class="form-control"  placeholder="Tiêu đề site">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label >$text.getText("csmadmin.setting.site.description")</label>-->
+                <!--<input type="email" class="form-control"  id="site-description" placeholder="Mô tả">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<label>$text.getText("csmadmin.setting.site.day")</label>-->
+        <!--<div >-->
+            <!--<label class="radio-inline col-xs-6">-->
+                <!--<input type="radio" name="dateformat" value=""> <span>yyyy-MM-dd</span>-->
+            <!--</label>-->
+            <!--<label class="radio-inline col-xs-5">-->
+                <!--<input type="radio" name="dateformat"  value=""> <span>dd/MM/yyyy</span>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div >-->
+            <!--<label class="radio-inline col-xs-6">-->
+                <!--<input type="radio" name="dateformat" value=""> <span>dd.MM.yyyy</span>-->
+            <!--</label>-->
+            <!--<label class="radio-inline col-xs-5">-->
+                <!--<input type="radio" name="dateformat" value=""> <span>yyyy/MM/dd</span>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<label class="radio-inline col-xs-6">-->
+                <!--<input type="radio" name="dateformat" value="option1"> <span>MM/dd/yyyy</span>-->
+            <!--</label>-->
+            <!--<label class="radio-inline col-xs-5">-->
+                <!--<input type="radio" name="dateformat" value="option2"> <span>MM.dd.yyyy</span>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<label class="radio-inline col-xs-6" style="margin-top:15px;">-->
+                <!--<input type="radio"  name="dateformat" style="margin-top: 10px;"  value="option1"> <input type="text" class="form-control" id="value-format-radio"  placeholder="Nhập kiểu định dạng">-->
+            <!--</label>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="row dash-border">-->
+        <!--<p>$text.getText("csmadmin.setting.cms")</p>-->
+        <!--<div class="row">-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label  >$text.getText("csmadmin.setting.cms.pagesize")</label>-->
+                <!--<input type="text" class="form-control" id="size-page"  placeholder="Số trang" value="10">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label >$text.getText("csmadmin.setting.cms.recently")</label>-->
+                <!--<input type="text" class="form-control" id="recently-page"  value="10">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label  >$text.getText("csmadmin.setting.cms.mostly")</label>-->
+                <!--<input type="text" class="form-control" id="mostly-page" value="10">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>$text.getText("csmadmin.setting.cms.popular")</label>-->
+                <!--<input type="text" class="form-control" id="popular-page" value="5">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="dash-border">
+        <div class="row">
+            <div class="alert alert-info header" role="alert"><strong>$text.getText("csmadmin.setting.comment")</strong></div>
+        </div>
+        <div class="row check-comment" style="margin-bottom:10px">
+            <div class="col-sm-6">
+                <div class="checkbox">
+                    <label>
+                        <input name="commentcheck" type="checkbox" class="ace">
+                        <span class="lbl"> $text.getText("csmadmin.setting.comment.push")</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="checkbox">
+                    <label>
+                        <input name="comment-viewcheck" type="checkbox" class="ace">
+                        <span class="lbl"> $text.getText("csmadmin.setting.comment.send")</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dash-border">
+        <div class="row">
+            <div class="alert alert-info header" role="alert"><strong>$text.getText("csmadmin.setting.rss")</strong></div>
+        </div>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label ilabel">$text.getText("csmadmin.setting.rss.title")</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="title-rss" placeholder="Tên website">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label ilabel">$text.getText("csmadmin.setting.rss.link")</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="link-rss"  placeholder="Trang chủ">
+                </div>
+                <label class="col-sm-2 control-label ilabel">$text.getText("csmadmin.setting.rss.copyright")</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="copy-rss"  placeholder="Bản quyền">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label ilabel">$text.getText("csmadmin.setting.rss.description")</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="des-rss" placeholder="Mô tả">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p class="title"><strong>Danh sách RSS</strong></p>
+            <div class="hide" style="display:none">
+                <div id="list-basic-search">
+                    <div id="list-quick-search">
+                        <div class="col-xs-2 col-md-2 span2 no-padding">
+                            <button class="btn btn-primary btn-new-record">
+                                <i class="fa fa-plus"></i> $text.getText("app.button.create")
+                            </button>
+                        </div>
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-rss"></div>
+        </div>
+    </div>
+    <div class="dash-border">
+        <div class="row">
+            <div class="alert alert-info header" role="alert"><strong>$text.getText("Danh sách cổng chia sẻ tin tức & nội dung")</strong></div>
+        </div>
+        <div class="row">
+            <div class="hide" style="display:none">
+                <div id="list-portal-basic-search">
+                    <div id="list-portal-quick-search">
+                        <div class="col-xs-2 col-md-2 span2 no-padding">
+                            <button class="btn btn-primary btn-new-record">
+                                <i class="fa fa-plus"></i> $text.getText("app.button.create")
+                            </button>
+                        </div>
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-prefix-shared"></div>
+        </div>
+    </div>
+    <div class="dash-border">
+        <div class="row">
+            <div class="alert alert-info header" role="alert"><strong>$text.getText("Danh sách nhóm cổng tin tức")</strong></div>
+        </div>
+        <div class="row">
+            <div class="hide" style="display:none">
+                <div id="portal-group-basic-search">
+                    <div id="portal-group-quick-search">
+                        <div class="col-xs-2 col-md-2 span2 no-padding">
+                            <button class="btn btn-primary btn-new-record">
+                                <i class="fa fa-plus"></i> $text.getText("app.button.create")
+                            </button>
+                        </div>
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-portal-group"></div>
+        </div>
+    </div>
+    <div class="dash-border">
+        <div class="row">
+            <div class="alert alert-info header" role="alert"><strong>$text.getText("Cấu hình đọc bài viết")</strong></div>
+        </div>
+        <div class="row">
+            <div class="hide" style="display:none">
+                <div id="list-speech-synthesis-basic-search">
+                    <div id="speech-synthesis-quick-search">
+                        <div class="col-xs-2 col-md-2 span2 no-padding">
+                            <button class="btn btn-primary btn-new-record">
+                                <i class="fa fa-plus"></i> $text.getText("app.button.create")
+                            </button>
+                        </div>
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-speech-synthesis"></div>
+        </div>
+    </div>
+    <div class="dash-border">
+        <div class="row">
+            <div class="alert alert-info header" role="alert"><strong>$text.getText("Cấu hình SubPortal Cũ")</strong></div>
+        </div>
+        <div class="row">
+            #dataservice("cmssubportalwebservice")
+            #set($services = $cmssubportalwebservice)
+            #xscript()
+            var webserviceList = [#foreach( $var in $services.elements )#if($foreach.index> 0),#end {"value": "$var","text": "$var"} #end];
+            #end
+            <div class="hide" style="display:none">
+                <div id="list-subportal-config-basic-search">
+                    <div id="subportal-config-quick-search">
+                        <div class="col-xs-2 col-md-2 span2 no-padding">
+                            <button class="btn btn-primary btn-new-record">
+                                <i class="fa fa-plus"></i> $text.getText("app.button.create")
+                            </button>
+                        </div>
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-subportal-config"></div>
+        </div>
+    </div>
+    <input type="hidden" class="form-control" id="upload-folder">
+    <!--<div class="row dash-border">-->
+        <!--<p>$text.getText("csmadmin.setting.media")</p>-->
+        <!--<div class="row">-->
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label  >$text.getText("csmadmin.setting.media.smimgwidth")</label>-->
+                <!--<input type="text" class="form-control" id="sm-width" value="150">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label  >$text.getText("csmadmin.setting.media.smimgheight")</label>-->
+                <!--<input type="text" class="form-control" id="sm-height" value="150">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>$text.getText("csmadmin.setting.media.imgwidth")</label>-->
+                <!--<input type="text" class="form-control" id="img-width" value="300">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>$text.getText("csmadmin.setting.media.imgheight")</label>-->
+                <!--<input type="text" class="form-control" id="img-height" value="300">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>$text.getText("csmadmin.setting.media.lgimgheight")</label>-->
+                <!--<input type="text" class="form-control" id="lg-width" value="1024">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>$text.getText("csmadmin.setting.media.lgimgwidth")</label>-->
+                <!--<input type="text" class="form-control" id="lg-height" value="1024">-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="row dash-border">-->
+        <!--<p>$text.getText("csmadmin.setting.google")</p>-->
+        <!--<div class="row">-->
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label>$text.getText("csmadmin.setting.google.analycode")</label>-->
+                <!--<input type="text" class="form-control" id="analy-code">-->
+            <!--</div>-->
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label>$text.getText("csmadmin.setting.google.vercode")</label>-->
+                <!--<input type="text" class="form-control" id="ver-code">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

@@ -1,0 +1,95 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/inet/lib/admin/poor-household-detail.min.js")
+<style>
+    .select2-container {
+        width: 100% !important;
+    }
+    .file-attachment a.download {
+        position: absolute;
+        top: 6px;
+        right: -32px;
+        background: #5aac41;
+        color: #FFFFFF;
+        width: 17px;
+        height: 17px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 11px;
+        display: none;
+    }
+</style>
+<div id="poor-household-detail-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="detail-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="detail-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="detail-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" id="form-content">
+                <div class="form-group">
+                    <label for="txt-name" class="col-sm-2 ilabel">Tiêu đề</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="txt-name" name="title" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cbb-district" class="col-sm-2 ilabel">Huyện/TP (<span class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select id="cbb-district" name="districtCode" class="form-control col-md-12"></select>
+                    </div>
+                    <label for="cbb-ward" class="col-sm-2 ilabel">Phường/Xã/TT</label>
+                    <div class="col-sm-4">
+                        <select id="cbb-ward" name="wardCode" class="form-control col-md-12"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cbb-year" class="col-sm-2 ilabel">Năm thống kê (<span class="required"></span>)</label>
+                    <div class="col-sm-2">
+                        #set($startYear = 2016)
+                        #set($currentYear = $ctx.year())
+                        <select id="cbb-year" name="year" class="form-control">
+                        #foreach($i in [$startYear..$currentYear])
+                            <option value="$i">$i</option>
+                        #end
+                        </select>
+                    </div>
+                    <label for="txt-poor-number" class="col-sm-2 ilabel">Số hộ nghèo</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-poor-number" name="poorNo" class="form-control" min="0">
+                    </div>
+                    <label for="txt-near-poor-number" class="col-sm-2 ilabel">Số hộ cận nghèo</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="txt-near-poor-number" name="nearPoorNo" class="form-control" min="0">
+                    </div>
+                </div>
+                <div id="attach-wrapper" class="form-group" style="display:none">
+                    <label for="file-attach" class="col-sm-2 ilabel">Tập tin đính kèm</label>
+                    <div class="col-sm-4 file-attachment">
+                        <label id="file-label" class="ace-file-input">
+                            <input type="file" id="file-attach">
+                            <span class="ace-file-container" data-title="Tải lên">
+                                <span class="ace-file-name" data-title="Chọn một tập tin...">
+                                    <i class="ace-icon fa fa-upload"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="javascript:;">
+                                <i class="ace-icon fa fa-times"></i>
+                            </a>
+                            <a class="download" href="javascript:;">
+                                <i class="ace-icon fa fa-download"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

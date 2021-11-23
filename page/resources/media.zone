@@ -1,0 +1,61 @@
+#zone({"inherit": "true"})
+
+#scriptBundle("cms_media")
+    iNet.ns('iNet.resources.cmsadmin.media');
+        if (iNet.resources.cmsadmin.media) {
+        iNet.apply(iNet.resources.cmsadmin.media, {
+            title: '$text.getText("cmsadmin.media")',
+            display: '$text.getText("cmsadmin.media.display")',
+            folder: '$text.getText("cmsadmin.media.folder")',
+            in_total: '$text.getText("cmsadmin.media.in_total")',
+            search: '$text.getText("cmsadmin.media.search")',
+            folder_create_title: '$text.getText("cmsadmin.media.folder_create_title")',
+            folder_create_name: '$text.getText("cmsadmin.media.folder_create_name")',
+            select_file: '$text.getText("cmsadmin.media.select_file")',
+            select_from_library: '$text.getText("cmsadmin.media.select_from_library")',
+            upload_from_computer: '$text.getText("cmsadmin.media.upload_from_computer")',
+            view: '$text.getText("cmsadmin.media.view")',
+            group: '$text.getText("cmsadmin.media.group")',
+            category: '$text.getText("cmsadmin.media.category")',
+            create_folder: '$text.getText("cmsadmin.media.create_folder")',
+            folder_name: '$text.getText("cmsadmin.media.folder_name")',
+            upload_success: '$text.getText("cmsadmin.media.upload_success")',
+            upload_unsuccess: '$text.getText("cmsadmin.media.upload_unsuccess")',
+            confirm_del_folder: '$text.getText("cmsadmin.media.confirm_del_folder")',
+            confirm_del_file: '$text.getText("cmsadmin.media.confirm_del_file")',
+            create_folder_success: '$text.getText("cmsadmin.media.create_folder_success")',
+            del_folder_success: '$text.getText("cmsadmin.media.del_folder_success")',
+            del_folder_unsuccess: '$text.getText("cmsadmin.media.del_folder_unsuccess")',
+            del_file_success: '$text.getText("cmsadmin.media.del_file_success")',
+            del_file_unsuccess: '$text.getText("cmsadmin.media.del_file_unsuccess")',
+            empty_item: '$text.getText("cmsadmin.media.empty_item")',
+            new_folder: '$text.getText("cmsadmin.media.new_folder")',
+            edit_folder: '$text.getText("cmsadmin.media.edit_folder")',
+            delete_folder: '$text.getText("cmsadmin.media.delete_folder")',
+            publish_folder: '$text.getText("cmsadmin.media.publish_folder")',
+            publish_folder_text: '$text.getText("cmsadmin.media.publish_folder_text")',
+            publish_folder_success: '$text.getText("cmsadmin.media.publish_folder_success")',
+            unpublish_folder: '$text.getText("cmsadmin.media.unpublish_folder")',
+            unpublish_folder_text: '$text.getText("cmsadmin.media.unpublish_folder_text")',
+            unpublish_folder_success: '$text.getText("cmsadmin.media.unpublish_folder_success")',
+            delete_file: '$text.getText("cmsadmin.media.delete_file")',
+            select: '$text.getText("cmsadmin.media.select")',
+            file_name: '$text.getText("cmsadmin.media.file_name")',
+            file_date: '$text.getText("cmsadmin.media.file_date")',
+            file_type: '$text.getText("cmsadmin.media.file_type")',
+            file_size: '$text.getText("cmsadmin.media.file_size")',
+            file_pixel: '$text.getText("cmsadmin.media.file_pixel")',
+            file_link: '$text.getText("cmsadmin.media.file_link")',
+            limit: '$text.getText("cmsadmin.media.limit")',
+            add_more: '$text.getText("cmsadmin.media.add_more")',
+            create_first: '$text.getText("cmsadmin.media.create_first")',
+            image_link_title: '$text.getText("cmsadmin.media.image_link_title")',
+            image_link: '$text.getText("cmsadmin.media.image_link")',
+            image_link_note: '$text.getText("cmsadmin.media.image_link_note")',
+            paragraph_template: '$text.getText("cmsadmin.media.paragraph_template")',
+            post_template: '$text.getText("cmsadmin.media.post_template")'
+        });
+    }
+#end
+
+#end

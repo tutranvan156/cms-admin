@@ -1,0 +1,193 @@
+  #script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+  #theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+  #theme("/cmsadmin/css/jquery/select2-new")
+  #script("/js/cmsadmin/jquery/plugins/select2.min.js")
+  #script("/js/cmsadmin/inet/lib/financial/financial-report-wg.min.js")
+  #script("/js/common/jquery/plugins/jquery.form.min.js")
+  #dataservice("cms_financial_organ_getorganservice")
+  #set($dataUnit = $cms_financial_organ_getorganservice)
+
+  <div id="financial-report-widget" style="display: none">
+    <div class="wg-toolbar" class="navbar-fixed-top">
+      <button id="financial-report-btn-back" type="button" class="btn btn-primary">
+        <i class="icon-arrow-left"></i> $text.getText("Trở lại")
+      </button>
+      <button id="financial-report-btn-create" class="btn btn-primary" type="submit">
+        <i class="fa fa-plus"></i> $text.getText("Tạo mới")
+      </button>
+      <button id="financial-report-btn-save" class="btn btn-primary" type="submit">
+        <i class="icon-save"></i> $text.getText("Lưu")
+      </button>
+    </div>
+
+    <div class="wg-content">
+      <div class="row-fluid">
+        <form id="financial-report-form" role="form" class="form-horizontal">
+          <div class="row" style="margin: 0px">
+            <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
+              <strong><i class="icon-info-sign"></i> $text.getText("Thông tin báo cáo")</strong>
+            </div>
+          </div>
+          <div class="row" style="margin: 0px">
+            <div class="col-xs-12 col-sm-12">
+              <input type="hidden" id="financial-report-txt-id">
+              <input type="hidden" id="financial-report-txt-reportOfOrganId" value="">
+
+              <div class="form-group">
+                <label class="col-sm-2 no-padding-right lbl-bold" for="financial-report-txt-reportType">$text.getText("Loại
+                  báo
+                  cáo")
+                  (<span class="required"/>)</label>
+                <div class="col-sm-4">
+                  <select class="form-control col-xs-12 col-sm-12"
+                          id="financial-report-txt-reportType" style="width: 100%" name="reportType">
+                    <option value="">Chọn loại hóa đơn</option>
+                    <option value="estimate">Dự toán</option>
+                    <option value="perform">Thực hiện</option>
+                    <option value="settlement">Quyết toán</option>
+
+                    <option value="instructions">Hướng dẫn dự toán ngân sách</option>
+                    <option value="report">BC NSNN cho công dân</option>
+                    <option value="summary">Tổng hợp tình hình công khai ngân sách</option>
+                    <option value="publicDebt">Công bố nợ chính quyền địa phương</option>
+                    <option value="inspectionResults">Kết quả thanh tra, kiểm toán</option>
+                    <option value="performResults">Kết quả thực hiện kiến nghị của thanh tra, kiểm toán</option>
+
+                  </select>
+                </div>
+
+                <label class="col-sm-2 no-padding-right lbl-bold" for="financial-report-txt-reportOfOrganName">$text.getText("Tên
+                  đơn vị")
+                  (<span class="required"/>)</label>
+                <div class="col-sm-4">
+                  <select required="required" class="form-control" id="financial-report-txt-reportOfOrganName" style="width: 100%" name="firmID">
+                    #if($dataUnit)
+                    <option selected data-code="" value="">Chọn đơn vị</option>
+                    #foreach($unit in $dataUnit.items)
+                    <option data-code="$unit.organId" value="$unit.organName">$unit.organName</option>
+                    #end
+                    #else
+                    <option data-code="" value="">Không khả dụng</option>
+                    #end
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 no-padding-right lbl-bold" for="financial-report-txt-name">$text.getText("Tên báo
+                  cáo")
+                  (<span class="required"/>)</label>
+
+                <div class="col-sm-4">
+                  <input type="text" id="financial-report-txt-name" name="name" placeholder="Tên báo cáo" value=""
+                         class="col-xs-12 col-sm-12">
+                </div>
+
+                <label class="col-sm-2 no-padding-right lbl-bold">Ngày quyết định công bố (<span class="required"/>)</label>
+                <div class="col-sm-4">
+                  <div class="input-group date">
+                    <input type="text" style="margin-bottom:0px !important;" class="form-control" name="qdDate"
+                           id="financial-report-txt-qdDate" placeholder="Ngày quyết định công bố">
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 no-padding-right lbl-bold" for="financial-report-txt-year" >$text.getText("Năm báo
+                  cáo") (<span class="required"/>)</label>
+
+                <div class="col-sm-4">
+                  <input type="number" id="financial-report-txt-year" name="year" placeholder="Năm báo cáo" value=""
+                         class="col-xs-12 col-sm-12">
+                </div>
+
+                <label class="col-sm-2 no-padding-right lbl-bold" for="financial-report-txt-form">$text.getText("Biễu
+                  mẫu") (<span class="required"/>)</label>
+
+                <div class="col-sm-4">
+                  <input type="text" id="financial-report-txt-form" name="form"  placeholder="Biễu mẫu" value=""
+                         class="col-xs-12 col-sm-12">
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 no-padding-right lbl-bold" for="financial-report-txt-signNumber">$text.getText("Số
+                    quyết định") (<span class="required"/>)</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="financial-report-txt-signNumber" name="signNumber" placeholder="Số quyết định" value=""
+                           class="col-xs-12 col-sm-12">
+                  </div>
+
+                <label class="col-sm-2 no-padding-right lbl-bold">Ngày công khai </label>
+                <div class="col-sm-4">
+                  <div class="input-group date">
+                    <input type="text" style="margin-bottom:0px !important;" class="form-control" name="publicationDate"
+                           id="financial-report-txt-publicationDate" placeholder="Ngày công khai">
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                  <label class="col-sm-2 no-padding-right lbl-bold">Tập tin đính kèm (<span
+                          class="required"></span>)</label>
+                  <div class="col-sm-10">
+                    <div id="file-container">
+                      <label class="ace-file-input">
+                        <input type="file" multiple id="financial-report-txt-attachments">
+                        <span class="ace-file-container edoc-files" data-title="Choose">
+                                    <span class="ace-file-name" data-title="Chọn File ...">
+                                        <i class=" ace-icon fa fa-upload"></i>
+                                    </span>
+                                </span>
+                        <a class="remove" href="#">
+                          <i class=" ace-icon fa fa-times"></i>
+                        </a>
+                      </label>
+                    </div>
+                  </div>
+              </div>
+
+              <div id="file-report-attachments" class="form-group list-upload">
+
+                <script type="text/html" id="list-organ">
+                  <option value="{uuid}">{organName}</option>
+                </script>
+
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/template" id="financial-list-file-script">
+    <div class="col-sm-10 col-sm-offset-2 attachment">
+      <div class="ace-file-wrapper">
+        <div class="ace-file" data-local="{local}">
+          <label class="ace-file-input ace-file-multiple">
+                                      <span class="ace-file-container hide-placeholder selected">
+                                          <span class="ace-file-name" data-title="{name}">
+                                              <i class=" ace-icon fa fa-file"></i>
+                                          </span>
+                                      </span>
+          </label>
+        </div>
+        <div class="ace-file-action" id="">
+          <button type="button" data-uuid="{uuid}" data-contentId="{contentUid}" data-grid="{gridfsUUID}" class="btn btn-success btn-download">
+            <i class="fa fa-download" aria-hidden="true"></i>
+          </button>
+          <button  type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}" data-fileId="{fileId}" class="btn btn-primary btn-update {isShow}">
+            <i class="fa fa-upload" aria-hidden="true"></i>
+          </button>
+          <button type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}" class="btn btn-danger btn-remove">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </script>

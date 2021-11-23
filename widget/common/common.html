@@ -1,0 +1,132 @@
+#theme("/common/css/inet-core-3.0.min")
+#theme("/common/css/grid.min")
+#theme("/common/css/common")
+#theme("/common/css/jquery/jquery.pnotify")
+#theme("/common/css/jquery/select2")
+#theme("/cmsadmin/css/cmsadmin")
+
+#script("/js/cmsadmin/jquery/jquery-1.10.1.min.js")
+#script("/js/cmsadmin/jquery/plugins/jquery.searchable.min.js")
+#script("/js/common/jquery/plugins/moment-with-locales.min.js")
+#script("/js/common/jquery/plugins/livestamp.min.js")
+#script("/js/common/jquery/plugins/jquery.livetime.min.js")
+#script("/js/cmsadmin/bootstrap/bootstrap.min.js")
+
+#script("/js/common/inet/lib/inet-core.min.js")
+#script("::common/page/resources/common-zone")
+#script("::/cmsadmin/page/resources/post")
+#script("::/cmsadmin/page/resources/media")
+#script("/js/common/inet/lib/inet-utilities.min.js")
+#script("/js/common/inet/lib/inet-ui.min.js")
+#script("/js/common/inet/lib/ajax-api.min.js")
+#script("/js/common/inet/lib/file-server-api.min.js")
+##script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+#script("/js/cmsadmin/inet/lib/common/config.min.js")
+#script("/js/cmsadmin/inet/lib/api/cms-api.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-component.min.js")
+#script("/js/cmsadmin/inet/lib/utils/file.min.js")
+#script("/js/cmsadmin/inet/lib/utils/date.min.js")
+#script("/js/cmsadmin/inet/lib/utils/cms.min.js")
+#script("/js/cmsadmin/inet/lib/utils/cms-items.min.js")
+#script("/js/cmsadmin/inet/lib/common/cache-manager.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-error.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-security-utils.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-widget.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-hashstore.min.js")
+#script("/js/cmsadmin/inet/lib/common/list-abstract.min.js")
+
+#set($dashboardDateFormat = "HH:mm ngày dd tháng MM, yyyy")
+#set($dateFormat = "dd/MM/yyyy")
+
+<script type="text/javascript">
+    checking = [
+    #hasRole("$admin_land")
+    #set($isLand = true)
+    'land',
+    #end
+    #hasRole("$admin_complain")
+    #set($isComplain = true)
+    'complain',
+    #end
+    #hasRole("$admin_poorhouse")
+    #set($isPoorhouse = true)
+    'poorhouse',
+    #end
+    #hasRole("$cms_denunciation")
+    #set($isDenouncecriminals = true)
+    'cms_denunciation',
+    #end
+    #hasRole("$admin_budget")
+    #set($isStateBudget = true)
+    'budget',
+    #end
+    #hasRole("$admin_socioeconomic")
+    #set($isSocioeconomic = true)
+    'socioeconomic',
+    #end
+    #hasRole("$admin_org_structure")
+    #set($isOrgStructure = true)
+    'org_structure',
+    #end
+    #hasRole("$admin_legaldoc")
+    #set($isLegalDoc = true)
+    'legal_doc',
+    #end
+    #hasRole("$cms_discussion_review")
+    #set($isDissReview = true)
+    'discus_review',
+    #end
+    #hasRole("$cms_fqa_review")
+    #set($isFqaReview = true)
+    'fqa_review',
+    #end
+    #hasRole("$cms_comment_review")
+    #set($isCmtReview = true)
+    'cmt_review',
+    #end
+    #hasRole("$cms_writer")
+    #set($isWriter = true)
+    'writer',
+    #end
+    #hasRole("$cms_review")
+    #set($isReview = true)
+    'item_review',
+    #end
+    #hasRole("$sub_admin")
+    #set($isAdmin = true)
+    'admin',
+    #end
+    #hasRole("$analysis_admin")
+    #set($isAnalysis = true)
+    'analysis',
+    #end
+    #hasRole("$firm_admin")
+    #set($isFirmAdmin = true)
+    'sup_admin',
+    #end
+    ];
+    #set($path = $ctx.path())
+    #set($firmPrefix = $ctx.firmPrefix)
+    iNet.prefix = '$ctx.site.prefix';
+    #if($path != "/" + $firmPrefix)
+        iNet.firmPrefix = '$firmPrefix';
+    #end
+    iNet.extension = "$ctx.extension()";
+    iNet.path = "$ctx.path()";
+    iNet.lang = "$ctx.language";
+    iNet.siteId = "$ctx.site.uuid";
+    iNet.staticUrl = '$ctx.mediaRoot("")';
+    if (iNet.staticUrl.charAt(0) === '/' || iNet.staticUrl.indexOf('http') >=0){
+        //TODO: ignore
+    } else {
+        iNet.staticUrl = '/' + iNet.staticUrl;
+    }
+    iNet.logged = '$ctx.usercode()';
+    iNet.cityCode = '$ctx.city()';
+    iNet.currentTheme = '#cmsTheme()';
+
+    iNet.resourceCtx ={
+      blankIMG: '$ctx.resource("/images/cmsadmin/common/no-thumb.png")'
+    }
+</script>

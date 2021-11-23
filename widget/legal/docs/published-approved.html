@@ -1,0 +1,146 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/inet/lib/api/legal-doc-api.min.js")
+#script("/js/cmsadmin/inet/lib/document/published-approved.min.js")
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: 600;
+    }
+
+    #form-list input {
+        height: 35px !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="approved-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="content-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-globe"></i> $text.getText("cmsadmin.admin.document.promulgation")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" id="draft-form">
+                <input type="hidden" id="txt-doc-id" name="uuid">
+                <input type="hidden" id="txt-draft-ref" name="draftRef">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Số kí hiệu(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="signNumber" name="signNumber" class="form-control"
+                               placeholder="Nhập số kí hiệu">
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Loại văn bản(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="documentTypeId" id="type-doc" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Lĩnh vực văn bản(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="industryId" id="industry-doc" class="form-control">
+                        </select>
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Cơ quan ban hành(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="publisherId" id="organ-doc" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Ngày ban hành(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input type="text" style="margin-bottom:0px !important;" class="form-control"
+                                   id="promul-date" placeholder="Ngày ban hành">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Ngày hiệu lực</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input type="text" style="margin-bottom:0px !important;" class="form-control"
+                                   id="effec-date" placeholder="Ngày hiệu lực">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tên người ký(<span class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="signer" name="signer" class="form-control"
+                               placeholder="Nhập tên người kí">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Trích yếu(<span class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="content" name="content" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tập tin đính kèm(<span
+                            class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <label class="ace-file-input">
+                            <input type="file" multiple id="id-input-file">
+                            <span class="ace-file-container" data-title="Choose">
+                                <span class="ace-file-name" data-title="No File ...">
+                                    <i class=" ace-icon fa fa-upload"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+                <div id="file-attachments-1" class="form-group list-upload">
+                </div>
+
+                <script type="text/html" id="list-industry-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-organ-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-type-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-file-script-2">
+                    <div class="col-sm-10 col-sm-offset-2 child-file">
+                        <label class="ace-file-input ace-file-multiple">
+                            <span class="ace-file-container hide-placeholder selected">
+                                <span class="ace-file-name" data-title="{name}">
+                                    <i class=" ace-icon fa fa-file"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#" data-name="{name}" data-uuid="{uuid}" data-grid="{gridfsUUID}">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </script>
+            </form>
+        </div>
+    </div>
+</div>

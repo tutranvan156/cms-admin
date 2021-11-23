@@ -1,0 +1,93 @@
+#theme("/cmsadmin/css/workflow")
+#theme("/cmsadmin/css/select-user")
+
+#script("/js/cmsadmin/jquery/plugins/jquery-ui-1.10.2.min.js")
+#script("/js/cmsadmin/jquery/plugins/jquery.jsPlumb.1.5.5.min.js")
+#script("/js/cmsadmin/inet/lib/admin/workflow.min.js")
+
+#script("/js/cmsadmin/inet/lib/form/cms-select-user-popover.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-review-permission.min.js")
+#dataservice("cmscategorylist")
+
+<div id="review-permission-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="review-permission-toolbar-btn-create" class="btn btn-primary btn-sm">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="review-permission-toolbar-btn-delete" class="btn btn-danger btn-sm" style="display: none;">
+            <i class="icon-trash"></i> $text.getText("app.button.delete")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-9 col-md-9" style="border-right: 1px solid #e5e5e5; height: 500px;">
+                    <div id="workflow-design-virtual">
+                        <div id="statemachine-design">
+                        </div>
+                    </div>
+                </div>
+                <div id="review-permission-status" class="col-sm-3 col-md-3 no-padding-right">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="category-list-popover" class="category-list-popover" style="display: none;">
+            <div class="cate-title"><i class="icon-list-alt"></i> <b>$text.getText("cmsadmin.category")</b> <a id="cate-list-close-btn" class="close" href="javascript:;">&times;</a></div>
+            <div class="cate-list">
+                #foreach($item in $cmscategorylist.items)
+                #if($item.group!=$item.name)
+                <div class="checkbox" data-action="cate" data-id="$item.uuid">
+                    <label>
+                        <input name="form-field-checkbox" type="checkbox" class="ace">
+                        <span class="lbl"> $item.name</span>
+                    </label>
+                </div>
+                #end
+                #end
+            </div>
+            <div class="cate-footer text-right"><button id="category-list-save-btn" type="button" class="btn btn-primary" ><i class="icon-ok"></i> $text.getText("app.button.save")</button></div>
+        </div>
+
+        <div id="review-permission-node-modal" class="modal fade" data-focus-on="input:first" style="display: none">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4><i class="icon-folder-open-alt"></i> $text.getText("cmsadmin.review.create")</h4>
+            </div>
+            <div class="modal-body" style="padding: 0px;margin:0px">
+                <div class="container-fluid" style="padding-top: 15px;">
+                    <div class="row" style="height: 30px; line-height: 30px;">
+                        <div class="col-sm-4 col-md-4">$text.getText("cmsadmin.review.new_status")</div>
+                        <div class="col-sm-8 col-md-8"><input id="review-permission-node-name" type="text" class="form-control" ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="review-permission-node-btn-ok" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i> $text.getText("app.button.ok")</button>
+                <button id="review-permission-node-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("app.button.cancel")</button>
+            </div>
+        </div>
+
+        <div id="review-permission-connection-modal" class="modal fade" data-focus-on="input:first" style="display: none">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4><i class="icon-folder-open-alt"></i> $text.getText("cmsadmin.review.connection")</h4>
+            </div>
+            <div class="modal-body" style="padding: 0px;margin:0px">
+                <div class="container-fluid" style="padding-top: 15px;">
+                    <div class="row" style="height: 30px; line-height: 30px;">
+                        <div class="col-sm-4 col-md-4">$text.getText("cmsadmin.review.connection_name")</div>
+                        <div class="col-sm-8 col-md-8"><input id="review-permission-connection-name" type="text" class="form-control" ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="review-permission-connection-btn-ok" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i> $text.getText("app.button.ok")</button>
+                <button id="review-permission-connection-btn-del" type="button" class="btn btn-danger btn-small" style="display: none;"><i class="icon-trash"></i> $text.getText("app.button.delete")</button>
+                <button id="review-permission-connection-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("app.button.cancel")</button>
+            </div>
+        </div>
+
+    </div>
+</div>

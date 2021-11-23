@@ -1,0 +1,142 @@
+#script("/js/cmsadmin/inet/lib/document/draft-doc-content.min.js")
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: 600;
+    }
+
+    #form-list input {
+        height: 35px !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="draft-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-draft-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="content-draft-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="content-draft-save" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+        <!--<button id="content-draft-promulgation" class="btn btn-info btn-sm" style="display:none">-->
+        <!--<i class="fa fa-share" aria-hidden="true"></i> $text.getText("cmsadmin.admin.document.trans_legal")-->
+        <!--</button>-->
+        <button id="content-draft-comment" class="btn btn-warning btn-sm" style="display:none">
+            <i class="fa fa-eye" aria-hidden="true"></i> $text.getText("cmsadmin.admin.document.view_list")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" id="draft-form">
+                <input type="hidden" id="txt-draft-uuid" name="uuid" />
+                <input type="hidden" name="authorUnitCode" />
+
+                <!--<div class="form-group">-->
+                <!--<label class="col-sm-2 control-label ilabel"></label>-->
+                <!--<div class="col-sm-4 text-center" style="padding-left:10px">-->
+                <!--<div class="checkbox">-->
+                <!--<label>-->
+                <!--<input id="chk-enable-comment" class="ace ace-checkbox-2" type="checkbox">-->
+                <!--<span class="lbl"><span style="margin-left: 10px; font-weight: bold;">Nhận ý kiến của người dân cho văn bản</span></span>-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<label class="col-sm-2 control-label ilabel cls-expired">Ngày kết thúc góp ý(<span-->
+                <!--class="required"></span>)</label>-->
+                <!--<div class="col-sm-4 cls-expired">-->
+                <!--<div class="input-group date">-->
+                <!--<input type="text" style="margin-bottom:0px !important;" class="form-control" id="time-expired-comment" placeholder="Ngày kết thúc nhận ý kiến">-->
+                <!--<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tiêu đề</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="txt-draft-subject" name="subject" class="form-control"
+                               placeholder="Nhập tiêu đề">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Lĩnh vực văn bản(<span class="required"></span>)</label>
+                    <div class="col-sm-4">
+                        <select name="field" id="cbb-draft-industry" class="form-control">
+                        </select>
+                    </div>
+                    <label class="col-sm-2 control-label ilabel">Ngày hết hạn</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input type="text" style="margin-bottom:0px !important;" class="form-control" id="expire-date" placeholder="Ngày hết hạn">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Trích yếu(<span class="required"></span>)</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="txt-draft-content" name="content" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label ilabel">Tập tin đính kèm</label>
+                    <div class="col-sm-10">
+                        <label class="ace-file-input">
+                            <input type="file" multiple id="inp-draft-file-attachments">
+                            <span id="span-draft-file-container" class="ace-file-container" data-title="Choose">
+                                <span class="ace-file-name" data-title="No File ...">
+                                    <i class="ace-icon fa fa-upload"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#">
+                                <i class="ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+                <div id="draft-file-attachments" class="form-group list-upload">
+                </div>
+
+                <script type="text/html" id="list-industry-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-organ-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-type-doc">
+                    <option value="{uuid}">{name}</option>
+                </script>
+                <script type="text/html" id="list-file-script">
+                    <div class="col-sm-10 col-sm-offset-2 attachment">
+                        <div class="ace-file-wrapper">
+                            <div class="ace-file" data-local="{local}">
+                                <label class="ace-file-input ace-file-multiple">
+                                    <span class="ace-file-container hide-placeholder selected">
+                                        <span class="ace-file-name" data-title="{name}">
+                                            <i class=" ace-icon fa fa-file"></i>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="ace-file-action">
+                                <button type="button" data-uuid="{uuid}" data-contentId="{contentUid}" data-grid="{gridfsUUID}" class="btn btn-success btn-download">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" data-uuid="{uuid}" data-grid="{gridfsUUID}" class="btn btn-danger btn-remove">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+#script("/js/cmsadmin/inet/lib/api/address-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/abstract-address-list.min.js")
+#script("/js/cmsadmin/inet/lib/admin/district-list.min.js")
+#script("/js/cmsadmin/inet/lib/admin/ward-list.min.js")
+<script type="text/javascript">
+    iNet.ns('iNet.resources.message.address');
+    iNet.apply(iNet.resources.message.address, {
+        title: '$text.getText("cmsadmin.address.title")',
+        created: '$text.getText("cmsadmin.address.created")',
+        updated: '$text.getText("cmsadmin.address.updated")',
+        deleted: '$text.getText("cmsadmin.address.deleted")',
+        sync_code: '$text.getText("cmsadmin.address.sync_code")',
+        city: {
+            name: '$text.getText("cmsadmin.address.city.name")',
+            name_missed: '$text.getText("cmsadmin.address.city.name_missed")',
+            code: '$text.getText("cmsadmin.address.city.code")',
+            code_missed: '$text.getText("cmsadmin.address.city.code_missed")'
+        },
+        district: {
+            name: '$text.getText("cmsadmin.address.district.name")',
+            name_missed: '$text.getText("cmsadmin.address.district.name_missed")',
+            code: '$text.getText("cmsadmin.address.district.code")',
+            code_missed: '$text.getText("cmsadmin.address.district.code_missed")'
+        },
+        ward: {
+            name: '$text.getText("cmsadmin.address.ward.name")',
+            name_missed: '$text.getText("cmsadmin.address.ward.name_missed")',
+            code: '$text.getText("cmsadmin.address.ward.code")',
+            code_missed: '$text.getText("cmsadmin.address.ward.code_missed")'
+        },
+        errors: {
+
+        }
+    });
+</script>
+<div id="district-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="tb-btn-district-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="district-list"></div>
+    </div>
+</div>
+<div id="ward-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="tb-btn-ward-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="tb-btn-ward-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="ward-list"></div>
+    </div>
+</div>

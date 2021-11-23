@@ -1,0 +1,60 @@
+#script("/js/cmsadmin/inet/lib/api/item-api.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-list-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/review/cms-entry-shared-review-list.min.js")
+#dataservice("cmssubportalconfiglist")
+#set($portalList = $cmssubportalconfiglist)
+#dataservice("cmscategorylist")
+#set($cateAll = $cmscategorylist)
+#xscript()
+    var dataCate = [];
+    #foreach($item in $cateAll.items)
+        dataCate.push({'value': '$item.uuid', 'name': '$item.name', 'group': '$item.group'});
+    #end
+#end
+
+<div id="review-share-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        Đơn vị
+        <select id="cbb-subportal-config">
+            <option value="">--- $text.getText("cmsadmin.all") ---</option>
+            #if(!!$portalList)
+                #foreach($item in $portalList.items)
+            <option value="$item.prefix">$item.name</option>
+                #end
+            #end
+        </select>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="review-list-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="category-modal" class="modal fade" style="display: none;" data-focus-on="input:first">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-list-alt"></i> Chọn thể loại cho bài viết</h4>
+    </div>
+    <div class="modal-body" style="padding: 10px;">
+        <div class="container-fluid">
+            <div class="row">
+                <label for="cbb-category" class="col-sm-3 col-md-3" style="padding-top: 5px;">Chọn thể loại</label>
+                <div class="col-sm-9 col-md-9">
+                    <select id="cbb-category" class="form-control col-sm-12 col-md-12">
+                    #foreach($item in $cateAll.items)
+                        #if($item.name != $item.group)
+                        <option value="$item.uuid">$item.name</option>
+                        #end
+                    #end
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer no-margin-top">
+        <button action="ok" id="btn-select-ok" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i> $text.getText("app.button.ok")</button>
+        <button type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("app.button.cancel")</button>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+#html({"lang":"vi","dir":"ltr", "secure":"$firm_user", "inherit": "true", "type":"CMSAdminPage"})
+#keywords({"title":'$text.getText("cloudadmin.title")'})
+#defined("link",{"rel":"shortcut icon", "type":"image/x-icon", "href":'$ctx.resource("/images/cmsadmin/logo/cmsadmin.png")'})
+#meta({ "title":'iCloud Platform - CMS Admin',"viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+#widget("/common/widget/header")
+#widget("/cmsadmin/widget/common/header")
+#widget("/cmsadmin/widget/common/user-guide-menu")
+<div id="main-container" class="container-fluid">
+    #widget("/cmsadmin/widget/common/menu")
+    <div id="main-content" class="clearfix">
+        <div id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="icon-home blue"> </i>
+                    <a href="javascript:;">$text.getText("cmsadmin")</a>
+                    <span class="divider">
+                            <i class="icon-angle-right"> </i>
+                        </span>
+                </li>
+                <li class="active">$text.getText("cmsadmin.category")</li>
+            </ul>
+            <div class="pull-right">
+                <a id="btn-view-site" href="$ctx.path()/{prefix}/{pageIndex}$ctx.extension()" class="btn btn-success"
+                   target="_blank" style="display:none">
+                    <i class="fa fa-external-link"></i> $text.getText("cmsadmin.site.view")
+                </a>
+                <!--<ul class="breadcrumb" style="margin-right: 0;">-->
+                <!--<li class="">-->
+                <!--<a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown">-->
+                <!--<i class="fa fa-cog fa-lg grey"></i>-->
+                <!--</a>-->
+                <!--<ul class="pull-right dropdown-menu dropdown-yellow dropdown-caret">-->
+                <!--<li>-->
+                <!--<a href="javascript:;">-->
+                <!--<i class="fa fa-check-o"></i> Normal-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a href="javascript:;">-->
+                <!--<i class="fa fa-check-o"></i> Mini-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+        <div id="page-content" class="clearfix">
+            <div id="loading-msg"><i class="fa fa-refresh fa-spin"></i> $text.getText("app.loading_msg")</div>
+            <iframe id="iframe-content"></iframe>
+        </div>
+    </div>
+</div>
+#widget("/cmsadmin/widget/common/footer")
+#end

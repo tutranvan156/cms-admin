@@ -1,0 +1,93 @@
+#script("::/cmsadmin/page/resources/post")
+#script("/js/cmsadmin/inet/lib/common/config.min.js")
+#script("/js/cmsadmin/inet/lib/api/cms-api.min.js")
+#script("/js/cmsadmin/inet/lib/common/cms-init.min.js")
+
+#xscript()
+    #set($path = $ctx.path())
+    #set($firmPrefix = $ctx.getFirmPrefix())
+    iNet.prefix = '$ctx.site.prefix';
+    #if($path != "/" + $firmPrefix)
+    iNet.firmPrefix = '$firmPrefix';
+    #end
+    iNet.extension = "$ctx.extension()";
+    iNet.path = "$ctx.path()";
+    iNet.siteid = "$ctx.site.uuid";
+    iNet.currentTheme = '#cmsTheme()';
+#end
+#set($defPage = "cmsadmin/page/denied")
+#hasRole("$cms_discussion_review")
+<!--ROLE DISCUSS-->
+    #set($isDissReview = true)
+    #set($defPage = "cmsadmin/page/author/fqa")
+#end
+#hasRole("$cms_fqa_review")
+<!--ROLE FQ-->
+    #set($isAFqaReview = true)
+    #set($defPage = "cmsadmin/page/author/fqa")
+#end
+#hasRole("$cms_comment_review")
+<!--ROLE COMMENT-->
+    #set($isCmtReview = true)
+    #set($defPage = "cmsadmin/page/author/comment")
+#end
+#hasRole("$cms_writer")
+<!--ROLE WRITER-->
+    #set($isWriter = true)
+    #set($defPage = "cmsadmin/page/author/item")
+#end
+#hasRole("$cms_review")
+<!--ROLE REVIEW-->
+    #set($isReview = true)
+    #set($defPage = "cmsadmin/page/author/review")
+#end
+#hasRole("$admin_land")
+<!--ROLE LAND-->
+    #set($isLand = true)
+    #set($defPage = "cmsadmin/page/admin/land/formality")
+#end
+#hasRole("$admin_legaldoc")
+<!--ROLE LEGAL DOC-->
+    #set($isLegalDoc = true)
+    #set($defPage = "cmsadmin/page/legal/docs")
+#end
+#hasRole("$admin_poorhouse")
+<!--ROLE POOR HOUSEHOLD-->
+    #set($isPoorhouse = true)
+    #set($defPage = "cmsadmin/page/admin/poor-household")
+#end
+#hasRole("$cms_denunciation")
+<!--ROLE DENOUNCE CRIMINALS-->
+    #set($isDenouncecriminals = true)
+    #set($defPage = "cmsadmin/page/review/denouncecriminals")
+#end
+#hasRole("$admin_budget")
+<!--ROLE STATE BUDGET-->
+    #set($isStateBudget = true)
+    #set($defPage = "cmsadmin/page/admin/estimated")
+#end
+#hasRole("$admin_socioeconomic")
+<!--ROLE SOCIOECONOMIC-->
+    #set($isSocioeconomic = true)
+    #set($defPage = "cmsadmin/page/admin/economy/data/content")
+#end
+#hasRole("$admin_org_structure")
+<!--ROLE ORGANIZATION STRUCTURE-->
+    #set($isOrgStructure = true)
+    #set($defPage = "cmsadmin/page/admin/organization")
+#end
+#hasRole("$admin_complain")
+<!--ROLE ORGANIZATION STRUCTURE-->
+    #set($isComplain = true)
+    #set($defPage = "cmsadmin/page/admin/complain")
+#end
+#hasRole("$sub_admin")
+<!--ROLE ADMIN-->
+    #set($isAdmin = true)
+    #set($defPage = "cmsadmin/page/analysis/dashboard")
+#end
+#hasRole("$firm_admin")
+<!--ROLE SUPER-->
+    #set($isFirmAdmin = true)
+    #set($defPage = "cmsadmin/page/admin/site-menu")
+#end

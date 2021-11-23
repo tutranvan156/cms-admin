@@ -1,0 +1,168 @@
+#script("/js/cmsadmin/inet/lib/admin/cms-poll-content.min.js")
+<style type="text/css">
+    .ilabel {
+        padding-left: 0;
+    }
+
+    .answer-item {
+        margin-bottom: 10px;
+    }
+
+    .form-control.answer {
+        margin-bottom: 0 !important;
+    }
+
+    .form-poll-child{
+        border: 1px solid #e6e6e6;
+        /* padding-bottom: 10px; */
+        /* padding-top: 10px; */
+        padding: 15px;
+        background: #eff2f7;
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .form-subject{
+        padding: 15px;
+        border: 1px solid #9daec1;
+        color: white;
+        background: #bdd7f5;
+        font-weight: bold;
+    }
+    .form-subject input{
+        border: none;
+        border-radius: 0 !important;
+    }
+    .btn-del-question{
+        /*position: absolute;*/
+        top: 0;
+        right: 0;
+        margin-bottom: 10px;
+        float: right;
+        border-radius: 0 !important;
+    }
+
+    #poll-add {
+        margin-top: 10px;
+    }
+</style>
+<div id="poll-content-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"> </i> $text.getText("app.button.back")
+        </button>
+        <button id="content-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"> </i> $text.getText("app.button.create")
+        </button>
+        <button id="content-btn-save" class="btn btn-success btn-sm" style="display:none">
+            <i class="fa fa-save"> </i> $text.getText("app.button.save")
+        </button>
+        <button id="content-btn-del" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash"> </i> $text.getText("app.button.del")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form class="row list-poll">
+                <div class="form-group form-subject">
+                    <label for="txt-poll-question-0" class="ilabel">Chủ đề</label>
+                    <input type="text" class="form-control" id="subject-question" name="subject" placeholder="Nhập nội dung chủ đề">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="chk-poll-share" name="shared" type="checkbox" class="ace">
+                        <span class="lbl"> Cho phép xem công khai kết quả</span>
+                    </label>
+                </div>
+                <div class="form-poll-0 form-poll-child" data-count="0" data-uuid="" data-key="">
+                    <button type="button" class="btn btn-danger btn-sm btn-del-question">
+                        <i class="fa fa-trash"> </i> Xóa câu hỏi
+                    </button>
+                    <div class="form-group">
+                        <label for="txt-poll-question-0" class="ilabel">$text.getText("cmsadmin.poll.question")</label>
+                        <input type="text" class="form-control" name="question" id="txt-poll-question-0"
+                               placeholder='$text.getText("cmsadmin.poll.question_placeholder")'>
+                    </div>
+                    <div class="form-group">
+                        <label class="ilabel">$text.getText("cmsadmin.poll.answer")</label>
+                        <div id="poll-answer-wrapper-0" class="container-fluid">
+                            <div class="answer-item row default">
+                                <div class="input-group" data-key="" data-uuid="" data-answer="">
+                                <input type="text" class="form-control answer"
+                                       placeholder='$text.getText("cmsadmin.poll.answer_placeholder")'>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-danger btn-remove"><i class="fa fa-times"></i></button>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="poll-add-answer-0" class="btn btn-primary btn-sm">
+                            $text.getText("cmsadmin.poll.add_answer")
+                        </button>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="chk-poll-multi-0" name="multiChoice" type="checkbox" class="ace">
+                            <span class="lbl"> $text.getText("cmsadmin.poll.multi_choice")</span>
+                        </label>
+                    </div>
+                </div>
+                <!--<div class="checkbox">-->
+                <!--<label>-->
+                <!--<input id="chk-poll-share" name="shared" type="checkbox" class="ace">-->
+                <!--<span class="lbl"> $text.getText("cmsadmin.poll.shared")</span>-->
+                <!--</label>-->
+                <!--</div>-->
+            </form>
+            <button type="button" id="poll-add" class="btn btn-primary btn-sm">
+                Thêm câu hỏi
+            </button>
+
+        </div>
+    </div>
+    <script type="text/html" id="news-form-poll">
+        <div class="form-poll-{index} form-poll-child" data-count="{index}" data-uuid="{uuid}" data-key="{questionKey}">
+            <button type="button" class="btn btn-danger btn-sm btn-del-question">
+                <i class="fa fa-trash"> </i> Xóa câu hỏi
+            </button>
+            <div class="form-group">
+                <label for="txt-poll-question-{index}" class="ilabel">$text.getText("cmsadmin.poll.question")</label>
+                <input type="text" class="form-control" name="question" id="txt-poll-question-{index}"
+                       placeholder='$text.getText("cmsadmin.poll.question_placeholder")'>
+            </div>
+            <div class="form-group">
+                <label class="ilabel">$text.getText("cmsadmin.poll.answer")</label>
+                <div id="poll-answer-wrapper-{index}" class="container-fluid">
+                    <div class="answer-item row default">
+                        <div class="input-group" data-key="{questionKey}" data-uuid="{uuid}" data-answer="{answerKey}">
+                            <input type="text" class="form-control answer"
+                                   placeholder='$text.getText("cmsadmin.poll.answer_placeholder")'>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger btn-remove"><i class="fa fa-times"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="poll-add-answer-{index}" class="btn btn-primary btn-sm">
+                    $text.getText("cmsadmin.poll.add_answer")
+                </button>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input id="chk-poll-multi-{index}" name="multiChoice" type="checkbox" class="ace">
+                    <span class="lbl"> $text.getText("cmsadmin.poll.multi_choice")</span>
+                </label>
+            </div>
+        </div>
+    </script>
+    <script id="item-answer-template" type="text/html">
+        <div class="answer-item row">
+            <div class="input-group" data-key="{questionKey}" data-uuid="{uuid}" data-answer="{answerKey}">
+                <input type="text" class="form-control answer"
+                       placeholder='$text.getText("cmsadmin.poll.answer_placeholder")'>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-danger btn-remove"><i class="fa fa-times"></i></button>
+                </span>
+            </div>
+        </div>
+    </script>
+</div>

@@ -1,0 +1,191 @@
+#theme("/cmsadmin/css/dashboard")
+#script("/js/cmsadmin/jquery/plugins/chart.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-chart-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/chart/cms-line-chart.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-quick-compose-box-ext.min.js")
+#script("/js/cmsadmin/inet/lib/analysis/cms-dashboard.min.js")
+<style>
+    .bottom-line{
+        border-bottom: 1px dashed #e6e6e6;
+    }
+</style>
+<div id="dashboard-wg">
+    <div class="wg-content" style="padding-top: 5px;">
+        <div class="dashboard container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 no-padding-left">
+                    <div id="panel-quick-info" class="panel panel-default">
+                        <div class="panel-heading"><strong>$text.getText("cmsadmin.dashboard.quick_info")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body bottom-line">
+                            <div class="col-md-12 col-sm-12 text-left no-padding" style="color: #08c;font-weight: bold;font-size: 14px;">
+                                <i class="fa fa-building" aria-hidden="true" style="margin-right: 4px;"></i><span>Bài viết</span>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <ul class="list-unstyled spaced">
+                                    <li>
+                                        <i class="ace-icon fa fa-thumb-tack bigger-110 purple"></i>
+                                        <a href="javascript:;" data-id="$ctx.page('cmsadmin/page/author/item#cms-post')" id="link-all-post"><span class="number-post"></span> $text.getText("cmsadmin.menu.post")</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-book bigger-110" style="color:#d14836"></i>
+                                        <a href="javascript:;" data-id="$ctx.page('cmsadmin/page/author/item#cms-post')" id="link-unpulished"><span class="num-page-unpulished"></span> $text.getText("csadmin.unpulished")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <ul class="list-unstyled spaced">
+                                    <li>
+                                        <i class="ace-icon fa fa-file bigger-110 blue"></i>
+                                        <a href="javascript:;" id="link-num-page" data-id='$ctx.page("cmsadmin/page/admin/menu-item#menu-item")'><span class="num-page"></span> $text.getText("cmsadmin.menuitem")</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-plane" aria-hidden="true" style="color:#08c"></i>
+                                        <a id="link-pulished" href="javascript:;" data-id="$ctx.page('cmsadmin/page/author/item#cms-post')"><span class="num-page-pulished"></span> $text.getText("csadmin.postpulished")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-sm-6" style="margin-top: -10px;">
+                                <ul class="list-unstyled spaced">
+                                    <li>
+                                        <i class="ace-icon fa fa-comment bigger-110 green"></i>
+                                        <a href="javascript:;" data-id='$ctx.page("/cmsadmin/page/cms/comment")'><span class="num-comment"></span> $text.getText("cmsadmin.comment")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body bottom-line">
+                            <div class="col-md-12 col-sm-12 text-left no-padding" style="color: #08c;font-weight: bold;font-size: 14px;">
+                                <i class="fa fa-question-circle" style="margin-right: 4px;" aria-hidden="true"></i><span>$text.getText("cmsadmin.dashboard.question")</span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 ">
+                                <ul class="list-unstyled spaced">
+                                    <li>
+                                        <i class="ace-icon fa fa-thumb-tack bigger-110 purple"></i>
+                                        <a href="javascript:;"  id="question-all"><span class="number-question"></span> $text.getText("cmsadmin.dashboard.question")</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-book bigger-110" style="color:#d14836"></i>
+                                        <a href="javascript:;"  id="question-created"><span class="number-question-created"></span> $text.getText("cmsadmin.dashboard.question_created")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-sm-6 ">
+                                <ul class="list-unstyled spaced">
+                                    <li>
+                                        <i class="ace-icon fa fa-file bigger-110 blue"></i>
+                                        <a href="javascript:;" id="question-published"><span class="number-question-published"></span> $text.getText("cmsadmin.dashboard.quesiton_publish")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="col-md-12 col-sm-12 text-left no-padding" style="color: #08c;font-weight: bold;font-size: 14px;">
+                                <i class="fa fa-users" aria-hidden="true" style="margin-right: 4px;"></i><span>$text.getText('cmsadmin.dashboard.exchange')</span>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <ul class="list-unstyled spaced">
+                                    <li>
+                                        <i class="ace-icon fa fa-thumb-tack bigger-110 purple"></i>
+                                        <a href="javascript:;" id="exchange-all"><span class="number-exchange"></span> $text.getText("cmsadmin.dashboard.exchange_all")</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="panel-body border top">
+                            <strong>$text.getText("cmsadmin.group")</strong>
+                        </div>
+                        <div class="panel-body border top">
+                            <ul class="list-unstyled spaced list-cate">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="panel-quick-statistic" class="panel panel-default">
+                        <div class="panel-heading"><strong>$text.getText("cmsadmin.statistic.on_week")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <canvas id="statistic-chart" width="511" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 no-padding">
+                    <div id="panel-quick-compose" class="panel panel-default">
+                        <div class="panel-heading"><strong>$text.getText("cmsadmin.post.create")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <input id="txt-post-title-quick" type="text" class="col-md-12 col-sm-12 form-control" placeholder='$text.getText("cmsadmin.post.subject")' />
+                                </div>
+                                <div class="row">
+                                    <input id="txt-post-brief-quick" type="text" class="col-md-12 col-sm-12 form-control" placeholder='$text.getText("cmsadmin.post.brief")' />
+                                </div>
+                                <div class="row">
+                                    <textarea id="txt-post-content-quick" class="col-md-12 col-sm-12 form-control" placeholder='$text.getText("cmsadmin.post.content")'></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <button id="btn-save-quick" class="btn btn-primary btn-sm">$text.getText("app.button.save")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="panel-quick-activity" class="panel panel-default">
+                        <div class="panel-heading"><strong>$text.getText("cmsadmin.dashboard.activity")</strong><div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <p><strong>$text.getText("cmsadmin.post.last_post")</strong></p>
+                            <ul class="list-unstyled spaced">
+                                <li>
+                                    <span class="time">$ctx.date($item.created)</span> &bullet; <a href="javascript:;">$item.subject</a>
+                                </li>
+                            </ul>
+                            $text.getText("cmsadmin.dashboard.empty_post")
+                        </div>
+
+                        <div class="panel-body">
+                            <p><strong>$text.getText("cmsadmin.dashboard.best")</strong></p>
+                            <ul class="list-unstyled spaced">
+                                <li>
+
+                                </li>
+                            </ul>
+                            $text.getText("cmsadmin.dashboard.empty_post")
+                        </div>
+
+                        <div class="panel-body border top">
+                            <strong>$text.getText("cmsadmin.comment")</strong>
+                        </div>
+                        <div class="panel-body border top">
+                            <div class="itemdiv commentdiv">
+                                <div class="user">
+                                    <img alt="$cm.author" src='$ctx.page("/system/userprofile/photo", "thumbnail=40", "usercode=$cm.email")'>
+                                </div>
+                                <div class="body">
+                                    <div class="name">
+                                        <a href="javascript:;">$cm.author</a>
+                                    </div>
+                                    <div class="time">
+                                    </div>
+                                    <div class="text">
+                                        <i class="ace-icon fa fa-quote-left"></i>
+                                        $cm.message
+                                    </div>
+                                </div>
+                            </div>
+                            $text.getText("cmsadmin.dashboard.empty_comment")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

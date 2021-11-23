@@ -1,0 +1,45 @@
+#script("/js/cmsadmin/inet/lib/admin/plugins-list.min.js")
+#script("/js/cmsadmin/jquery/plugins/jquery.ace.fileinput.min.js")
+<div id="list-plugins-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-back" class="btn btn-primary btn-sm" style="display: none;">
+            <i class="icon-arrow-left"></i>
+            $text.getText("app.button.back")
+        </button>
+       <!-- <button id="list-btn-undo" class="btn btn-warning btn-sm">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            $text.getText("Khôi phục mặc định")
+        </button>-->
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-plugins-basic-search">
+                <div class="row-fluid">
+                    <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0;">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control"
+                                           placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn"
+                                            data-action-search="search" style="z-index:9999999">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                    </div>
+                    <div class="col-xs-3 col-md-4 span4 no-padding" style="margin-left: 20px;">
+                        <select id="selected-area" class="no-margin" style="width:100%">
+                            <option value="">
+                                Tất cả
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-plugins"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

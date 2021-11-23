@@ -1,0 +1,8 @@
+# Project exclude paths
+/js/inet/ui/author/assets/AssetDocuments.js
+/js/inet/ui/author/assets/AssetImages.js
+/js/inet/ui/author/assets/AssetMains.js
+/js/inet/ui/author/assets/AssetTypes.js
+/js/inet/ui/legal/document/SharedList.js
+/node_modules/
+/ts/core/Console.js

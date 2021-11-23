@@ -1,0 +1,69 @@
+#script("/js/cmsadmin/inet/lib/author/asset-documents.min.js")
+<script>
+  iNet.resources.grid.displayMsg = '<b>{0}</b> - <b>{1}</b> / <b>{2}</b>';
+</script>
+<div id="asset-documents-wg" style="display:none">
+    <div id="documents-basic-search" class="hide">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left">
+                    <button id="asset-documents-back" type="button" class="btn btn-primary btn-sm">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <button id="asset-documents-upload" type="button" class="btn btn-primary btn-sm">
+                        <i class="fa fa-upload"></i>
+                        $text.getText("Tải lên")
+                    </button>
+                    <button id="asset-documents-select" type="button" class="btn btn-success btn-sm">
+                        <i class="fa fa-check"></i>
+                        $text.getText("cmsadmin.media.select")
+                    </button>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
+                    <div class="input-group">
+                        <label for="asset-document-folder" class="input-group-addon"><i class="icon-folder-open-alt"> </i>
+                            $text.getText("cmsadmin.media.folder")
+                        </label>
+                        <select id="asset-document-folder" class="form-control no-margin-bottom"></select>
+                        <span class="input-group-btn">
+                            <button id="asset-document-folder-btn-create" class="btn btn-primary btn-sm"
+                                    title='$text.getText("cmsadmin.media.create_folder")'>
+                                <i class="icon-plus"> </i>
+                            </button>
+                            <button id="asset-document-folder-btn-edit" class="btn btn-success btn-sm"
+                                    title='$text.getText("cmsadmin.media.edit_folder")' style="display: none;">
+                                <i class="icon-pencil"> </i>
+                            </button>
+                            <button id="asset-document-folder-btn-remove" class="btn btn-danger btn-sm"
+                                    title='$text.getText("cmsadmin.media.delete_folder")'>
+                                <i class="icon-trash"> </i>
+                            </button>
+                            <button id="asset-document-folder-btn-published" class="btn btn-primary btn-sm"
+                                    title='$text.getText("cmsadmin.media.publish_folder")' data-pub="1">
+                                <i class="icon-globe"> </i>
+                            </button>
+                            <button id="asset-document-folder-btn-unpublished" class="btn btn-warning btn-sm"
+                                    title='$text.getText("cmsadmin.media.unpublish_folder")' data-pub="0" style="display:none">
+                                <i class="icon-globe"> </i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12 no-padding" style="height:30px">
+                    <span class="input-group search">
+                        <span class="input-group-btn">
+                            <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                            <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                <i class="icon-search"></i>
+                            </button>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wg-content" style="padding-top:5px">
+        <div id="list-documents"></div>
+        <input type="file" id="asset-inp-upload" style="display:none" />
+    </div>
+</div>

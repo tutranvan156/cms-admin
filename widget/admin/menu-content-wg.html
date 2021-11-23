@@ -1,0 +1,62 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-super-menu-content.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-super-menu-main.min.js")
+<div id="menu-content-wg" class="messageView" style="display:none">
+    <div class="viewToolbar">
+        <button id="btn-content-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="btn-content-create" class="btn btn-primary">
+            <i class="icon-plus"> </i> $text.getText("app.button.create")
+        </button>
+        <button id="btn-content-save" class="btn btn-primary" style="display:none">
+            <i class="icon-save"> </i> $text.getText("app.button.save")
+        </button>
+        <button id="btn-content-delete" class="btn btn-danger" style="display:none">
+            <i class="icon-trash"> </i> $text.getText("app.button.del")
+        </button>
+    </div>
+    <div class="b-content thm-message-view-background-color">
+        <div class="template-detail-content">
+            <div class="messageItem" style="overflow: hidden;">
+                <div class="messageItemContent" style="position:relative;overflow: auto;">
+                    <div class="content-wrapper">
+                        <div>
+                            <div class="messageLoading loading g-ui-min-height-300" style="display:none">
+                                <span class="i18n text"><i class="fa fa-refresh fa-spin"></i> $text.getText("common.ajaxLoading.loading")</span>
+                            </div>
+                        </div>
+                        <div class="messageItemBody">
+                            <div class="message-view-header">$text.getText("cmsadmin.menuitem.detail")</div>
+                            <div style="margin-top:10px">
+                                <div class="col-md-9 col-sm-9">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="ilabel col-sm-2 col-md-2" for="menu-txt-title">$text.getText("weblog.admin.menu.title")</label>
+                                            <input type="text" name="menu-txt-title" id="menu-txt-title" class="col-sm-10 col-md-10" placeholder='$text.getText("weblog.admin.menu.title")'>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea id="menu-txt-content" name="menu-txt-content" rows="20" class="col-sm-12 col-md-12" placeholder='$text.getText("weblog.admin.menu.content")'></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 no-padding-right">
+                                    <div id="template-box" class="panel panel-default">
+                                        <div class="panel-heading">$text.getText("cmsadmin.template.post") <div class="panel-toolbar pull-right"></div></div>
+                                        <div class="panel-body" style="padding: 5px;">
+                                            <select id="cbb-template" class="col-sm-12 col-md-12">
+                                                <option value="" selected="selected">$text.getText("cmsadmin.template.blank")</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

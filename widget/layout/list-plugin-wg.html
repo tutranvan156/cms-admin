@@ -1,0 +1,122 @@
+#script("/js/cmsadmin/inet/lib/admin/list-plugin-wg.min.js")
+#script("/js/common/jquery/plugins/jquery.searchable.min.js")
+<style type="text/css">
+    .plugin-item:hover {
+        cursor: pointer;
+    }
+    .plugin-item.active .card-header {
+        background-color: #4ea6f0 !important;
+        color: #ffffff !important;
+    }
+</style>
+<div id="wg-list-plugin" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <div class="row">
+            <div class="col-sm-12">
+                <button id="list-plugin-btn-back" class="btn btn-primary btn-sm">
+                    <i class="icon-arrow-left"></i>
+                    $text.getText("app.button.back")
+                </button>
+                <!--button id="list-plugin-btn-save" class="btn btn-success btn-sm">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    $text.getText("app.button.save")
+                </button-->
+                <button id="list-plugin-btn-replace" class="btn btn-success btn-sm">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    $text.getText("Chọn plugin ...")
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-card-plugin" class="list-card">
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="tpl-list-plugin">
+        <div class="col-md-4 col-lg-4 item-card" style="padding: 0px;margin: 0px;" >
+            <div class="card">
+                <div class="card-header">
+                    <div class="media">
+                        <a class="media-left media-middle" href="javascript:;">
+                            <img class="media-object img-70"
+                                 src="{image}"
+                                 alt="{name}">
+                        </a>
+                        <div class="media-body media-middle">
+                            <div class="company-name">
+                                <p class="name-plugin">{name}</p>
+                                <span class="f-14">{createdTime}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <p class="text-muted {briefCls}">
+                        {brief}
+                    </p>
+                    <div class="job-meta-data {publisherCls}">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        {publisher}
+                    </div>
+                    <div style="display: flex; height: 15px;">
+                        <div style="position: absolute; left: 10px;">
+                            <button type="button" data-uuid="{uuid}" data-name="{name}"
+                                    class="btn btn-setting-info btn-success btn-sm">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                Cấu hình thông tin
+                            </button>
+                        </div>
+                        <div style="position: absolute; right: 10px;">
+                            <button type="button" data-uuid="{uuid}" data-name="{name}"
+                                    class="btn btn-setting-content btn-success btn-sm">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                Cấu hình nội dung
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <div id="plugin-list-dialog" class="modal container fade" data-focus-on="input:first" data-height="350" data-max-height="450" tabindex="-1" style="display: none">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4><i class="icon-search"></i> <span>$text.getText("Tìm và chọn plugin") </span></h4>
+            <div style="margin-top: 10px;">
+                <span class="input-icon input-icon-right" style="width: 400px;">
+                    <input id="plugin-list-dialog-txt-keyword" type="text" placeholder="Từ khóa tìm kiếm" style="width: 100%">
+                    <i id="plugin-list-dialog-btn-search" class="ace-icon icon-search" data-toggle="tooltip" data-placement="top" title="" style="cursor: pointer" data-original-title="Tìm kiếm"></i>
+                </span>
+            </div>
+        </div>
+        <div id="plugin-list-dialog-body" class="modal-body" style="min-height: 300px;">
+            <div id="plugin-list-dialog-content" class="list-card">
+            </div>
+            <script type="text/html" id="dialog-list-plugin-template">
+                <div class="col-md-4 col-lg-4 item-card plugin-item" data-plugin-name="{name}">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="media">
+                                <a class="media-left media-middle" href="javascript:;">
+                                    <img class="media-object img-70" src="{image}" alt="{name}">
+                                </a>
+                                <div class="media-body media-middle">
+                                    <div class="company-name">
+                                        <p class="name-plugin">{name}</p>
+                                        <span class="f-14">{createdTime}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+        <div class="modal-footer">
+            <button id="plugin-list-dialog-btn-save" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i>$text.getText("Đồng ý chọn") </button>
+            <button id="plugin-list-dialog-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i>$text.getText("app.button.close") </button>
+        </div>
+    </div>
+</div>

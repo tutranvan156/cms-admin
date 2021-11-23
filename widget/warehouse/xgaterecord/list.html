@@ -1,0 +1,28 @@
+#theme("/common/css/grid.min")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+#widget("/cmsadmin/widget/common/common")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/inet/lib/warehouse/import-history-list-widget.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+
+<div id="xgate-record-widget">
+  <div class="wg-toolbar navbar-fixed-top">
+    <button id="xgate-record-btn-import" class="btn btn-primary btn-small">
+      <i class="fa fa-plus"></i> Kết nhập
+    </button>
+    <button id="xgate-record-btn-get-detail" class="btn btn-primary btn-small">
+      <i class="fa fa-search"></i> Tra cứu
+    </button>
+  </div>
+  <div class="wg-content">
+    <div id="import-history-grid"></div>
+  </div>
+
+  <form id="norm-tree-form" action='$ctx.action("iea/adm/norm/import")' class="hide"
+        enctype="multipart/form-data"
+        method="post">
+    <input type="file" name="fileUpload" id="norm-tree-file-upload"
+           style="height: 0;width: 0;line-height: 0;">
+  </form>
+</div>

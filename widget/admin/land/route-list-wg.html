@@ -1,0 +1,50 @@
+#script("/js/cmsadmin/inet/lib/api/land-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/land-route-list.min.js")
+<script type="text/javascript">
+  iNet.ns('iNet.resources.message.land');
+  if (iNet.resources.message.land)
+    iNet.apply(iNet.resources.message.land, {
+      title: '$text.getText("Địa điểm, tuyến đường")',
+      name: '$text.getText("Tên địa điểm, tuyến đường")',
+      parent: '$text.getText("Tuyến đường cấp trên")',
+      creator: '$text.getText("cmsadmin.poll.creator")',
+      created: '$text.getText("Ngày tạo")',
+      modified: '$text.getText("Ngày cập nhật")',
+      del_title: '$text.getText("Xóa thông tin")',
+      del_confirm: '$text.getText("Bạn chắc chắn muốn xóa thông tin không?")',
+      del_success: '$text.getText("Xóa thành công")',
+      del_error: '$text.getText("Quá trình xóa xảy ra lỗi")',
+      save_success: '$text.getText("Lưu thành công")',
+      save_error: '$text.getText("Quá trình lưu xảy ra lỗi")'
+    });
+</script>
+<div id="route-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display:none">
+                <div id="list-basic-search">
+                    <div id="list-quick-search">
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="route-list"></div>
+            </div>
+        </div>
+    </div>
+</div>

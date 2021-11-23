@@ -1,0 +1,37 @@
+<div id="wg-list-hotnews" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-toolbar-btn-back" class="btn btn-primary btn-sm">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-hotnews-quick-search">
+                <div class="list-hotnews-quicksearch">
+                    <div class="col-xs-3 col-md-3 span6 nopadding" style="max-height: 30px;">
+                        <select class="grid-search-group form-control" style="height: 30px;">
+                            #foreach($item in $cmscategorylist.elements)
+                                #if($item.name==$item.group)
+                            <option value="$item.uuid">$item.name</option>
+                                #end
+                            #end
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-md-4 span4 no-padding-right">
+                        <span class="input-group search" style="margin-left:0px;">
+                            <span class="input-group-btn">
+                                <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="grid-hotnews"></div>
+            </div>
+        </div>
+    </div>
+</div>

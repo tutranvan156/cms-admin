@@ -1,0 +1,36 @@
+#script("/js/cmsadmin/inet/lib/document/draft-comment-list.min.js")
+
+<div id="list-allowed-wg" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="allowed-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display: none;">
+                <div id="list-basic-search-allowed">
+                    <div id="list-quick-search">
+                        <div class="col-xs-3 col-md-3 span3 no-padding">
+                            <span class="input-group search" style="margin-left:0;">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control"
+                                           placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn"
+                                            data-action-search="search">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-allowed"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

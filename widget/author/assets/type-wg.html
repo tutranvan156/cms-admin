@@ -1,0 +1,106 @@
+#script("/js/cmsadmin/inet/lib/api/asset-api.min.js")
+#script("/js/cmsadmin/inet/lib/author/asset-folder.min.js")
+#script("/js/cmsadmin/inet/lib/author/asset-types.min.js")
+<script id="folder-item-tpl" type="text/html">
+  <option value="{value}">{value}</option>
+</script>
+
+<div id="modal-folder" class="modal fade" data-focus-on="input:first" style="display:none">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-folder-open-alt"></i> $text.getText("cmsadmin.media.folder_create_title")</h4>
+    </div>
+    <div class="modal-body no-padding no-margin">
+        <div class="container-fluid" style="padding-top:15px">
+            <div id="new-folder-create-first" class="row" style="height:30px;line-height:30px">
+                <div class="col-sm-12 col-md-12 orange"><i>$text.getText("cmsadmin.media.create_first")</i></div>
+            </div>
+            <div class="row" style="height:30px;line-height:30px">
+                <div class="col-sm-4 col-md-4">$text.getText("cmsadmin.media.folder_create_name")</div>
+                <div class="col-sm-8 col-md-8">
+                    <input id="modal-folder-name" type="text" class="form-control" onfocus="this.select();">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="modal-folder-save" type="button" class="btn btn-primary btn-small">
+            <i class="icon-ok"></i> $text.getText("app.button.ok")
+        </button>
+        <button type="button" data-dismiss="modal" class="btn btn-small">
+            <i class="icon-remove"></i> $text.getText("app.button.cancel")
+        </button>
+    </div>
+</div>
+<div id="type-wg">
+    <div class="wg-content" style="padding-top:20px">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="type-image" class="col-sm-6 col-md-6 media-type" data-type="IMAGE">
+                    <div class="type-container">
+                        <div class="type-header">
+                            <span class="icon-picture type-icon"></span>
+                            <span class="type-name">$text.getText("cmsadmin.media.image")</span>
+                        </div>
+                        <div class="col-sm-12 col-md-12 type-info">
+                            <div class="col-sm-6 col-md-6 type-info-left">
+                                <div class="row">$text.getText("cmsadmin.media.total_folder"): <strong
+                                        id="type-image-total-folder"></strong></div>
+                                <div class="row">$text.getText("cmsadmin.media.total_file"): <strong
+                                        id="type-image-total-file"></strong></div>
+                                <div class="row">$text.getText("cmsadmin.media.total_size"): <strong
+                                        id="type-image-total-size"></strong></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 type-info-right">
+                                <!--<img src='$ctx.resource("/images/cmsadmin/image_list.png")'>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="type-document" class="col-sm-6 col-md-6 media-type" data-type="DOCUMENT">
+                    <div class="type-container">
+                        <div class="type-header">
+                            <span class="icon-file-text-alt type-icon"></span>
+                            <span class="type-name">$text.getText("cmsadmin.media.document")</span>
+                        </div>
+                        <div class="col-sm-12 col-md-12 type-info">
+                            <div class="col-sm-6 col-md-6 type-info-left">
+                                <div class="row">$text.getText("cmsadmin.media.total_folder"): <strong
+                                        id="type-document-total-folder"></strong></div>
+                                <div class="row">$text.getText("cmsadmin.media.total_file"): <strong
+                                        id="type-document-total-file"></strong></div>
+                                <div class="row">$text.getText("cmsadmin.media.total_size"): <strong
+                                        id="type-document-total-size"></strong></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 type-info-right">
+                                <!--<img src='$ctx.resource("/images/cmsadmin/document_list.png")'>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="type-video" style="margin-top: 10px;" class="col-sm-6 col-md-6 media-type" data-type="VIDEO">
+                    <div class="type-container">
+                        <div class="type-header">
+                            <span class="glyphicon glyphicon-facetime-video type-icon"></span>
+                            <span class="type-name">VIDEO</span>
+                        </div>
+                        <div class="col-sm-12 col-md-12 type-info">
+                            <div class="col-sm-6 col-md-6 type-info-left">
+                                <div class="row">$text.getText("cmsadmin.media.total_folder"): <strong
+                                        id="type-video-total-folder"></strong></div>
+                                <div class="row">$text.getText("cmsadmin.media.total_file"): <strong
+                                        id="type-video-total-file"></strong></div>
+                                <div class="row">$text.getText("cmsadmin.media.total_size"): <strong
+                                        id="type-video-total-size"></strong></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 type-info-right">
+                                <!--<img src='$ctx.resource("/images/cmsadmin/document_list.png")'>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+#script("/js/cmsadmin/inet/lib/model/cms-item.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-menu-item-list.min.js")
+<div id="menu-item-list-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-menu-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display:none">
+                <div id="list-basic-search">
+                    <div id="list-quick-search">
+                        <div class="col-xs-5 col-md-5 span5 no-padding">
+                            <span class="input-group search" style="margin-left:0">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-menu">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

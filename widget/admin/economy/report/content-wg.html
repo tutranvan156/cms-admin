@@ -1,0 +1,113 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/admin/socioeconomic-report-content.min.js")
+#dataservice("socioeconomiccategorysearch")
+#variable("group", "ECONOMY_REPORT")
+#set($socioeconomicCategory = $socioeconomiccategorysearch)
+<style>
+    .control-label {
+        color: #08c;
+        font-weight: bold;
+    }
+
+    .ml-0 {
+        margin-left: 0 !important;
+    }
+
+    .mr-0 {
+        margin-right: 0 !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="socioeconomic-content-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="btn-content-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="btn-content-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="btn-content-save" class="btn btn-success btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+        <button id="btn-content-delete" class="btn btn-danger btn-sm" style="display:none">
+            <i class="fa fa-trash"></i> $text.getText("app.button.del")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <form role="form" id="form-socioeconomic">
+                <input type="text" name="uuid" style="display:none!important">
+                <input type="text" name="group" value="ECONOMY_REPORT" style="display:none!important">
+                <div class="row">
+                    <div class="col-sm-8 no-padding-left">
+                        <div class="form-group">
+                            <label class="control-label" for="socioeconomic-title">Tiêu đề(<span
+                                    class="required"></span>)</label>
+                            <input type="text" id="socioeconomic-title" name="title" class="form-control"
+                                   placeholder="Nhập tiêu đề">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 no-padding-right">
+                        <div class="form-group">
+                            <label class="control-label" for="socioeconomic-category">Chuyên mục(<span
+                                    class="required"></span>)</label>
+                            <select name="category" id="socioeconomic-category" class="form-control">
+                                <option value="">--- Chọn chuyên mục ---</option>
+                                #foreach($cate in $socioeconomicCategory.items)
+                                <option value="$cate.uuid">$cate.name</option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row">-->
+                <!--<div class="col-sm-12 no-padding">-->
+                <!--<div class="form-group">-->
+                <!--<label class="control-label" for="socioeconomic-content">Nội dung</label>-->
+                <!--<textarea id="socioeconomic-content" name="content" rows="20"></textarea>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="form-group col-sm-8 no-padding-left">
+                        <label class="control-label" for="socioeconomic-category">Tin đính kèm(<span
+                                class="required"></span>)</label>
+                        <label class="ace-file-input">
+                            <input type="file" multiple id="id-input-file-2">
+                            <span class="ace-file-container" data-title="Choose">
+                                <span class="ace-file-name" data-title="No File ...">
+                                    <i class=" ace-icon fa fa-upload"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+                <div id="file-attachments" class="row col-sm-8 no-padding-left no-padding-right">
+                </div>
+
+                <script type="text/html" id="list-file-script">
+                    <div class="col-sm-12 child-file no-padding">
+                        <label class="ace-file-input ace-file-multiple">
+                            <span class="ace-file-container hide-placeholder selected">
+                                <span class="ace-file-name" data-title="{name}">
+                                    <i class=" ace-icon fa fa-file"></i>
+                                </span>
+                            </span>
+                            <a class="remove" href="#" data-name="{name}" data-uuid="{uuid}" data-grid="{gridfsUUID}">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </label>
+                    </div>
+                </script>
+            </form>
+        </div>
+    </div>
+</div>

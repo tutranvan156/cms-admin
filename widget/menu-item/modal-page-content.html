@@ -1,0 +1,49 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/inet/lib/admin/modal-page-content.min.js")
+<style>
+    #page-content-modal{
+        height: auto !important;
+    }
+</style>
+<div class="modal fade" id="page-content-modal" tabindex="-1" role="dialog" aria-labelledby="steering-organ-label">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="steering-organ-label">Chọn một trang</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="type-page-content-list">Loại trang</label>
+            <select class="form-control col-sm-12" id="type-page-content-list" style="width:100%">
+                <option value="CMSContentPage">Trang nội dung</option>
+                <option value="CMSNewsPage">Thể loại bài viết</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="page-content-list">Trang nội dung</label>
+            <select class="form-control col-sm-12" id="page-content-list" style="width:100%">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="page-content-open">Cách mở</label>
+            <select class="form-control col-sm-12" id="page-content-open">
+                <option value="_target">Mở trang mới</option>
+                <option value="_parent">Mở trong trang</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button id="btn-save-content" type="button" class="btn btn-primary">
+            <i class="fa fa-check"></i>
+            Đồng ý
+        </button>
+        <button id="btn-cancel-content" type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-times"></i>
+            Đóng
+        </button>
+    </div>
+</div>

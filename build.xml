@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module-cms-admin" basedir=".">
+    <property name="project-name" value="cmsadmin" />
+    <property name="deploy.dir" value="/home/nbchicong/Programs/wildfly-10.0.0-final/standalone/module/marketplace" />
+
+    <property name="js.dir" value="${basedir}/js" />
+    <property name="css.dir" value="${basedir}"/>
+    <property name="font.dir" value="${basedir}"/>
+    <property name="images.dir" value="${basedir}"/>
+    <property name="page.dir" value="${basedir}"/>
+    <property name="widget.dir" value="${basedir}"/>
+    <property name="message.dir" value="${basedir}"/>
+    <property name="build.dir" value="${basedir}/target/build" />
+    <property name="target.dir" value="${basedir}/target" />
+
+    <property name="jsbuilder" location="${basedir}/tools/builder/jsbuilder.jar" />
+    <taskdef name="jsbuilder" classname="org.antz29.jsbuilder.ant.BuilderTask" classpath="${jsbuilder}" />
+
+    <target name="clean">
+        <delete dir="${build.dir}" deleteonexit="true"/>
+        <delete dir="${target.dir}" deleteonexit="true"/>
+    </target>
+
+    <target name="init" description="Create the build dir">
+        <!--<delete dir="${build.dir}" deleteonexit="true"/>-->
+        <delete dir="${target.dir}" deleteonexit="true"/>
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${target.dir}"/>
+    </target>
+
+    <target name="cms-admin-js.compile" description="CMS Admin Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/admin"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-analysis-js.compile" description="CMS Analysis Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/analysis"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-api-js.compile" description="CMS Application Summary Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/api"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-app-js.compile" description="CMS Application Summary Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/apps"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-author-js.compile" description="CMS Author Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/author"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-chart-js.compile" description="CMS Chart Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/chart"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-common-js.compile" description="CMS Common Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/common"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-form-js.compile" description="CMS Form Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/form"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-model-js.compile" description="CMS Model Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/model"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-super-js.compile" description="CMS Super Admin Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/super"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-review-js.compile" description="CMS Review Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/review"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-legal-js.compile" description="CMS Review Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/legal"/>
+        </jsbuilder>
+    </target>
+
+    <target name="cms-utils-js.compile" description="CMS Utility Javascript" depends="init">
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}/{MODULE}.min.js">
+            <source path="${js.dir}/inet/ui/utils"/>
+        </jsbuilder>
+    </target>
+
+    <target name="js-cms-ui.compile" description="CMS Javascript Compile" depends="
+        cms-admin-js.compile,
+        cms-analysis-js.compile,
+        cms-api-js.compile,
+        cms-app-js.compile,
+        cms-author-js.compile,
+        cms-chart-js.compile,
+        cms-common-js.compile,
+        cms-form-js.compile,
+        cms-model-js.compile,
+        cms-super-js.compile,
+        cms-review-js.compile,
+        cms-utils-js.compile,
+        cms-legal-js.compile">
+    </target>
+
+    <target name="jquery-plugins.compile" description="jQuery Plugins" depends="init">
+        <delete dir="${build.dir}/js/jquery/plugins" failonerror="false" />
+        <jsbuilder dir="${build.dir}/js/jquery/plugins" pattern="{MODULE}.min.js">
+            <source path="${js.dir}/jquery/plugins"/>
+        </jsbuilder>
+    </target>
+
+    <target name="bootstrap-plugins.compile" description="Bootstrap Plugins" depends="init">
+        <delete dir="${build.dir}/js/bootstrap/plugins" failonerror="false" />
+        <jsbuilder dir="${build.dir}/js/bootstrap/plugins" pattern="{MODULE}.min.js">
+            <source path="${js.dir}/bootstrap/plugins"/>
+        </jsbuilder>
+    </target>
+
+    <target name="zip" depends="
+        js-cms-ui.compile,
+        jquery-plugins.compile,
+        bootstrap-plugins.compile">
+        <zip destfile="${target.dir}/${project-name}.zip">
+            <fileset dir="${build.dir}" includes="**/*.min.js"/>
+            <fileset dir="${basedir}" includes="js/inet/lib/*.min.js,js/bootstrap/**/*.min.js,js/jquery/**/*.min.js,js/tiny_mce/**/*.*,js/tinymce_4/**/*.*,*.profile,js/tinymce/**/*.*,**/*-lang-*.js,js/storage/*.min.js,js/ide/**/*.js"/>
+            <fileset dir="${css.dir}" includes="**/*.css"/>
+            <fileset dir="${font.dir}" includes="font/*.*"/>
+            <fileset dir="${images.dir}" includes="images/**/*.*"/>
+            <fileset dir="${widget.dir}" includes="widget/**/*.*"/>
+            <fileset dir="${page.dir}" includes="page/**/*.*"/>
+            <fileset dir="${message.dir}" includes="message/*.*"/>
+        </zip>
+        <!--<delete dir="${build.dir}" deleteonexit="true"/>-->
+    </target>
+
+    <target name="deploy" depends="zip">
+        <copy todir="${deploy.dir}" file="${target.dir}/${project-name}.zip" overwrite="true"/>
+        <antcall target="clean" description="Clear After copy"/>
+    </target>
+</project>

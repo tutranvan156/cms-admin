@@ -1,0 +1,52 @@
+#script("/js/cmsadmin/inet/lib/author/cms-item-list-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/review/cms-item-review.min.js")
+#dataservice("cmscategorylist")
+#dataservice("cmsitemcodereview")
+#set($codeReview = $cmsitemcodereview)
+#set($cateAll = $cmscategorylist)
+#xscript()
+    var dataCate = [];
+    #foreach($item in $cateAll.items)
+        dataCate.push({'value': '$item.uuid', 'name': '$item.name', 'group': '$item.group'});
+    #end
+#end
+
+<div id="review-list-wg">
+    <div class="wg-toolbar navbar-fixed-top" style="min-height: 41px;">
+        <select id="select-language-review" name="select-language-review" style="margin: 0 !important;position: absolute;right: 5px;">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="hide" style="display: none;">
+                <div id="review-list-basic-search">
+                    <div id="review-list-quick-search">
+                        <div class="col-sm-4 col-md-4 no-padding" style="max-height: 30px;">
+                            <select id="review-list-search-cate" class="grid-search-cate form-control" style="height: 30px;">
+                                <option value="" selected="selected">-- $text.getText("cmsadmin.all") --</option>
+                                #foreach($item in $codeReview.elements)
+                                <option value="$item.name">$item.value</option>
+                                #end
+                            </select>
+                        </div>
+                        <div class="col-sm-4 col-md-4 no-padding">
+                            <span class="input-group search" style="margin-left:0px;">
+                                <span class="input-group-btn">
+                                    <input id="review-list-keyword-txt" type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="review-list-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>

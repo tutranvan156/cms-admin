@@ -1,0 +1,498 @@
+#zone({"inherit": "true"})
+
+#scriptBundle("cms_post")
+    iNet.ns('iNet.resources.cmsadmin');
+    if (iNet.resources.cmsadmin) {
+        iNet.apply(iNet.resources.cmsadmin, {
+            title: '$text.getText("cmsadmin")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.roles');
+    if (iNet.resources.cmsadmin.roles) {
+            iNet.apply(iNet.resources.cmsadmin.roles, {
+                  firm_user: '$text.getText("sphere.role.firm_user")',
+                  cms_user: '$text.getText("sphere.role.cms_user")',
+                  sub_admin: '$text.getText("sphere.role.sub_admin")',
+                  cms_writer: '$text.getText("sphere.role.cms_writer")',
+                  cms_review: '$text.getText("sphere.role.cms_review")',
+                  cms_comment_review: '$text.getText("sphere.role.cms_comment_review")',
+                  cms_fqa_review: '$text.getText("sphere.role.cms_fqa_review")',
+                  online_exchange: '$text.getText("sphere.role.online_exchange")',
+                  manager_online_exchange: '$text.getText("sphere.role.manager_online_exchange")',
+                  admin_online_exchange: '$text.getText("sphere.role.admin_online_exchange")',
+                  admin_legaldoc: '$text.getText("sphere.role.admin_legaldoc")',
+                  admin_land: '$text.getText("sphere.role.admin_land")',
+                  cms_denunciation:'$text.getText("sphere.role.cms_denunciation")',
+                  cms_design: '$text.getText("sphere.role.cms_design")',
+                  billing: '$text.getText("sphere.role.billing")',
+                  community: '$text.getText("sphere.role.community")',
+                  cms_warehouse_import: '$text.getText("sphere.role.cms_warehouse_import")',
+                  cms_financial_admin: '$text.getText("sphere.role.cms_financial_admin")',
+                  admin_poorhouse: '$text.getText("sphere.role.admin_poorhouse")',
+                  admin_budget: '$text.getText("sphere.role.admin_budget")',
+                  admin_socioeconomic: '$text.getText("sphere.role.admin_socioeconomic")',
+                  admin_complain: '$text.getText("sphere.role.admin_complain")',
+                  admin_org_structure: '$text.getText("sphere.role.admin_org_structure")'
+            });
+    }
+    iNet.ns('iNet.resources.cmsadmin.post');
+    if (iNet.resources.cmsadmin.post) {
+
+        iNet.apply(iNet.resources.cmsadmin.post, {
+            name: '$text.getText("cmsadmin.post.subject")',
+            date: '$text.getText("cmsadmin.post.date_created")',
+            author: '$text.getText("cmsadmin.post.author")',
+            group: '$text.getText("cmsadmin.group")',
+            category: '$text.getText("cmsadmin.category")',
+            status: '$text.getText("cmsadmin.post.status")',
+            create_title: '$text.getText("cmsadmin.post.create")',
+            create_success: '$text.getText("cmsadmin.post.create_success")',
+            save_unsuccess: '$text.getText("common.message.save_unsuccess")',
+            update_title: '$text.getText("cmsadmin.post.update")',
+            update_success: '$text.getText("cmsadmin.post.update_success")',
+            update_unsuccess: '$text.getText("common.message.update_unsuccess")',
+            del_title: '$text.getText("cmsadmin.post.del")',
+            del_content: '$text.getText("cmsadmin.post.del_content")',
+            del_success: '$text.getText("cmsadmin.post.del_success")',
+            del_unsuccess: '$text.getText("common.message.del_unsuccess")',
+            send: '$text.getText("cmsadmin.post.send")',
+            send_success: '$text.getText("cmsadmin.post.send_success")',
+            send_unsuccess: '$text.getText("cmsadmin.post.send_unsuccess")',
+            remove_title: '$text.getText("cmsadmin.post.remove")',
+            remove_content: '$text.getText("cmsadmin.post.remove_content")',
+            remove_success: '$text.getText("cmsadmin.post.remove_success")',
+            remove_unsuccess: '$text.getText("cmsadmin.post.remove_unsuccess")',
+            created: '$text.getText("cmsadmin.post.created")',
+            published: '$text.getText("cmsadmin.post.published")',
+            internal: '$text.getText("cmsadmin.post.internal")',
+            statistic: '$text.getText("cmsadmin.statistic")',
+            reference: '$text.getText("cmsadmin.post.reference")',
+            reference_add_success: '$text.getText("cmsadmin.post.reference_add_success")',
+            reference_add_error: '$text.getText("cmsadmin.post.reference_add_error")',
+            reference_remove_success: '$text.getText("cmsadmin.post.reference_remove_success")',
+            reference_remove_error: '$text.getText("cmsadmin.post.reference_remove_error")',
+            publish: '$text.getText("cmsadmin.post.publish")',
+            publishing: '$text.getText("cmsadmin.post.publishing")',
+            publish_success: '$text.getText("cmsadmin.post.publish_success")',
+            publish_error: '$text.getText("cmsadmin.post.publish_error")',
+            sending: '$text.getText("cmsadmin.post.sending")',
+            category_required: '$text.getText("cmsadmin.post.category_required")',
+            review: '$text.getText("cmsadmin.post.review")',
+            unpublish: '$text.getText("cmsadmin.published.unpublish")',
+            reject_title: '$text.getText("cmsadmin.post.reject_title")',
+            reject_content: '$text.getText("cmsadmin.post.reject_content")',
+            reject_success: '$text.getText("cmsadmin.post.reject_success")',
+            reject_unsuccess: '$text.getText("cmsadmin.post.reject_unsuccess")',
+            subject:'$text.getText("cmsadmin.post.subject")',
+            save_and_send:'$text.getText("cmsadmin.post.save_and_send")',
+            save_and_send_error:'$text.getText("cmsadmin.post.save_and_send_error")',
+            save_and_publish:'$text.getText("cmsadmin.post.save_and_publish")',
+            save_and_publish_error:'$text.getText("cmsadmin.post.save_and_publish_error")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.hotnews');
+    if (iNet.resources.cmsadmin.hotnews) {
+        iNet.apply(iNet.resources.cmsadmin.hotnews, {
+            add_title: '$text.getText("cmsadmin.hotnews.add_title")',
+            add_success: '$text.getText("cmsadmin.hotnews.add_success")',
+            add_unsuccess: '$text.getText("cmsadmin.hotnews.add_unsuccess")',
+            remove_title: '$text.getText("cmsadmin.hotnews.remove_title")',
+            remove_content: '$text.getText("cmsadmin.hotnews.remove_content")',
+            remove_success: '$text.getText("cmsadmin.hotnews.remove_success")',
+            remove_unsuccess: '$text.getText("cmsadmin.hotnews.remove_unsuccess")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.category');
+    if (iNet.resources.cmsadmin.category) {
+        iNet.apply(iNet.resources.cmsadmin.category, {
+            name: '$text.getText("cmsadmin.category.name")',
+            group: '$text.getText("cmsadmin.group")',
+            create_success: '$text.getText("cmsadmin.category.create_success")',
+            update_success: '$text.getText("cmsadmin.category.update_success")',
+            del_success: '$text.getText("cmsadmin.category.del_success")',
+            create_unsuccess: '$text.getText("cmsadmin.category.create_unsuccess")',
+            update_unsuccess: '$text.getText("cmsadmin.category.update_unsuccess")',
+            del_unsuccess: '$text.getText("cmsadmin.category.del_unsuccess")',
+            create_title: '$text.getText("cmsadmin.category.create_title")',
+            update_title: '$text.getText("cmsadmin.category.update_title")',
+            del_title: '$text.getText("cmsadmin.category.del_title")',
+            del_content: '$text.getText("cmsadmin.category.del_content")',
+            new_name: '$text.getText("cmsadmin.category.new_name")',
+            group: '$text.getText("cmsadmin.category.group")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.group');
+    if (iNet.resources.cmsadmin.group) {
+        iNet.apply(iNet.resources.cmsadmin.group, {
+            name: '$text.getText("cmsadmin.group.name")',
+            create_success: '$text.getText("cmsadmin.group.create_success")',
+            update_success: '$text.getText("cmsadmin.group.update_success")',
+            del_success: '$text.getText("cmsadmin.group.del_success")',
+            create_unsuccess: '$text.getText("cmsadmin.group.create_unsuccess")',
+            update_unsuccess: '$text.getText("cmsadmin.group.update_unsuccess")',
+            del_unsuccess: '$text.getText("cmsadmin.group.del_unsuccess")',
+            create_title: '$text.getText("cmsadmin.group.create_title")',
+            update_title: '$text.getText("cmsadmin.group.update_title")',
+            del_title: '$text.getText("cmsadmin.group.del_title")',
+            del_content: '$text.getText("cmsadmin.group.del_content")',
+            new_name: '$text.getText("cmsadmin.group.new_name")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.published');
+    if (iNet.resources.cmsadmin.published) {
+        iNet.apply(iNet.resources.cmsadmin.published, {
+            remove_title: '$text.getText("cmsadmin.published.remove_title")',
+            remove_content: '$text.getText("cmsadmin.published.remove_content")',
+            remove_success: '$text.getText("cmsadmin.published.remove_success")',
+            remove_unsuccess: '$text.getText("cmsadmin.published.remove_unsuccess")',
+            unpublish: '$text.getText("cmsadmin.published.unpublish")',
+            hot: '$text.getText("cmsadmin.published.hot")',
+            hot_del: '$text.getText("cmsadmin.published.hot_del")',
+            statistic: '$text.getText("cmsadmin.statistic")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.menu');
+    if (iNet.resources.cmsadmin.menu) {
+        iNet.apply(iNet.resources.cmsadmin.menu, {
+            name: '$text.getText("cmsadmin.menuitem.name")',
+            id: '$text.getText("cmsadmin.menuitem.id")',
+            url: '$text.getText("cmsadmin.menuitem.url")',
+            content: '$text.getText("cmsadmin.menuitem.content")',
+            create_success: '$text.getText("cmsadmin.menuitem.create_success")',
+            update_success: '$text.getText("cmsadmin.menuitem.update_success")',
+            del_success: '$text.getText("cmsadmin.menuitem.del_success")',
+            create_unsuccess: '$text.getText("cmsadmin.menuitem.create_unsuccess")',
+            update_unsuccess: '$text.getText("cmsadmin.menuitem.update_unsuccess")',
+            del_unsuccess: '$text.getText("cmsadmin.menuitem.del_unsuccess")',
+            create_title: '$text.getText("cmsadmin.menuitem.create_title")',
+            update_title: '$text.getText("cmsadmin.menuitem.update_title")',
+            del_title: '$text.getText("cmsadmin.menuitem.del_title")',
+            del_content: '$text.getText("cmsadmin.menuitem.del_content")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.comment');
+    if (iNet.resources.cmsadmin.comment) {
+        iNet.apply(iNet.resources.cmsadmin.comment, {
+            subject: '$text.getText("cmsadmin.comment.subject")',
+            content: '$text.getText("cmsadmin.comment.message")',
+            cmt_on: '$text.getText("cmsadmin.comment.cmt_on")',
+            del_success: '$text.getText("cmsadmin.comment.del_success")',
+            del_unsuccess: '$text.getText("cmsadmin.comment.del_unsuccess")',
+            del_title: '$text.getText("cmsadmin.comment.del_title")',
+            del_content: '$text.getText("cmsadmin.comment.del_content")',
+            approved_success: '$text.getText("cmsadmin.comment.approved_success")',
+            approved_unsuccess: '$text.getText("cmsadmin.comment.approved_unsuccess")',
+            reject_success: '$text.getText("cmsadmin.comment.reject_success")',
+            reject_unsuccess: '$text.getText("cmsadmin.comment.reject_unsuccess")',
+            approved_title: '$text.getText("cmsadmin.comment.approved_title")',
+            reject_title: '$text.getText("cmsadmin.comment.reject_title")',
+            post: '$text.getText("cmsadmin.comment.post")',
+            created: '$text.getText("cmsadmin.comment.created")',
+            published: '$text.getText("cmsadmin.comment.published")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.template');
+    if (iNet.resources.cmsadmin.template) {
+        iNet.apply(iNet.resources.cmsadmin.template, {
+            title: '$text.getText("cmsadmin.template.title")',
+            name: '$text.getText("cmsadmin.template.name")',
+            type: '$text.getText("cmsadmin.template.type")',
+            PAGE: '$text.getText("cmsadmin.template.type_post")',
+            PARAGRAPH: '$text.getText("cmsadmin.template.type_paragraph")',
+            content: '$text.getText("cmsadmin.template.content")',
+            create_success: '$text.getText("cmsadmin.template.create_success")',
+            update_success: '$text.getText("cmsadmin.template.update_success")',
+            del_success: '$text.getText("cmsadmin.template.del_success")',
+            create_unsuccess: '$text.getText("cmsadmin.template.create_unsuccess")',
+            update_unsuccess: '$text.getText("cmsadmin.template.update_unsuccess")',
+            del_unsuccess: '$text.getText("cmsadmin.template.del_unsuccess")',
+            create_title: '$text.getText("cmsadmin.template.create_title")',
+            update_title: '$text.getText("cmsadmin.template.update_title")',
+            del_title: '$text.getText("cmsadmin.template.del_title")',
+            del_content: '$text.getText("cmsadmin.template.del_content")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.user');
+    if (iNet.resources.cmsadmin.user) {
+        iNet.apply(iNet.resources.cmsadmin.user, {
+            all_employees: '$text.getText("cmsadmin.user.all_employees")',
+            add_more: '$text.getText("cmsadmin.user.add_more")',
+            add_person: '$text.getText("cmsadmin.user.add_person")',
+            company: '$text.getText("cmsadmin.user.company")',
+            my_group: '$text.getText("cmsadmin.user.my_group")',
+            employees_department: '$text.getText("cmsadmin.user.employees_department")',
+            people: '$text.getText("cmsadmin.user.people")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.review');
+    if (iNet.resources.cmsadmin.review) {
+        iNet.apply(iNet.resources.cmsadmin.review, {
+            title: '$text.getText("cmsadmin.review.title")',
+            firm: '$text.getText("cmsadmin.review.firm")',
+            permission_title: '$text.getText("cmsadmin.review.permission_title")',
+            permission_add: '$text.getText("cmsadmin.review.permission_add")',
+            subject: '$text.getText("cmsadmin.review.subject")',
+            category: '$text.getText("cmsadmin.review.category")',
+            writername: '$text.getText("cmsadmin.review.writername")',
+            created: '$text.getText("cmsadmin.review.created")',
+            SECURITY_DENIED: '$text.getText("cmsadmin.review.SECURITY_DENIED")',
+            new_status: '$text.getText("cmsadmin.review.new_status")',
+            create: '$text.getText("cmsadmin.review.create")',
+            create_success: '$text.getText("cmsadmin.review.create_success")',
+            create_error: '$text.getText("cmsadmin.review.create_error")',
+            update: '$text.getText("cmsadmin.review.update")',
+            update_success: '$text.getText("cmsadmin.review.update_success")',
+            update_error: '$text.getText("cmsadmin.review.update_error")',
+            delete: '$text.getText("cmsadmin.review.delete")',
+            delete_success: '$text.getText("cmsadmin.review.delete_success")',
+            delete_error: '$text.getText("cmsadmin.review.delete_error")',
+            allow_publish: '$text.getText("cmsadmin.review.allow_publish")',
+            send: '$text.getText("cmsadmin.review.send")',
+            approve_item_content: '$text.getText("cmsadmin.review.approve_item_content")',
+            approved_item_shared: '$text.getText("cmsadmin.review.approved_item_shared")',
+            approve_item_shared_error: '$text.getText("cmsadmin.review.approve_item_shared_error")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.fqa');
+    if (iNet.resources.cmsadmin.fqa) {
+        iNet.apply(iNet.resources.cmsadmin.fqa, {
+            title: '$text.getText("cmsadmin.fqa")',
+            created: '$text.getText("cmsadmin.fqa.created")',
+            published: '$text.getText("cmsadmin.fqa.published")',
+            subject: '$text.getText("cmsadmin.fqa.subject")',
+            category: '$text.getText("cmsadmin.fqa.category")',
+            owner: '$text.getText("cmsadmin.fqa.owner")',
+            status: '$text.getText("cmsadmin.fqa.status")',
+            question: '$text.getText("cmsadmin.fqa.question")',
+            answer: '$text.getText("cmsadmin.fqa.answer")',
+            email: '$text.getText("cmsadmin.fqa.email")',
+            address: '$text.getText("cmsadmin.fqa.address")',
+            phone: '$text.getText("cmsadmin.fqa.phone")',
+            firm: '$text.getText("cmsadmin.fqa.firm")',
+            date: '$text.getText("cmsadmin.fqa.date")',
+            fqa_on: '$text.getText("cmsadmin.fqa.fqa_on")',
+            del_title: '$text.getText("cmsadmin.fqa.del_title")',
+            del_content: '$text.getText("cmsadmin.fqa.del_content")',
+            del_success: '$text.getText("cmsadmin.fqa.del_success")',
+            del_unsuccess: '$text.getText("cmsadmin.fqa.del_unsuccess")',
+            answer_title: '$text.getText("cmsadmin.fqa.answer_title")',
+            answer_success: '$text.getText("cmsadmin.fqa.answer_success")',
+            answer_unsuccess: '$text.getText("cmsadmin.fqa.answer_unsuccess")',
+            save_title: '$text.getText("cmsadmin.fqa.save_title")',
+            save_success: '$text.getText("cmsadmin.fqa.save_success")',
+            save_unsuccess: '$text.getText("cmsadmin.fqa.save_unsuccess")',
+            code:'$text.getText("cmsadmin.faq.code")',
+            group:'$text.getText("cmsadmin.faq.group")',
+            name:'$text.getText("cmsadmin.faq.name")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.statistic');
+    if (iNet.resources.cmsadmin.statistic) {
+        iNet.apply(iNet.resources.cmsadmin.statistic, {
+            post: '$text.getText("cmsadmin.statistic.post")',
+            country: '$text.getText("cmsadmin.statistic.country")',
+            city: '$text.getText("cmsadmin.statistic.city")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.apps');
+    if (iNet.resources.cmsadmin.apps) {
+        iNet.apply(iNet.resources.cmsadmin.apps, {
+            name: '$text.getText("cmsadmin.apps.name")',
+            app: '$text.getText("cmsadmin.apps.app")',
+            theme: '$text.getText("cmsadmin.apps.theme")',
+            plugin: '$text.getText("cmsadmin.apps.plugin")',
+            type: '$text.getText("cmsadmin.apps.type")',
+            cate: '$text.getText("cmsadmin.apps.cate")',
+            version: '$text.getText("cmsadmin.apps.version")',
+            publisher: '$text.getText("cmsadmin.apps.publisher")',
+            publishedDate: '$text.getText("cmsadmin.apps.published_date")',
+            change_package: '$text.getText("cmsadmin.apps.change_package")',
+            select_package: '$text.getText("cmsadmin.apps.select_package")',
+            package: '$text.getText("cmsadmin.apps.package")',
+            no_select_package: '$text.getText("cmsadmin.apps.no_select_package")',
+            create_title: '$text.getText("cmsadmin.apps.create_title")',
+            create_success: '$text.getText("cmsadmin.apps.create_success")',
+            create_error: '$text.getText("cmsadmin.apps.create_error")',
+            update_title: '$text.getText("cmsadmin.apps.update_title")',
+            update_success: '$text.getText("cmsadmin.apps.update_success")',
+            update_error: '$text.getText("cmsadmin.apps.update_error")',
+            del_title: '$text.getText("cmsadmin.apps.del_title")',
+            del_success: '$text.getText("cmsadmin.apps.del_success")',
+            del_error: '$text.getText("cmsadmin.apps.del_error")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.link');
+    if (iNet.resources.cmsadmin.link) {
+        iNet.apply(iNet.resources.cmsadmin.link, {
+            name:'$text.getText("cmsadmin.link.name")',
+            name_link:'$text.getText("cmsadmin.link.namelink")',
+            date:'$text.getText("cmsadmin.link.datecreate")',
+            type:'$text.getText("cmsadmin.link.typelink")',
+            group:'$text.getText("cmsadmin.link.grouplink")',
+            position:'$text.getText("cmsadmin.link.position")',
+            edit:'$text.getText("cmsadmin.link.edit")',
+            delete: '$text.getText("cmsadmin.link.delete")',
+            update:'$text.getText("cmsadmin.link.update")',
+            update_error:'$text.getText("cmsadmin.link.updateerror")',
+            update_success:'$text.getText("cmsadmin.link.updatesuccess")',
+            create:'$text.getText("cmsadmin.link.create")',
+            create_error:'$text.getText("cmsadmin.link.create_error")',
+            create_success:'$text.getText("cmsadmin.link.create_success")',
+            delete_error:'$text.getText("cmsadmin.link.delete_error")',
+            delete_success:'$text.getText("cmsadmin.link.delete_success")',
+            title_delete:'$text.getText("cmsadmin.link.confirm_delete")',
+            quesion_delete:'$text.getText("cmsadmin.link.quesion_delete")',
+            validate_name:'$text.getText("cmsadmin.link.validate_name")',
+            validate_link:'$text.getText("cmsadmin.link.validate_link")',
+            internal:'$text.getText("cmsadmin.link.INTERNAL")',
+            external:'$text.getText("cmsadmin.link.EXTERNAL")',
+            validate_typelink:'$text.getText("cmsadmin.link.validate_typelink")'
+        });
+    }
+    iNet.ns('iNet.resources.cmsadmin.topic');
+        if (iNet.resources.cmsadmin.topic) {
+            iNet.apply(iNet.resources.cmsadmin.topic, {
+               subject:'$text.getText("cmsadmin.exchange.subject")',
+               name_subject:'$text.getText("cmsadmin.exchange.namesubject")',
+               brief:'$text.getText("cmsadmin.exchange.brief")',
+               timestart:'$text.getText("cmsadmin.exchange.timestart")',
+               timeend:'$text.getText("cmsadmin.exchange.timeend")',
+               open:'$text.getText("cmsadmin.exchange.open")',
+               close:'$text.getText("cmsadmin.exchange.close")',
+               list_admin:'$text.getText("cmsadmin.exchange.listadmin")',
+               name_admin:'$text.getText("cmsadmin.exchange.nameadmin")',
+               fullname_admin:'$text.getText("cmsadmin.exchange.fullnameadmin")',
+               validate_name:'$text.getText("cmsadmin.exchange.validate_name_admin")',
+               validate_fullname:'$text.getText("cmsadmin.exchange.validate_fullname_admin")',
+               member:'$text.getText("cmsadmin.exchange.member")',
+               alias:'$text.getText("cmsadmin.exchange.alias")',
+               validate_alias:'$text.getText("cmsadmin.exchange.validate_alias")',
+               validate_regex:'$text.getText("cmsadmin.exchange.validate_regex")',
+               list_question:'$text.getText("cmsadmin.exchange.list_question")',
+               validate_user_question:'$text.getText("cmsadmin.exchange.validate_name_user_question")',
+               validate_address:'$text.getText("csmadmin.exchange.validate_address")',
+               validate_content:'$text.getText("cmsadmin.exchange.validate_content")',
+               validate_age:'$text.getText("cmsadmin.exchagne.validate_age")',
+               name_create_question:'$text.getText("cmsadmin.exchange.question.fullname")',
+               detail_question:'$text.getText("cmsadmin.exchange.note")',
+               send_answer:'$text.getText("cmsadmin.exchange.send_answer")',
+               send_answer_error:'$text.getText("cmsadmin.exchange.send_answer_error")',
+               send_answer_success:'$text.getText("cmsadmin.exchange.send_answer.success")',
+               answer:'$text.getText("cmsadmin.exchange.answer")',
+               answer_error:'$text.getText("cmsadmin.exchange.answer_error")',
+               answer_success:'$text.getText("cmsadmin.exchange.answer.success")'
+            });
+        }
+    iNet.ns('iNet.resources.cmsadmin.business');
+        if(iNet.resources.cmsadmin.business){
+            iNet.apply(iNet.resources.cmsadmin.business,{
+                name:'$text.getText("cmsadmin.business.title.name")',
+                address:'$text.getText("cmsadmin.business.title.address")',
+                validate_code_register:'$text.getText("cmsadmin.business.title.validate_code_register")',
+                validate_date:'$text.getText("cmsadmin.business.title.validate_date")',
+                validate_name_offica:'$text.getText("cmsadmin.business.title.validate_name_offica")',
+                validate_address_register:'$text.getText("cmsadmin.business.title.validate_address_register")',
+                validate_address:'$text.getText("cmsadmin.business.title.validate_address")',
+                quesion_delete:'$text.getText("cmsadmin.business.quesion_delete")',
+                bizname:'$text.getText("cmsadmin.business.bizname")'
+            });
+        }
+    iNet.ns('iNet.resources.cmsadmin.certificate')
+        if(iNet.resources.cmsadmin.certificate){
+            iNet.apply(iNet.resources.cmsadmin.certificate,{
+                name_single:'$text.getText("cmsadmin.certificate.name_single")',
+                type:'$text.getText("cmsadmin.certificate.type")',
+                date_start:'$text.getText("cmsadmin.certificate.date_start")',
+                date_end:'$text.getText("cmsadmin.certificate.date_end")',
+                brief:'$text.getText("cmsadmin.certificate.brief")',
+                validate_brief:'$text.getText("cmsadmin.certificate.validate_brief")',
+                validate_name:'$text.getText("cmsadmin.certificate.validate_name")',
+                validate_date_start:'$text.getText("cmsadmin.certificate.validate_date_start")',
+                validate_date_end:'$text.getText("cmsadmin.certificate.validate_date_end")',
+                validate_sign:'$text.getText("cmsadmin.certificate.validate_sign")',
+                validate_issue:'$text.getText("cmsadmin.certificate.validate_issue")'
+            });
+        }
+    iNet.ns('iNet.resources.cmsadmin.action')
+            if(iNet.resources.cmsadmin.action){
+                iNet.apply(iNet.resources.cmsadmin.action,{
+                    industry:'$text.getText("cmsadmin.action.industry")',
+                    key:'$text.getText("cmsadmin.action.key")',
+                    category:'$text.getText("cmsadmin.action.category")',
+                    name:'$text.getText("cmsadmin.action.name")',
+                    validate_name:'$text.getText("cmsadmin.action.validate_name")',
+                    calidate_group:'$text.getText("cmsadmin.action.calidate_group")',
+                    validate_industry:'$text.getText("cmsadmin.action.validate_industry")',
+                    validate_category:'$text.getText("cmsadmin.action.validate_category")'
+                });
+            }
+    iNet.ns('iNet.resources.cmsadmin.shared')
+            if(iNet.resources.cmsadmin.shared){
+                iNet.apply(iNet.resources.cmsadmin.shared,{
+                    name:'$text.getText("cmsadmin.shared.name")',
+                    code:'$text.getText("cmsadmin.shared.code")',
+                    ref_code:'$text.getText("cmsadmin.shared.ref_code")',
+                    validate_code:'$text.getText("cmsadmin.shared.validate_code")',
+                    view:'$text.getText("cmsadmin.shared.view")'
+                });
+            }
+
+    iNet.ns('iNet.resources.cmsadmin.document')
+            if(iNet.resources.cmsadmin.document){
+                iNet.apply(iNet.resources.cmsadmin.document,{
+                    name_organ:'$text.getText("cmsadmin.admin.document.name_organ")',
+                    code_organ:'$text.getText("cmsadmin.admin.document.code_organ")',
+                    name_type:'$text.getText("cmsadmin.admin.document.name_type")',
+                    code_type:'$text.getText("cmsadmin.admin.document.code_type")',
+                    name_industry:'$text.getText("cmsadmin.admin.document.name_industry")',
+                    code_industry:'$text.getText("cmsadmin.admin.document.code_industry")',
+                    validate_name_organ:'$text.getText("cmsadmin.admin.document.validate_name_organ")',
+                    validate_code_organ:'$text.getText("cmsadmin.admin.document.validate_code_organ")',
+                    validate_name_type:'$text.getText("cmsadmin.admin.document.validate_name_type")',
+                    validate_code_type:'$text.getText("cmsadmin.admin.document.validate_code_type")',
+                    validate_name_industry:'$text.getText("cmsadmin.admin.document.validate_name_industry")',
+                    validate_code_industry:'$text.getText("cmsadmin.admin.document.validate_code_industry")',
+                    promulgation_date:'$text.getText("cmsadmin.admin.document.promulgation_date")',
+                    sign_number: '$text.getText("cmsadmin.admin.document.sign_number")',
+                    subject: '$text.getText("cmsadmin.admin.document.subject")',
+                    content:'$text.getText("cmsadmin.admin.document.content")',
+                    validate_promul:'$text.getText("cmsadmin.admin.document.validate_promul")',
+                    validate_num_sign:'$text.getText("cmsadmin.admin.document.validate_num_sign")',
+                    validate_signer:'$text.getText("cmsadmin.admin.document.validate_signer")',
+                    validate_content:'$text.getText("cmsadmin.admin.document.validate_content")',
+                    unpublished:'$text.getText("cmsadmin.admin.document.unpublished")',
+                    unpublished_confirm:'$text.getText("cmsadmin.admin.document.unpublished_confirm")',
+                    unpublished_error:'$text.getText("cmsadmin.admin.document.unpublished_error")',
+                    unpublished_success:'$text.getText("cmsadmin.admin.document.unpublished_success")',
+                    published:'$text.getText("cmsadmin.admin.document.published")',
+                    published_confirm:'$text.getText("cmsadmin.admin.document.published_confirm")',
+                    published_error:'$text.getText("cmsadmin.admin.document.published_error")',
+                    published_success:'$text.getText("cmsadmin.admin.document.published_success")',
+                    remove:'$text.getText("cmsadmin.admin.document.del")',
+                    remove_confirm:'$text.getText("cmsadmin.admin.document.del_confirm")',
+                    remove_error:'$text.getText("cmsadmin.admin.document.del_error")',
+                    remove_success:'$text.getText("cmsadmin.admin.document.del_success")'
+                });
+            }
+    iNet.ns('iNet.resources.cmsadmin.complain')
+            if(iNet.resources.cmsadmin.complain){
+                iNet.apply(iNet.resources.cmsadmin.complain,{
+                    validate_onwer:'$text.getText("cmsadmin.complain.validate_onwer")',
+                    validate_subject:'$text.getText("cmsadmin.complain.validate_subject")',
+                    validate_content:'$text.getText("cmsadmin.complain.validate_content")',
+                    validate_detail_content:'$text.getText("cmsadmin.complain.validate_detail_content")'
+                });
+            }
+
+    iNet.ns('iNet.resources.cmsadmin.land')
+            if(iNet.resources.cmsadmin.land){
+                iNet.apply(iNet.resources.cmsadmin.land,{
+                    name:'$text.getText("cmsadmin.land.formality.name")',
+                    validate_name:'$text.getText("cmsadmin.land.formality.validate_name")',
+                    question_remove:'$text.getText("cmsadmin.land.question_remove_formality")',
+                    title_delete:'$text.getText("cmsadmin.land.title_delete")'
+                });
+            }
+#end
+
+#end

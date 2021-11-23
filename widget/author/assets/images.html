@@ -1,0 +1,204 @@
+#theme("/cmsadmin/css/ace-thumbnails")
+#theme("/cmsadmin/css/gallery")
+#script("/js/common/inet/lib/pagingtb.min.js")
+#script("/js/cmsadmin/inet/lib/author/asset-images.min.js")
+<style type="text/css">
+    .file-select {
+        display: none;
+        position: absolute;
+        top: 0;
+    }
+    .file-select .inp {
+        position: absolute;
+        left: 10px;
+        font-size: 20px;
+        height: 22px !important;
+        line-height: 20px;
+        width: 22px;
+    }
+    .selector .file-select {
+        display: block;
+    }
+</style>
+<div id="asset-images-wg" style="display:none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <div class="row">
+            <div class="col-md-2 col-sm-5 col-xs-12 no-padding-right">
+                <button id="asset-images-back" type="button" class="btn btn-primary btn-sm">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+                <button id="asset-images-select" type="button" class="btn btn-success btn-sm">
+                    <i class="fa fa-check"></i>
+                    $text.getText("cmsadmin.media.select")
+                </button>
+            </div>
+            <div class="col-md-4 col-sm-7 col-xs-12 no-padding-right">
+                <div class="input-group">
+                    <label for="asset-images-folder" class="input-group-addon"><i class="icon-folder-open-alt"> </i>
+                        $text.getText("cmsadmin.media.folder")
+                    </label>
+                    <select id="asset-images-folder" class="form-control"></select>
+                    <span class="input-group-btn">
+                        <button id="asset-folder-btn-create" class="btn btn-primary btn-sm"
+                                title='$text.getText("cmsadmin.media.create_folder")'>
+                            <i class="icon-plus"> </i>
+                        </button>
+                        <button id="asset-folder-btn-edit" class="btn btn-success btn-sm"
+                                title='$text.getText("cmsadmin.media.edit_folder")' style="display: none;">
+                            <i class="icon-pencil"> </i>
+                        </button>
+                        <button id="asset-folder-btn-remove" class="btn btn-danger btn-sm"
+                                title='$text.getText("cmsadmin.media.delete_folder")'>
+                            <i class="icon-trash"> </i>
+                        </button>
+                        <button id="asset-folder-btn-published" class="btn btn-primary btn-sm"
+                                title='$text.getText("cmsadmin.media.publish_folder")' data-pub="1">
+                            <i class="icon-globe"> </i>
+                        </button>
+                        <button id="asset-folder-btn-unpublished" class="btn btn-warning btn-sm"
+                                title='$text.getText("cmsadmin.media.unpublish_folder")' data-pub="0" style="display:none">
+                            <i class="icon-globe"> </i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 col-xs-12 no-padding-right">
+                <span class="input-group search">
+                    <span class="input-group-btn">
+                        <input type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                        <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                            <i class="icon-search"></i>
+                        </button>
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-2 col-sm-6 col-xs-12 col-md-offset-2 col-xs-offset-0">
+                <div id="paging-toolbar" class="pull-right"></div>
+            </div>
+        </div>
+    </div>
+    <div class="wg-content">
+        <div id="file-matrix">
+            <div id="asset-images-upload" class="file-add file image text-center">
+                <span class="icon-plus" style="vertical-align:middle"></span>
+            </div>
+            <div id="file-list"></div>
+            <div class="clearfix"></div>
+        </div>
+        <input type="file" id="asset-inp-upload-image" style="display:none" />
+    </div>
+</div>
+<script id="image-item-tpl" type="text/html">
+    <div id="{id}" class="file image">
+        <div class="file-container">
+            <div class="file-select">
+                <input type="checkbox" class="inp" />
+            </div>
+            <div class="file-control">
+                <button data-action="remove" class="btn btn-danger file-ctrl"><i class="icon-trash"> </i></button>
+            </div>
+            <div class="file-content text-center">
+                <img src="{src}" onerror="this.src='$ctx.resource("/images/cmsadmin/common/no-thumb.png")'">
+            </div>
+        </div>
+        <div class="file-name">{brief}</div>
+    </div>
+</script>
+<style type="text/css">
+    .modal-view-image {
+        font-size: 14px;
+    }
+
+    .modal-view-image .form-control {
+        margin-bottom: 10px;
+    }
+
+    .close-modal-view {
+        line-height: .5;
+    }
+</style>
+<div id="view-image-modal" class="modal modal-view-image container fade" style="display:none">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-8 col-md-8 text-center image-viewer">
+                <div class="img-container">
+                    <img id="view-image-img" src="">
+                    <span id="view-image-prev" class="img-button img-prev"><i class="icon-chevron-left"></i></span>
+                    <span id="view-image-next" class="img-button img-next"><i class="icon-chevron-right"></i></span>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 no-padding-left">
+                <div class="row">
+                    <div class="col-sm-10 col-md-10">
+                        <p>$text.getText("cmsadmin.media.file_name"): <span id="view-image-name"></span></p>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <button type="button" class="close close-modal-view" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <p>$text.getText("cmsadmin.media.file_date"): <span id="view-image-date"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <p>$text.getText("cmsadmin.media.file_type"): <span id="view-image-type"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <p>$text.getText("cmsadmin.media.file_size"): <span id="view-image-size"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">Thứ tự:</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <input id="position-image" type="number" min="0"
+                               class="form-control col-sm-12 col-md-12"
+                               onclick="this.select()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">Mô tả:</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <input id="description-image"
+                               class="form-control col-sm-12 col-md-12"
+                               onclick="this.select()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_src"):</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <input id="view-image-src"
+                               class="form-control col-sm-12 col-md-12"
+                               onclick="this.select()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_link"):</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <input id="view-image-link"
+                               class="form-control col-sm-12 col-md-12"
+                               onclick="this.select()">
+                    </div>
+                </div>
+                <div class="row text-right" style="margin-top: 15px;">
+                    <div class="col-sm-12">
+                        <button class="btn btn-success btn-insert-link">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> $text.getText("app.button.save_close")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

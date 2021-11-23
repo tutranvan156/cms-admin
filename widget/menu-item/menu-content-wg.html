@@ -1,0 +1,84 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/icms-menu-content-093720150625.min.js")
+#script("/js/cmsadmin/inet/lib/icms-menu-service-115620150625.min.js")
+<div id="menu-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="content-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="content-btn-save" class="btn btn-primary btn-sm">
+            <i class="fa fa-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9 col-sm-9">
+                    <div class="form-horizontal">
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-7 col-sm-6 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.menuitem.name") <span class="required"></span></div>
+                                    <input type="text" id="txt-menu-name" class="col-sm-12 col-md-12 form-control" placeholder='$text.getText("cmsadmin.menuitem.name")' style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.category")</div>
+                                    <input type="text" id="txt-menu-category" class="col-sm-12 col-md-12 form-control" placeholder='$text.getText("cmsadmin.category")' style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px">
+                            <div class="col-md-7 col-sm-6 no-padding-left no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.menuitem.id") <span class="required"></span></div>
+                                    <input type="text" id="txt-menu-id" class="col-sm-12 col-md-12 form-control" placeholder='$text.getText("cmsadmin.menuitem.id")' style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 no-padding-right">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$text.getText("cmsadmin.menuitem.position")</div>
+                                    <input type="number" value="0" id="txt-menu-position" class="col-sm-12 col-md-12 form-control" placeholder='$text.getText("cmsadmin.menuitem.position")' style="margin-bottom:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="txt-menu-brief" name="txt-menu-brief" rows="2" class="col-sm-12 col-md-12"  placeholder='$text.getText("cmsadmin.post.brief")' style="padding:5px;border-radius:4px !important"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="txt-menu-content" name="txt-menu-content" rows="20" class="col-sm-12 col-md-12"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 no-padding-right">
+                    <div id="template-box" class="panel panel-default">
+                        <div class="panel-heading">$text.getText("cmsadmin.template.post") <div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body" style="padding: 5px;">
+                            <select id="cbb-template" class="col-sm-12 col-md-12">
+                                <option value="" selected="selected">$text.getText("cmsadmin.template.blank")</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="avatar-box" class="panel panel-default">
+                        <div class="panel-heading">$text.getText("cmsadmin.post.picture_alias") <div class="panel-toolbar pull-right"></div></div>
+                        <div class="panel-body">
+                            <div>
+                                <a href="javascript:;" data-action="select" class="thumbnail">
+                                    <img id="avatar-box-image" src='$ctx.resource("/images/cmsadmin/common/no-thumb.png")' />
+                                </a>
+                            </div>
+                            <button id="avatar-box-select-btn" type="button" class="btn btn-default btn-sm"><i class="icon-search"></i>$text.getText("cmsadmin.media.select_from_library")</button>
+                            <button id="avatar-box-upload-btn" type="button" class="btn btn-default btn-sm"><i class="icon-upload-alt"></i>$text.getText("cmsadmin.media.upload_from_computer")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

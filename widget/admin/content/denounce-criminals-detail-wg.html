@@ -1,0 +1,57 @@
+#script("/js/cmsadmin/tinymce/tinymce.min.js")
+##script("/js/cmsadmin/tinymce/jquery.tinymce.min.js")
+#script("/js/cmsadmin/inet/lib/common/little-editor.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-fqa-content.min.js")
+#script("/js/cmsadmin/inet/lib/review/denounce-criminals-detail.min.js")
+<div id="fqa-content-wg" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="content-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i>
+            $text.getText("app.button.back")
+        </button>
+<!--        <button id="content-btn-create" class="btn btn-success btn-sm">-->
+<!--            <i class="fa fa-plus"></i>-->
+<!--            $text.getText("app.button.create")-->
+<!--        </button>-->
+<!--        <button id="content-btn-del" class="btn btn-danger btn-sm">-->
+<!--            <i class="fa fa-remove"></i>-->
+<!--            $text.getText("app.button.del")-->
+<!--        </button>-->
+        <button id="content-btn-export" class="btn btn-primary btn-sm">
+            <i class="fa fa-file-excel-o"></i>
+            Export
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="panel-fqa-content" class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong id="txt-content-owner"></strong>
+                        - Gửi lúc: <span id="txt-content-time"></span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3">$text.getText("cmsadmin.feedback.accusedPerson"):</div>
+                                <div class="col-sm-9 col-md-9">
+                                    <input type="text" id="txt-content-subject" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.feedback.content"): </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <textarea id="txt-content-question" rows="5" class="form-control col-sm-12 col-md-12"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="txt-content-category" style="display:none">
+                            <input type="hidden" id="txt-content-answer" style="display:none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

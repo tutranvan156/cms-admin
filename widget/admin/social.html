@@ -1,0 +1,120 @@
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/bootstrap/plugins/bootstrap-timepicker.min.js")
+#theme("/common/css/jquery/select2")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/cmsadmin/inet/lib/api/firm-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/cms-social-config.min.js")
+
+<style>
+    .setting {
+        margin-top: 10px;
+    }
+
+    .setting .header,
+    .setting .title {
+        color: #08c;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .setting .header {
+        text-transform: uppercase;
+        margin-top: 0;
+        border-color: #bce8f1;
+    }
+
+    .setting .title {
+        padding-left: 7px;
+    }
+
+    .radio-inline {
+        color: #778899 !important;
+        font-weight: 700;
+    }
+</style>
+<div class="wg-toolbar navbar-fixed-top">
+	<button id="social-config-btn-save" class="btn btn-primary btn-sm">
+		<i class="icon-save"></i> $text.getText("cmsadmin.design.plugin_map.map_title")
+	</button>
+</div>
+<div class="wg-content container setting" id="social-setting">
+	<div class="dash-border">
+		<div class="row alert alert-info header" style="margin-bottom: 20px">
+			<strong class="col-sm-8">$text.getText("Cấu hình Zalo")</strong>
+			<div class="col-sm-4 text-right" style="max-height: 0">
+				<label>
+					<input name="switch-field-1" id="cms-social-zalo-active-checkbox"
+					       class="ace ace-switch ace-switch-4" type="checkbox">
+					<span class="lbl"></span>
+				</label>
+			</div>
+		</div>
+		<div class="form-horizontal">
+			<div class="form-group  ">
+				<label class="col-sm-2 control-label ilabel">$text.getText("Access Token")</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="social-config-zalo-access-token">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dash-border">
+		<div class="row alert alert-info header" style="margin-bottom: 20px">
+			<strong class="col-sm-8">$text.getText("Cấu hình Facebook")</strong>
+			<div class="col-sm-4 text-right" style="max-height: 0">
+				<label>
+					<input name="switch-field-1" id="cms-social-facebook-active-checkbox"
+					       class="ace ace-switch ace-switch-4" type="checkbox">
+					<span class="lbl"></span>
+				</label>
+			</div>
+		</div>
+		<div class="form-horizontal">
+			<div class="form-group  ">
+				<label class="col-sm-2 control-label ilabel">$text.getText("Access Token")</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="social-config-facebook-access-token">
+				</div>
+			</div>
+			<div class="form-group  ">
+				<label class="col-sm-2 control-label ilabel">$text.getText(" Đường dẫn truy cập bài viết ")</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="social-config-facebook-article-link-access">
+				</div>
+			</div>
+			<div class="form-group  ">
+				<label class="col-sm-2 control-label ilabel">$text.getText("App ID")</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="social-config-facebook-app-id">
+				</div>
+				<label class="col-sm-2 control-label ilabel">$text.getText("App Secret")</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="social-config-facebook-app-secret">
+				</div>
+			</div>
+			<div class="form-group center">
+				<button type="button" id="social-config-facebook-generate">Lấy cấu hình</button>
+			</div>
+			<div class="form-group  ">
+				<label class="col-sm-2 control-label ilabel" >$text.getText("Page ID")</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="social-config-facebook-page-id" readonly>
+				</div>
+				<label class="col-sm-2 control-label ilabel">$text.getText("Account ID")</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="social-config-facebook-account-id" readonly>
+				</div>
+			</div>
+			<div class="form-group  ">
+				<label class="col-sm-2 control-label ilabel" >$text.getText("Long Lived Access Token")</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="social-config-facebook-long-lived-token" readonly>
+				</div>
+				<label class="col-sm-2 control-label ilabel">$text.getText("Expiration Time")</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="social-config-facebook-expiration-time" readonly>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

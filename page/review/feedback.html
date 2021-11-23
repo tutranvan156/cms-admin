@@ -1,0 +1,11 @@
+#html({"lang":"vi", "dir":"ltr", "secure":"$cms_fqa_review", "inherit": "true"})
+    ##cmsNav("cmsadmin.fqa", true)
+    #keywords({"title" : 'iSphere - $text.getText("cmsadmin.fqa")'})
+    #meta({"title":'iSphere - $text.getText("cmsadmin.fqa")',"viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+    #widget("/cmsadmin/widget/common/common")
+    #widget("/cmsadmin/widget/author/asset-selector-wg")
+    #widget("/cmsadmin/widget/author/asset-quick-uploader-wg")
+    #widget("/cmsadmin/widget/review/feedback-list-wg")
+    #widget("/cmsadmin/widget/review/feedback-content-wg")
+    #script("/js/cmsadmin/inet/lib/review/cms-feedback-main.min.js")
+#end

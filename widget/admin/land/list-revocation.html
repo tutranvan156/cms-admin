@@ -1,0 +1,68 @@
+#theme("/cmsadmin/css/jquery/select2-new")
+#theme("/cmsadmin/css/bootstrap/plugins/bootstrap-datepicker3.min")
+#script("/js/cmsadmin/jquery/plugins/select2.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/bootstrap-datepicker.min.js")
+#script("/js/cmsadmin/bootstrap/plugins/datepicker/locales/bootstrap-datepicker.${ctx.language}.min.js")
+#script("/js/cmsadmin/inet/lib/admin/list-revocation.min.js")
+<script type="text/javascript">
+  iNet.ns('iNet.resources.cmsadmin.revocation');
+  if (iNet.resources.cmsadmin.revocation)
+    iNet.apply(iNet.resources.cmsadmin.revocation, {
+      title: '$text.getText("Thu hồi, cho thuê, giao đất")',
+      expired_date: '$text.getText("Thời hạn")',
+      formality: '$text.getText("Hình thức")',
+      note: '$text.getText("Ghi chú")',
+      content: '$text.getText("Nội dung")',
+      creator: '$text.getText("cmsadmin.poll.creator")',
+      created: '$text.getText("Ngày tạo")',
+      modified: '$text.getText("Ngày cập nhật")',
+      del_title: '$text.getText("Xóa thông tin")',
+      del_confirm: '$text.getText("Bạn chắc chắn muốn xóa thông tin không?")',
+      del_success: '$text.getText("Xóa thành công")',
+      del_error: '$text.getText("Quá trình xóa xảy ra lỗi")',
+      save_success: '$text.getText("Lưu thành công")',
+      save_error: '$text.getText("Quá trình lưu xảy ra lỗi")'
+    });
+</script>
+<style>
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div id="list-revocation-wg">
+
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="revocation-btn-add" class="btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            $text.getText("app.button.create")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-revocation-basic-search">
+                <div class="row-fluid">
+                    <div class="col-xs-5 col-md-5 span5 no-padding" style="margin-right: 15px;">
+                            <span class="input-group search" style="margin-left:0;">
+                                <span class="input-group-btn">
+                                    <input type="text" class="grid-search-input form-control"
+                                           placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn"
+                                            data-action-search="search" style="z-index:9999999">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                    </div>
+                    <div class="col-xs-5 col-md-5 span5 no-padding">
+                        <select id="formality-select2" class="form-control no-margin-bottom" style="height:30px">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-revocation"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

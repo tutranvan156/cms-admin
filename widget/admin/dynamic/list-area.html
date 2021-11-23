@@ -1,0 +1,33 @@
+#script("/js/cmsadmin/inet/lib/admin/area-list.min.js")
+<div id="list-area-wg">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="list-btn-undo" class="btn btn-warning btn-sm">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            $text.getText("Khôi phục mặc định")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="container-fluid">
+            <div id="list-area-basic-search">
+                <div class="row-fluid">
+                    <div class="col-xs-5 col-md-5 span5 no-padding">
+                        <span class="input-group search" style="margin-left:0;">
+                            <span class="input-group-btn">
+                                <input type="text" class="grid-search-input form-control"
+                                       placeholder='$text.getText("common.field.placeholder_search")'>
+                                <button type="button" class="btn btn-default grid-search-btn"
+                                        data-action-search="search" style="z-index:9999999">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="list-area"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

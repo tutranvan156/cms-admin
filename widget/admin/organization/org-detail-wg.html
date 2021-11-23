@@ -1,0 +1,50 @@
+#script("/js/cmsadmin/inet/lib/api/unit-api.min.js")
+#script("/js/cmsadmin/inet/lib/admin/unit-detail.min.js")
+<style>
+    .lbl{
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+<div id="org-detail-wg" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="org-detail-btn-back" class="btn btn-primary btn-sm">
+            <i class="fa fa-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="org-detail-btn-create" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="org-detail-btn-save" class="btn btn-success btn-sm">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div>
+            <form id="form-info-org">
+                <input type="hidden" name="uuid"/>
+                <input type="hidden" name="type" value="BR064"/>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="name-organ" class="lbl">Tên đơn vị (<span class="required"></span>)</label>
+                        <input type="text" name="name" class="form-control" id="name-organ"
+                               placeholder="Nhập tên đơn vị">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="lbl">Số điện thoại</label>
+                        <input type="text" name="phone" class="form-control" id="phone"
+                               placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="form-group">
+                        <label for="mail" class="lbl">Thư điện tử</label>
+                        <input type="email" name="email" class="form-control" id="mail" placeholder="Nhập thư điện tử">
+                    </div>
+                    <div class="form-group">
+                        <label for="address1" class="lbl">Địa chỉ</label>
+                        <textarea name="address1" rows="3" class="form-control" id="address1"
+                                  placeholder="Nhập địa chỉ"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

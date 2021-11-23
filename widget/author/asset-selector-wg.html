@@ -1,0 +1,266 @@
+#theme("/cmsadmin/css/ace-thumbnails")
+#theme("/cmsadmin/css/gallery")
+#script("/js/common/inet/lib/pagingtb.min.js")
+#script("/js/cmsadmin/inet/lib/author/asset-document.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-asset-manager.min.js")
+#script("/js/cmsadmin/jquery/plugins/jquery.ace.fileinput.min.js")
+
+<style type="text/css">
+    .asset-selector-modal {
+
+    }
+    .asset-selector-modal .modal-header {
+        padding: 1px 0 0;
+    }
+    .asset-selector-modal button.close {
+        margin-top: 6px;
+        margin-right: 10px;
+    }
+    .asset-selector-modal .col-title {
+        padding: 0 15px;
+    }
+    .asset-selector-modal .modal-title {
+        padding: 6px 8px 0;
+    }
+    .asset-selector-modal .nav-tabs {
+        border-color: transparent;
+    }
+    .ace-file-multiple .ace-file-container{
+        height: auto !important;
+    }
+    .ace-file-multiple {
+        height: auto !important;
+    }
+    .widget-box{
+        margin: 0px !important;
+        border: 0px !important;
+    }
+    .widget-main{
+        padding: 0px !important;
+    }
+</style>
+<script type="text/javascript">
+  var isSelect = true;
+  var isEdit = false;
+</script>
+<div id="media-lib-modal" class="asset-selector-modal modal container fade" style="display: none">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="row">
+            <div class="col-title no-padding-right pull-left">
+                <h4 class="modal-title"><i class="icon-folder-close-alt"></i> $text.getText("cmsadmin.media")</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" style="padding: 5px; max-height: 500px;">
+        <div id="wg-toolbar" style="position:relative">
+            <div class="col-sm-2 col-md-2 no-padding-left">
+                <button id="media-lib-toolbar-btn-back" class="btn btn-primary btn-sm">
+                    <i class="icon-arrow-left"> </i>
+                </button>
+                <button id="media-lib-toolbar-btn-select-file" class="btn btn-success btn-sm" style="display: none;">
+                    <i class="icon-ok"> </i>
+                </button>
+                <button id="media-lib-toolbar-btn-upload-file" class="btn btn-primary btn-sm" style="display: none;">
+                    <i class="icon-cloud-upload"> </i>
+                </button>
+                <button id="media-lib-toolbar-btn-edit-file" class="btn btn-success btn-sm" style="display: none;">
+                    <i class="icon-pencil"> </i>
+                </button>
+                <button id="media-lib-toolbar-btn-cancel-file" class="btn btn-danger btn-sm" style="display: none;">
+                    <i class="icon-remove"> </i>
+                </button>
+            </div>
+            <div class="col-sm-10 col-md-10 no-padding-right">
+                <div class="col-sm-6 col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="icon-folder-open-alt"> </i>
+                            $text.getText("cmsadmin.media.folder")
+                        </div>
+                        <select id="gallery-cbb-folder" class="form-control"></select>
+                        <span class="input-group-btn">
+                            <button id="media-lib-toolbar-btn-create" class="btn btn-primary btn-sm"
+                                    title='$text.getText("cmsadmin.media.create_folder")'>
+                                <i class="icon-plus"> </i>
+                            </button>
+                            <button id="media-lib-toolbar-btn-edit-folder" class="btn btn-success btn-sm"
+                                    title='$text.getText("cmsadmin.media.edit_folder")' style="display:none">
+                                <i class="icon-pencil"> </i>
+                            </button>
+                            <button id="media-lib-toolbar-btn-remove-folder" class="btn btn-danger btn-sm"
+                                    title='$text.getText("cmsadmin.media.delete_folder")'>
+                                <i class="icon-trash"> </i>
+                            </button>
+                            <button id="media-lib-toolbar-btn-publish-folder" class="btn btn-primary btn-sm"
+                                    title='$text.getText("cmsadmin.media.publish_folder")' data-pub="1">
+                                <i class="icon-globe"> </i>
+                            </button>
+                            <button id="media-lib-toolbar-btn-unpublish-folder" class="btn btn-warning btn-sm"
+                                    title='$text.getText("cmsadmin.media.unpublish_folder")' data-pub="0" style="display:none">
+                                <i class="icon-globe"> </i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 no-padding">
+                    <div class="pull-right">
+                        <div id="paging-tb" style="float:left"></div>
+                    </div>
+                    <div class="pull-left">
+                <span class="input-group search" style="width:150px">
+                    <span class="input-group-btn">
+                        <input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <button id="btn-search" type="button" class="btn btn-default grid-search-btn"
+                                data-action-search="search">
+                            <i class="icon-search"></i>
+                        </button>
+                    </span>
+                </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div>
+            <div class="container-fluid">
+                <div id="wg-media" style="display: none;">
+                    <div class="row" style="margin-top: 9px;">
+                        <div class="col-sm-3">
+                            <div class="widget-box">
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <!--                                <div class="form-group">-->
+                                        <div class="" id="file-upload-trigger">
+                                            <input multiple="" type="file" id="file-uploader" >
+                                        </div>
+                                        <!--                                </div>-->
+<!--                                        <label style="font-size: 13px !important;">-->
+<!--                                            <input type="checkbox" name="file-format" id="checkbox-submit-checked" class="ace">-->
+<!--                                            <span class="lbl"> Giữ nguyên chất lượng hình ảnh</span>-->
+<!--                                        </label>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-9" id="file-matrix">
+                            <span id="file-list"></span>
+                            <div class="clearfix"></div>
+                        </div>
+<!--                        <div id="file-matrix" style="max-height:650px;overflow-y:auto">-->
+<!--                            <div id="file-add-btn" class="file-add file image text-center">-->
+<!--                                <span class="icon-plus" style="vertical-align: middle;"></span>-->
+<!--                            </div>-->
+<!--                            <span id="file-list"></span>-->
+<!--                            <div class="clearfix"></div>-->
+<!--                        </div>-->
+<!--                        <input id="file-uploader" type="file" style="display: none;" multiple="true" accept="image/*">-->
+                    </div>
+                </div>
+                <div id="list-document-wg" style="display: none">
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div id="list-document-basic-search">
+                                <div class="row-fluid">
+                                    <div class="col-sm-2 no-padding-left">
+                                        <button id="btn-document-upload" class="btn btn-primary">
+                                            <i class="fa fa-upload" aria-hidden="true"></i> Tải lên
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-5 col-md-5 span5 no-padding">
+                                        <span class="input-group search" style="margin-left:0;">
+                                            <span class="input-group-btn">
+                                                <input type="text" class="grid-search-input form-control"
+                                                       placeholder='$text.getText("common.field.placeholder_search")'>
+                                                <button type="button" class="btn btn-default grid-search-btn"
+                                                        data-action-search="search" style="z-index:9999999">
+                                                    <i class="icon-search"></i>
+                                                </button>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <input id="inp-document-upload" type="file" style="display:none">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="list-document"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="new-folder-modal" class="modal fade" data-focus-on="input:first" style="display: none">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4><i class="icon-folder-open-alt"></i> $text.getText("cmsadmin.media.folder_create_title")</h4>
+            </div>
+            <div class="modal-body" style="padding: 0px;margin:0px">
+                <div class="container-fluid" style="padding-top: 15px;">
+                    <div id="new-folder-create-first" class="row" style="height: 30px; line-height: 30px;">
+                        <div class="col-sm-12 col-md-12 orange"><i>$text.getText("cmsadmin.media.create_first")</i></div>
+                    </div>
+                    <div class="row" style="height: 30px; line-height: 30px;">
+                        <div class="col-sm-4 col-md-4">$text.getText("cmsadmin.media.folder_create_name")</div>
+                        <div class="col-sm-8 col-md-8"><input id="new-folder-name" type="text" class="form-control"
+                                                              onfocus="this.select();"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="new-folder-modal-btn-ok" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i>
+                    $text.getText("app.button.ok")
+                </button>
+                <button id="new-folder-modal-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i
+                        class="icon-remove"></i> $text.getText("app.button.cancel")
+                </button>
+            </div>
+        </div>
+
+        <div id="view-image-modal" class="modal container fade" style="display: none">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-8 col-md-8 text-center image-viewer">
+                        <div class="img-container">
+                            <img id="view-image-img" src="">
+                            <span id="view-image-prev" class="img-button img-prev"><i class="icon-chevron-left"></i></span>
+                            <span id="view-image-next" class="img-button img-next"><i class="icon-chevron-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_name"): <span
+                                    id="view-image-name"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_date"): <span
+                                    id="view-image-date"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_type"): <span
+                                    id="view-image-type"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_size"): <span
+                                    id="view-image-size"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">$text.getText("cmsadmin.media.file_link"):</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12"><input id="view-image-link"
+                                                                    class="form-control col-sm-12 col-md-12"
+                                                                    onclick="this.select()"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

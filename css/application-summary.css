@@ -1,0 +1,47 @@
+.box-images {
+    padding: 5px;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+}
+.box-images .image-item {
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    position: relative;
+    border: 1px solid #E5E5E5;
+    border-radius: 2px;
+}
+.box-images .image-item .del-action {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    line-height: 10px;
+    border-radius: 2px;
+    background-color: #FF3D2F;
+    color: #FFFFFF;
+    cursor: pointer;
+    z-index: 1;
+}
+.box-images .image-item .del-action:before {
+    font-family: FontAwesome;
+    content: "\f00d";
+}
+.box-images .image-item img {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+}
+.box-summary {
+    padding: 0;
+}
+.tab-summary-content {
+    max-height: 300px;
+    overflow-y: auto;
+}

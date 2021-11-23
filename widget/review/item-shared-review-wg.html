@@ -1,0 +1,63 @@
+#script("/js/cmsadmin/inet/lib/api/item-api.min.js")
+#script("/js/cmsadmin/inet/lib/author/cms-item-list-abstract.min.js")
+#script("/js/cmsadmin/inet/lib/review/cms-item-shared-review-list.min.js")
+#dataservice("cmscategorylist")
+#set($cateAll = $cmscategorylist)
+#xscript()
+    var dataCate = [];
+    #foreach($item in $cateAll.items)
+        dataCate.push({'value': '$item.uuid', 'name': '$item.name', 'group': '$item.group'});
+    #end
+#end
+
+<div id="review-share-wg">
+    <div class="wg-content" style="padding-top:5px">
+        <div class="container-fluid">
+            <div class="hide" style="display: none;">
+                <div id="review-list-basic-search">
+                    <div id="review-list-quick-search">
+                        <div class="col-sm-4 col-md-4 no-padding">
+                            <span class="input-group search" style="margin-left:0px;">
+                                <span class="input-group-btn">
+                                    <input id="review-list-keyword-txt" type="text" class="grid-search-input form-control" placeholder='$text.getText("common.field.placeholder_search")'>
+                                    <button type="button" class="btn btn-default grid-search-btn" data-action-search="search">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="review-list-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="category-modal" class="modal fade" style="display: none;" data-focus-on="input:first">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-list-alt"></i> Chọn thể loại cho bài viết</h4>
+    </div>
+    <div class="modal-body" style="padding: 10px;">
+        <div class="container-fluid">
+            <div class="row">
+                <label for="cbb-category" class="col-sm-3 col-md-3" style="padding-top: 5px;">Chọn thể loại</label>
+                <div class="col-sm-9 col-md-9">
+                    <select id="cbb-category" class="form-control col-sm-12 col-md-12">
+                    #foreach($item in $cateAll.items)
+                        #if($item.name != $item.group)
+                        <option value="$item.uuid">$item.name</option>
+                        #end
+                    #end
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer no-margin-top">
+        <button action="ok" id="btn-select-ok" type="button" class="btn btn-primary btn-small"><i class="icon-ok"></i> $text.getText("app.button.ok")</button>
+        <button type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("app.button.cancel")</button>
+    </div>
+</div>
